@@ -1,0 +1,18 @@
+@startuml
+
+(*) -> "start page"
+-> "questions page" as qq
+note top
+ Some sections – specifically the 'evidence'
+ section – can be added multiple times (ie
+ instead of producing a single set of answers,
+ they produce a list of sets of answers).
+endnote
+-up-> [within section] qq
+-down-> [end of section] "check your answers"
+-> qq
+"check your answers" -> "results page"
+
+
+@enduml
+
