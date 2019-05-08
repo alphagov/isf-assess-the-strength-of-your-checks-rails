@@ -1,0 +1,48 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_tag("", method: "post") do %>
+      <div class="govuk-form-group">
+
+        <fieldset class="govuk-fieldset" aria-describedby="confidence-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">How confident do you need to be that someone is who they say they are?</h1>
+          </legend>
+          <div id="confidence-hint" class="govuk-hint">
+            <p>How confident you need to be that someone is who they say they are depends on what your service does.</p>
+
+            <p>You'll usually need to be more confident if your service gives users something valuable, like money or benefits. This is because your service is more likely to be targeted by users pretending to be someone they're not to get something they shouldn't.</p>
+          </div>
+
+          <div class="govuk-radios">
+            <div class="govuk-radios__item">
+              <%= radio_button_tag(:confidence, "none", false, class: "govuk-radios__input", woo: "waa") %>
+              <%= label_tag(:confidence_none, "None", class: "govuk-label govuk-radios__label govuk-label--s") %>
+              <span class="govuk-hint govuk-radios__hint">You might not need to check a user's identity if your service only lets users sign in to an account.</span>
+            </div>
+            <div class="govuk-radios__item">
+              <%= radio_button_tag(:confidence, "low", false, class: "govuk-radios__input") %>
+              <%= label_tag(:confidence_low, "Low confidence", class: "govuk-label govuk-radios__label govuk-label--s") %>
+              <span class="govuk-hint govuk-radios__hint">You'll need this if your service lets users view or update personal information.</span>
+            </div>
+            <div class="govuk-radios__item">
+              <%= radio_button_tag(:confidence, "medium", false, class: "govuk-radios__input") %>
+              <%= label_tag(:confidence_medium, "Medium confidence", class: "govuk-label govuk-radios__label govuk-label--s") %>
+              <span class="govuk-hint govuk-radios__hint">You'll need this if your services gives users access to sensitive information, money or benefits.</span>
+            </div>
+            <div class="govuk-radios__item">
+              <%= radio_button_tag(:confidence, "high", false, class: "govuk-radios__input") %>
+              <%= label_tag(:confidence_high, "High confidence", class: "govuk-label govuk-radios__label govuk-label--s") %>
+              <span class="govuk-hint govuk-radios__hint">You'll need this if your service gives users access to secure buildings, like a nuclear power station.</span>
+            </div>
+            <p> or <p>
+            <div class="govuk-radios__item">
+              <%= radio_button_tag(:confidence, "not_sure", false, class: "govuk-radios__input") %>
+              <%= label_tag(:confidence_not_sure, "You're not sure", class: "govuk-label govuk-radios__label govuk-label--s") %>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      <%= submit_tag("Continue", class: "govuk-button") %>
+    <% end %>
+  </div>
+</div>

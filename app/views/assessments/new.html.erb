@@ -1,0 +1,29 @@
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        Assess an identity check
+      </h1>
+
+      <p>
+        Use this service to find out:
+      </p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>if identity checks meet the UK government’s identity standards</li>
+        <li>how to check identities more thoroughly</li>
+      </ul>
+
+      <h2 class="govuk-heading-m">How it works</h2>
+
+      <ol class="govuk-list govuk-list--number">
+        <li>Get a score for each identity check.</li>
+        <li>Find out if the checks protect against identity risks.</li>
+        <li>Plan how checks can be improved.</li>
+      </ol>
+      <br>
+
+      <%= form_tag(url_for(:action => "create"), method: "post") do %>
+        <%= submit_tag("Start assessment", class: "govuk-button") %>
+      <% end %>
+    </div>
+  </div>
