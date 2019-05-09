@@ -36,6 +36,13 @@ rm yarn.lock
 ./pre-commit.sh
 ```
 
+## Running arbitrary commands with docker-compose
+
+```
+APP_IMAGE_NAME=`basename $( pwd )`-dev docker-compose run app bin/rake db:reset
+APP_IMAGE_NAME=`basename $( pwd )`-dev docker-compose run app bin/rails dbconsole  # etc
+```
+
 ## Requirements
 
 The tool asks the user a series of questions; some are shown or skipped depending on the
@@ -101,4 +108,3 @@ Some developer time will likely be required if substantial changes are made to
 the question flow or to the analysis and results pages. If multiple tools are
 developed in future, then developer effort might be required to factor out common
 features into a library.
-
