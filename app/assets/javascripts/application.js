@@ -11,7 +11,6 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require activestorage
 //= require turbolinks
 //= require_tree .
-//= require govuk-frontend/all 
+//= require govuk-frontend/all
