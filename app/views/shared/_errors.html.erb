@@ -1,0 +1,16 @@
+<% if not @errors.empty? %>
+  <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+    <h2 class="govuk-error-summary__title" id="error-summary-title">
+      <%= @errors.heading.presence || t('errors.heading') %>
+    </h2>
+    <div class="govuk-error-summary__body">
+      <ul class="govuk-list govuk-error-summary__list">
+        <% @errors.each do |field_id, message| %>
+          <li>
+            <%= link_to "#{message}" , "##{field_id}" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+   </div>
+<% end %>
