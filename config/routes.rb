@@ -9,4 +9,7 @@ Rails.application.routes.draw do
   get 'assessments/your-risk', to: 'assessment_questions#your_risk_get'
   post 'assessments/your-risk', to: 'assessment_questions#your_risk_post'
 
+  get 'assessments/evidence/:id/choose-evidence', to: 'assessment_questions#choose_evidence_get'
+  post 'assessments/evidence/:id/choose-evidence', to: 'assessment_questions#choose_evidence_post'
+
 end

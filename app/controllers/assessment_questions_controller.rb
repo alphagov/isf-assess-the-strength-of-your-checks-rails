@@ -16,4 +16,23 @@ class AssessmentQuestionsController < AssessmentsController
     redirect_to controller: 'assessments', action: 'overview'
   end
 
+  def choose_evidence_get
+    render "assessments/choose-evidence"
+  end
+
+  def choose_evidence_post
+    if not params[:choose_evidence]
+      @errors[:choose_evidence] = 'You must choose a piece of evidence'
+      render "assessments/choose-evidence" and return
+    end
+    if params[:id] == "new"
+      id = SecureRandom.uuid 
+    else
+      id = params[:id]
+    end
+    (((session['current_assessment'] ||= Hash.new)[:evidence] ||= Hash.new)[id] ||= Hash.new)[:choose_evidence] = params[:choose_evidence]
+    (((session['current_assessment'] ||= Hash.new)[:evidence] ||= Hash.new)[id] ||= Hash.new)[:choose_evidence_other_name] = params[:choose_evidence_other_name]
+    redirect_to controller: 'assessments', action: 'overview'
+  end
+
 end
