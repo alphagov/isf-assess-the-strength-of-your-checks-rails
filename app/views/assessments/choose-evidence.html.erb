@@ -52,7 +52,7 @@
               <%= label_tag(:choose_evidence_local_authority_doc, "Document issued by a local authority", class: "govuk-label govuk-radios__label") %>
             </div>
             <p> or <p>
-            
+
             <div class="govuk-radios__item">
               <%= radio_button_tag(:choose_evidence, "other", false, { class: "govuk-radios__input", 'aria-controls' => "conditional-choose_evidence_other" } ) %>
               <%= label_tag(:choose_evidence_other, "Other evidence not listed", class: "govuk-label govuk-radios__label") %>
@@ -60,7 +60,7 @@
             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-choose_evidence_other">
               <div class="govuk-form-group">
                 <%= label_tag(:choose_evidence_other_name, "What is the evidence called?", class: "govuk-label") %>
-                <%= text_field(:choose_evidence_other_name, "", class: "govuk-input govuk-!-width-one-third") %>
+                <%= text_field_tag(:choose_evidence_other_name, "", class: "govuk-input") %>
               </div>
             </div>
 
@@ -70,7 +70,7 @@
 
         <%= submit_tag("Continue", class: "govuk-button") %>
       </div>
-      
+
     <% end %>
   </div>
 </div>
@@ -81,7 +81,7 @@
         <input class="govuk-radios__input" id="how-contacted-conditional-1" name="how-contacted" type="radio" value="email" data-aria-controls="conditional-how-contacted-conditional-1">
         <label class="govuk-label govuk-radios__label" for="how-contacted-conditional-1">
           Email
-        </label> 
+        </label>
       </div>
       <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-how-contacted-conditional-1">
         <div class="govuk-form-group">
