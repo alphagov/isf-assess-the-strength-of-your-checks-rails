@@ -11,7 +11,7 @@ class AssessmentQuestionsController < AssessmentsController
 
     end
 
-    (session['current_assessment'] ||= Hash.new)[:confidence_level_required] = params[:confidence_level_required]
+    (session['current_assessment'] ||= Hash.new)['confidence_level_required'] = params[:confidence_level_required]
 
     redirect_to controller: 'assessments', action: 'overview'
   end
@@ -26,13 +26,19 @@ class AssessmentQuestionsController < AssessmentsController
       render "assessments/choose-evidence" and return
     end
     if params[:id] == "new"
-      id = SecureRandom.uuid 
+      id = SecureRandom.uuid
     else
       id = params[:id]
     end
-    (((session['current_assessment'] ||= Hash.new)[:evidence] ||= Hash.new)[id] ||= Hash.new)[:choose_evidence] = params[:choose_evidence]
-    (((session['current_assessment'] ||= Hash.new)[:evidence] ||= Hash.new)[id] ||= Hash.new)[:choose_evidence_other_name] = params[:choose_evidence_other_name]
+    get_evidence(id)['choose_evidence'] = params[:choose_evidence]
+    get_evidence(id)['choose_evidence_other_name'] = params[:choose_evidence_other_name]
     redirect_to controller: 'assessments', action: 'overview'
+  end
+
+  private
+
+  def get_evidence(id)
+    return ((get_assessment()['evidence'] ||= Hash.new)[id] ||= Hash.new)
   end
 
 end
