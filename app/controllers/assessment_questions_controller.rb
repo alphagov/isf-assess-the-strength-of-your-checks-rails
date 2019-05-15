@@ -21,8 +21,8 @@ class AssessmentQuestionsController < AssessmentsController
   end
 
   def choose_evidence_post
-    if not params[:choose_evidence]
-      @errors[:choose_evidence] = 'You must choose a piece of evidence'
+    if (not params[:evidence_type]) && (params[:evidence_type_other].blank?)
+      @errors[:evidence_type] = 'You must choose a piece of evidence'
       render "assessments/choose-evidence" and return
     end
     if params[:id] == "new"
@@ -30,8 +30,13 @@ class AssessmentQuestionsController < AssessmentsController
     else
       id = params[:id]
     end
-    get_evidence(id)['choose_evidence'] = params[:choose_evidence]
-    get_evidence(id)['choose_evidence_other_name'] = params[:choose_evidence_other_name]
+    if params[:choose_evidence] == "other"
+      params[:evidence_type] = nil
+    else
+      params[:evidence_type_other] = nil
+    end
+    get_evidence(id)['evidence_type'] = params[:evidence_type]
+    get_evidence(id)['evidence_type_other'] = params[:evidence_type_other]
     redirect_to controller: 'assessments', action: 'overview'
   end
 
