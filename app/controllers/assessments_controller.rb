@@ -7,5 +7,4 @@ class AssessmentsController < ApplicationController
   def overview
     render 'assessments/overview'
   end
-
 end

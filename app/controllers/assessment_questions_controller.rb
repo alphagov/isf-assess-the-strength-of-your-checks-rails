@@ -7,7 +7,7 @@ class AssessmentQuestionsController < AssessmentsController
     # TODO more validation – perhaps once this is driven via YAML?
     if not params[:confidence_level_required]
       @errors[:confidence_level_required] = 'You must choose a confidence level'
-      render "assessments/your-risk" and return
+      render("assessments/your-risk") && return
 
     end
 
@@ -23,16 +23,15 @@ class AssessmentQuestionsController < AssessmentsController
   def choose_evidence_post
     if not params[:choose_evidence]
       @errors[:choose_evidence] = 'You must choose a piece of evidence'
-      render "assessments/choose-evidence" and return
+      render("assessments/choose-evidence") && return
     end
-    if params[:id] == "new"
-      id = SecureRandom.uuid 
-    else
-      id = params[:id]
-    end
+    id = if params[:id] == "new"
+           SecureRandom.uuid
+         else
+           params[:id]
+         end
     (((session['current_assessment'] ||= Hash.new)[:evidence] ||= Hash.new)[id] ||= Hash.new)[:choose_evidence] = params[:choose_evidence]
     (((session['current_assessment'] ||= Hash.new)[:evidence] ||= Hash.new)[id] ||= Hash.new)[:choose_evidence_other_name] = params[:choose_evidence_other_name]
     redirect_to controller: 'assessments', action: 'overview'
   end
-
 end
