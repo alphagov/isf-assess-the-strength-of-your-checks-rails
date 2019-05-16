@@ -11,5 +11,4 @@ Rails.application.routes.draw do
 
   get 'assessments/evidence/:id/choose-evidence', to: 'assessment_questions#choose_evidence_get'
   post 'assessments/evidence/:id/choose-evidence', to: 'assessment_questions#choose_evidence_post'
-
 end
