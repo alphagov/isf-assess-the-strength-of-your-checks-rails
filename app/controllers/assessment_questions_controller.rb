@@ -11,7 +11,7 @@ class AssessmentQuestionsController < AssessmentsController
 
     end
 
-    (session['current_assessment'] ||= Hash.new)['confidence_level_required'] = params[:confidence_level_required]
+    get_assessment()['confidence_level_required'] = params[:confidence_level_required]
 
     redirect_to controller: 'assessments', action: 'overview'
   end
