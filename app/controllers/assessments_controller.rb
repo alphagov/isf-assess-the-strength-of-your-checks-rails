@@ -5,14 +5,13 @@ class AssessmentsController < ApplicationController
   end
 
   def overview
-    @assessment = get_assessment()
+    @assessment = get_assessment
     render 'assessments/overview'
   end
 
-  private
+private
 
   def get_assessment
-    return session['current_assessment'] ||= Hash.new
+    session['current_assessment'] ||= Hash.new
   end
-
 end

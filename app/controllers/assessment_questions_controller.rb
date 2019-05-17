@@ -7,11 +7,11 @@ class AssessmentQuestionsController < AssessmentsController
     # TODO more validation – perhaps once this is driven via YAML?
     if not params[:confidence_level_required]
       @errors[:confidence_level_required] = 'You must choose a confidence level'
-      render "assessments/your-risk" and return
+      render("assessments/your-risk") && return
 
     end
 
-    get_assessment()['confidence_level_required'] = params[:confidence_level_required]
+    get_assessment['confidence_level_required'] = params[:confidence_level_required]
 
     redirect_to controller: 'assessments', action: 'overview'
   end
@@ -21,15 +21,15 @@ class AssessmentQuestionsController < AssessmentsController
   end
 
   def choose_evidence_post
-    if (not params[:evidence_type]) && (params[:evidence_type_other].blank?)
+    if (not params[:evidence_type]) && params[:evidence_type_other].blank?
       @errors[:evidence_type] = 'You must choose a piece of evidence'
-      render "assessments/choose-evidence" and return
+      render("assessments/choose-evidence") && return
     end
-    if params[:id] == "new"
-      id = SecureRandom.uuid
-    else
-      id = params[:id]
-    end
+    id = if params[:id] == "new"
+           SecureRandom.uuid
+         else
+           params[:id]
+         end
     if params[:choose_evidence] == "other"
       params[:evidence_type] = nil
     else
@@ -40,10 +40,9 @@ class AssessmentQuestionsController < AssessmentsController
     redirect_to controller: 'assessments', action: 'overview'
   end
 
-  private
+private
 
   def get_evidence(id)
-    return ((get_assessment()['evidence'] ||= Hash.new)[id] ||= Hash.new)
+    ((get_assessment['evidence'] ||= Hash.new)[id] ||= Hash.new)
   end
-
 end
