@@ -11,7 +11,9 @@ class AssessmentQuestionsController < AssessmentsController
 
     end
 
-    get_assessment['confidence_level_required'] = params[:confidence_level_required]
+    assessment = find_assessment
+    assessment['confidence_level_required'] = params[:confidence_level_required]
+    save(assessment)
 
     redirect_to controller: 'assessments', action: 'overview'
   end
@@ -25,24 +27,26 @@ class AssessmentQuestionsController < AssessmentsController
       @errors[:evidence_type] = 'You must choose a piece of evidence'
       render("assessments/choose-evidence") && return
     end
-    id = if params[:id] == "new"
-           SecureRandom.uuid
-         else
-           params[:id]
-         end
+
+    if params[:evidence_id] == "new"
+      evidence = Evidence.new
+      assessment = find_assessment
+      assessment.add_evidence(evidence)
+      save(assessment)
+    else
+      evidence = find_evidence
+    end
+
     if params[:choose_evidence] == "other"
       params[:evidence_type] = nil
     else
       params[:evidence_type_other] = nil
     end
-    get_evidence(id)['evidence_type'] = params[:evidence_type]
-    get_evidence(id)['evidence_type_other'] = params[:evidence_type_other]
+
+    evidence['evidence_type'] = params[:evidence_type]
+    evidence['evidence_type_other'] = params[:evidence_type_other]
+    save(evidence)
+
     redirect_to controller: 'assessments', action: 'overview'
-  end
-
-private
-
-  def get_evidence(id)
-    ((get_assessment['evidence'] ||= Hash.new)[id] ||= Hash.new)
   end
 end
