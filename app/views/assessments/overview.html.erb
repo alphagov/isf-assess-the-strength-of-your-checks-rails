@@ -1,9 +1,146 @@
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
+  <div class="govuk-grid-column-full">
     <h1 class="govuk-heading-l">
       Your scores
     </h1>
+
+    <p>
+      Find out what scores you’ll get for each part of the identity checking process.
+    </p>
+    <h2 class="govuk-heading-m govuk-!-margin-bottom-0 visually-hidden">Your service</h2>
+    <table class="govuk-table govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th class="govuk-table__header" scope="col"></th>
+          <th class="govuk-table__header" scope="col"></th>
+          <th class="govuk-table__header" scope="col"></th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell" scope="row">What level of confidence you need</td>
+          <td class="govuk-table__cell"><%= @assessment['confidence_level_required'] %></td>
+          <td class="govuk-table__cell edit"><a href="your-risk">Change</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="govuk-heading-m govuk-!-margin-bottom-0 visually-hidden">Evidence you collect</h2>
+
+    <% if @assessment['evidence'].blank? %>
+      <table class="govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col">Evidence you collect</th>
+            <th class="govuk-table__header" scope="col"></th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell hint" scope="row">You haven’t added any evidence yet</td>
+            <td class="govuk-table__cell" scope="row">
+              <a href="evidence/new/choose-evidence">Add evidence</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    <% else %>
+
+      <% @assessment['evidence'].each do |id, evidence| %>
+        <table class="govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th class="govuk-table__header" scope="col"><%= evidence['evidence_type'] || evidence['evidence_type_other'] %></th>
+                <th class="govuk-table__header" scope="col">Score</th>
+              <th class="govuk-table__header" scope="col"></th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell" scope="row">Strength</td>
+              <td class="govuk-table__cell" scope="row">
+                ??
+              </td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell" scope="row">Validity</td>
+              <td class="govuk-table__cell" scope="row">
+                ??
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      <% end %>
+      <p class="govuk-!-margin-top-6"><a href="evidence/new/choose-evidence">Add evidence</a></p>
+    <% end %>
+
+    <h2 class="govuk-heading-m govuk-!-margin-bottom-0 visually-hidden">Other checks</h2>
+
+    <table class="govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th class="govuk-table__header" scope="col">Checks on the identity</th>
+
+            <th class="govuk-table__header" scope="col">Score</th>
+
+          <th class="govuk-table__header" scope="col"></th>
+          <th class="govuk-table__header" scope="col"></th>
+        </tr>
+      </thead>
+
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell" scope="row">
+            Activity
+          </td>
+          <td class="govuk-table__cell" scope="row">
+
+              1
+
+          </td>
+          <td class="govuk-table__cell" scope="row"></td>
+          <td class="govuk-table__cell edit" scope="row">
+
+              <a href="/activity/activity-start">Change</a>
+
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell" scope="row">
+            Identity fraud
+          </td>
+          <td class="govuk-table__cell multi-question" scope="row">
+
+              <a href="/fraud/fraud-start">Answer required</a>
+
+          </td>
+          <td class="govuk-table__cell" scope="row"></td>
+          <td class="govuk-table__cell edit" scope="row">
+
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell" scope="row">
+            Verification
+          </td>
+          <td class="govuk-table__cell multi-question" scope="row">
+
+              <a href="/verification/verification-start">Answer required</a>
+
+          </td>
+          <td class="govuk-table__cell" scope="row"></td>
+          <td class="govuk-table__cell edit" scope="row">
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <br>
   </div>
 </div>
 
-<p><%=h session[:current_assessment].to_json %></p>
+
+
+<p><%=h @assessment.to_json %></p>
+
