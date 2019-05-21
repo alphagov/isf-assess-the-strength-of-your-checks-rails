@@ -1,0 +1,2 @@
+class Evidence < FormResponses
+end
