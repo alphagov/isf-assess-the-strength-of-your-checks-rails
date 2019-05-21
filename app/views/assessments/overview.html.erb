@@ -50,30 +50,32 @@
     <% else %>
 
       <% @evidence_list.each do |evidence| %>
-        <table class="govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
-          <thead class="govuk-table__head">
-            <tr class="govuk-table__row">
-              <th class="govuk-table__header" scope="col"><%= evidence.name %></th>
-                <th class="govuk-table__header" scope="col">Score</th>
-              <th class="govuk-table__header" scope="col"></th>
-            </tr>
-          </thead>
-          <tbody class="govuk-table__body">
-            <tr class="govuk-table__row">
-              <td class="govuk-table__cell" scope="row">Strength</td>
-              <td class="govuk-table__cell" scope="row">
-                ??
-              </td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td class="govuk-table__cell" scope="row">Validity</td>
-              <td class="govuk-table__cell" scope="row">
-                ??
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <p class="table-link"><a href="<%= url_for(:remove_evidence_id => evidence.id) %>">Remove</a></p>
+        <div class='evidence'>
+          <table class="govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="col"><%= evidence.name %></th>
+                  <th class="govuk-table__header" scope="col">Score</th>
+                <th class="govuk-table__header" scope="col"></th>
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell" scope="row">Strength</td>
+                <td class="govuk-table__cell" scope="row">
+                  ??
+                </td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell" scope="row">Validity</td>
+                <td class="govuk-table__cell" scope="row">
+                  ??
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="table-link"><a href="<%= url_for(:remove_evidence_id => evidence.id) %>">Remove</a></p>
+        </div>
       <% end %>
       <p class="govuk-!-margin-top-6"><a href="evidence/new/choose-evidence">Add evidence</a></p>
     <% end %>
