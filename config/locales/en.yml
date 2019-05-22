@@ -30,5 +30,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  app:
+    title: 'assess an identity check'
   errors:
     heading: "There is a problem"
