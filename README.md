@@ -43,6 +43,18 @@ APP_IMAGE_NAME=`basename $( pwd )`-dev docker-compose run app bin/rake db:reset
 APP_IMAGE_NAME=`basename $( pwd )`-dev docker-compose run app bin/rails dbconsole  # etc
 ```
 
+## Deploying the app to PaaS
+
+To view the application deployed on PaaS visit the following url [https://isf-assess-the-strength-of-your-check-rails.cloudapps.digital](https://isf-assess-the-strength-of-your-check-rails.cloudapps.digital)
+
+On PaaS the application lives within the organisation `govuk-verify` and inside space `1.docs`
+
+To deploy the application to PaaS you need to login and navigate into the correct organisation and space. From there you simply run:
+
+```
+cf push isf-assess-the-strength-of-your-check-rails
+```
+
 ## Requirements
 
 The tool asks the user a series of questions; some are shown or skipped depending on the
