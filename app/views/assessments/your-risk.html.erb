@@ -14,14 +14,13 @@
           </div>
 
           <div class="govuk-radios">
-            <% @form.lists['confidence_level_required'].items.each_value do |item| %>
-              <%= render 'shared/radio_item', list: @form.lists['confidence_level_required'], item: item %>
-            <% end %>
+            <% confidence_level_required = @form.lists['confidence_level_required'] %>
+            <%= render 'shared/radio_item', list: confidence_level_required, item: confidence_level_required.items['none'] %>
+            <%= render 'shared/radio_item', list: confidence_level_required, item: confidence_level_required.items['low'] %>
+            <%= render 'shared/radio_item', list: confidence_level_required, item: confidence_level_required.items['medium'] %>
+            <%= render 'shared/radio_item', list: confidence_level_required, item: confidence_level_required.items['high'] %>
             <p> or <p>
-            <div class="govuk-radios__item">
-              <%= radio_button_tag(:confidence_level_required, "not_sure", false, class: "govuk-radios__input") %>
-              <%= label_tag(:confidence_level_required_not_sure, "You're not sure", class: "govuk-label govuk-radios__label govuk-label--s") %>
-            </div>
+            <%= render 'shared/radio_item', list: confidence_level_required, item: confidence_level_required.items['not_sure'] %>
           </div>
         </fieldset>
       </div>
