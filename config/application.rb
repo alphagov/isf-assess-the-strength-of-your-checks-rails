@@ -26,5 +26,10 @@ module MyApp
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.number_of_assessments_to_keep = 3
+    config.action_dispatch.rescue_responses.merge!(
+      'AssessmentsController::FormResponsesNotFound' => :not_found
+    )
   end
 end

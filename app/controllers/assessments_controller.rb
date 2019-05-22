@@ -2,6 +2,7 @@ class AssessmentsController < ApplicationController
   def create
     @assessment = Assessment.new
     save(@assessment)
+    reap_old_assessments
     redirect_to controller: 'assessment_questions', action: 'your_risk_get', assessment_id: @assessment.id
   end
 
@@ -32,6 +33,7 @@ private
 # These methods exist to marshall our models in and out of the session, unless and
 # until we decide to store them in a database like normal people. (If we do that,
 # we have to think about access control.)
+  class FormResponsesNotFound < StandardError; end
 
   def find_assessment(id = nil)
     form_responses = find_form_responses(id || params[:assessment_id])
@@ -48,14 +50,35 @@ private
   end
 
   def find_form_responses(id)
-    session[:form_responses][id]
+    session[:form_responses][id] || raise(FormResponsesNotFound)
   end
 
   def save(form_responses)
     (session[:form_responses] ||= Hash.new)[form_responses[:id]] = form_responses
   end
 
+  def delete_assessment(assessment)
+    assessment.evidence_id_list.each do |evidence_id|
+      delete(evidence_id)
+    end
+    delete(assessment['id'])
+  end
+
   def delete(id)
     session[:form_responses].delete(id)
+  end
+
+  def all_assessments
+    session[:form_responses].each_value.select { |form_responses| form_responses['_type'] == 'assessment' }.map { |form_responses| Assessment.new(form_responses) }.compact
+  end
+
+  def reap_old_assessments
+    assessments_sorted_by_date = all_assessments.sort_by { |assessment| assessment["date_created"] }
+    all_but_most_recent = assessments_sorted_by_date[0..-(Rails.configuration.number_of_assessments_to_keep + 1)]
+    if !all_but_most_recent.nil?
+      all_but_most_recent.each do |assessment|
+        delete_assessment(assessment)
+      end
+    end
   end
 end
