@@ -1,0 +1,17 @@
+lists:
+  - name: confidence_level_required
+  - items:
+    - text: None
+      value: none
+      hint: You might not need to check a user's identity if your service only lets users sign in to an account.
+    - text: Low confidence
+      value: low
+      hint: You'll need this if your service lets users view or update personal information.
+    - text: Medium confidence
+      value: medium
+      hint: You'll need this if your services gives users access to sensitive information, money or benefits.
+    - text: High confidence
+      value: high
+      hint: You'll need this if your service gives users access to secure buildings, like a nuclear power station.
+    - text: You're not sure
+      value: not_sure
