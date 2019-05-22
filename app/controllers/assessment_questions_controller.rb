@@ -1,5 +1,8 @@
+require 'design_system/form_questions'
 class AssessmentQuestionsController < AssessmentsController
   def your_risk_get
+    @form = FormQuestions.new('assessments')
+
     render "assessments/your-risk"
   end
 

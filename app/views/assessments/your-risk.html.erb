@@ -14,26 +14,9 @@
           </div>
 
           <div class="govuk-radios">
-            <div class="govuk-radios__item">
-              <%= radio_button_tag(:confidence_level_required, "none", false, class: "govuk-radios__input") %>
-              <%= label_tag(:confidence_level_required_none, "None", class: "govuk-label govuk-radios__label govuk-label--s") %>
-              <span class="govuk-hint govuk-radios__hint">You might not need to check a user's identity if your service only lets users sign in to an account.</span>
-            </div>
-            <div class="govuk-radios__item">
-              <%= radio_button_tag(:confidence_level_required, "low", false, class: "govuk-radios__input") %>
-              <%= label_tag(:confidence_level_required_low, "Low confidence", class: "govuk-label govuk-radios__label govuk-label--s") %>
-              <span class="govuk-hint govuk-radios__hint">You'll need this if your service lets users view or update personal information.</span>
-            </div>
-            <div class="govuk-radios__item">
-              <%= radio_button_tag(:confidence_level_required, "medium", false, class: "govuk-radios__input") %>
-              <%= label_tag(:confidence_level_required_medium, "Medium confidence", class: "govuk-label govuk-radios__label govuk-label--s") %>
-              <span class="govuk-hint govuk-radios__hint">You'll need this if your services gives users access to sensitive information, money or benefits.</span>
-            </div>
-            <div class="govuk-radios__item">
-              <%= radio_button_tag(:confidence_level_required, "high", false, class: "govuk-radios__input") %>
-              <%= label_tag(:confidence_level_required_high, "High confidence", class: "govuk-label govuk-radios__label govuk-label--s") %>
-              <span class="govuk-hint govuk-radios__hint">You'll need this if your service gives users access to secure buildings, like a nuclear power station.</span>
-            </div>
+            <% @form.lists['confidence_level_required'].items.each_value do |item| %>
+              <%= render 'shared/radio_item', list: @form.lists['confidence_level_required'], item: item %>
+            <% end %>
             <p> or <p>
             <div class="govuk-radios__item">
               <%= radio_button_tag(:confidence_level_required, "not_sure", false, class: "govuk-radios__input") %>
