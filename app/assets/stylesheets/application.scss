@@ -16,3 +16,12 @@ $govuk-global-styles: true;
 $govuk-images-path: "govuk-frontend/assets/images/";
 $govuk-fonts-path: "govuk-frontend/assets/fonts/";
 @import "govuk-frontend/all";
+
+.govuk-error-summary .govuk-button {
+  vertical-align: baseline;  // align with cancel button if present
+}
+
+.govuk-error-summary a {
+  display: inline-block;
+  margin: 10px 0 0 15px;
+}
