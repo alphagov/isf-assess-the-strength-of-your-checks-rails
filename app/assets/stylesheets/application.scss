@@ -21,7 +21,7 @@ $govuk-fonts-path: "govuk-frontend/assets/fonts/";
   vertical-align: baseline;  // align with cancel button if present
 }
 
-.govuk-error-summary a.cancel {
+.govuk-error-summary a {
   display: inline-block;
   margin: 10px 0 0 15px;
 }
