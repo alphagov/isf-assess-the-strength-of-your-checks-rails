@@ -1,0 +1,13 @@
+lists:
+  - name: evidence_group
+    items:
+      - text: Passport or travel document
+        value: passport
+      - text: Driving licence or card
+        value: driving_licence
+  - name: evidence_type
+    items:
+      - text: UK passport
+        value: passport_uk
+      - text: UK photocard driving licence
+        value: driving_licence_uk_photocard

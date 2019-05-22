@@ -27,15 +27,12 @@
             Select one option.
           </p>
           <div class="govuk-radios govuk-radios--conditional" data-module="radios">
-            <div class="govuk-radios__item">
-              <%= radio_button_tag(:choose_evidence, "passport", false, { class: "govuk-radios__input", 'data-aria-controls' => "conditional-choose_evidence_passport" }) %>
-              <%= label_tag(:choose_evidence_passport, "Passport or travel document", class: "govuk-label govuk-radios__label") %>
-            </div>
+            <% evidence_group = @form.lists['evidence_group'] %>
+            <% evidence_type = @form.lists['evidence_type'] %>
+            <%= render 'shared/radio_item', list: evidence_group, item: evidence_group.items['passport'], attributes: { 'data-aria-controls' => "conditional-choose_evidence_passport" }%>
             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-choose_evidence_passport">
-              <div class="govuk-radios__item">
-                <%= radio_button_tag(:evidence_type, "passport_uk", false, class: "govuk-radios__input") %>
-                <%= label_tag(:evidence_type_passport_uk, "UK passport", class: "govuk-label govuk-radios__label") %>
-              </div>
+              <%= render 'shared/radio_item', list: evidence_type, item: evidence_type.items['passport_uk'] %>
+
               <div class="govuk-radios__item">
                 <%= radio_button_tag(:evidence_type, "passport_icao", false, class: "govuk-radios__input") %>
                 <%= label_tag(:evidence_type_passport_icao, "A passport that meets the International Civil Aviation Organisation (ICAO) specifications for machine-readable travel documents (9303)", class: "govuk-label govuk-radios__label") %>
@@ -54,10 +51,7 @@
               </div>
             </div>
 
-            <div class="govuk-radios__item">
-              <%= radio_button_tag(:choose_evidence, "driving_license", false, { class: "govuk-radios__input", 'data-aria-controls' => "conditional-choose_evidence_driving_license" }) %>
-              <%= label_tag(:choose_evidence_driving_license, "Driving licence or card", class: "govuk-label govuk-radios__label") %>
-            </div>
+            <%= render 'shared/radio_item', list: evidence_group, item: evidence_group.items['driving_licence'], attributes: { 'data-aria-controls' => "conditional-choose_evidence_driving_license" } %>
             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-choose_evidence_driving_license">
               <div class="govuk-radios__item">
                 <%= radio_button_tag(:evidence_type, "driving_license_uk_photocard", false, class: "govuk-radios__input") %>

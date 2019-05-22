@@ -22,13 +22,14 @@ class AssessmentQuestionsController < AssessmentsController
   end
 
   def choose_evidence_get
+    @form = Form.new('evidence')
     render "assessments/choose-evidence"
   end
 
   def choose_evidence_post
     if (not params[:evidence_type]) && params[:evidence_type_other].blank?
       @errors[:evidence_type] = 'You must choose a piece of evidence'
-      render("assessments/choose-evidence") && return
+      return choose_evidence_get
     end
 
     if params[:evidence_id] == "new"
