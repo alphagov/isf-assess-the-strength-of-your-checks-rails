@@ -5,9 +5,84 @@ lists:
         value: passport
       - text: Driving licence or card
         value: driving_licence
+      - text: Identity card
+        value: id_card
+      - text: Account, bill or statement
+        value: account
+      - text: Certificate
+        value: certificate
+      - text: Document issued by a local authority
+        value: local_authority_doc
+      - text: Other evidence not listed
+        value: other
+
   - name: evidence_type
     items:
       - text: UK passport
         value: passport_uk
+      - text: Gas or electric bill
+        value: account_utility_bill
+      - text: A passport that meets the International Civil Aviation Organisation (ICAO) specifications for machine-readable travel documents (9303)
+        value: passport_icao
+      - text: Biometric passports that meet the ICAO specifications for e-passports
+        value: passport_biometric
+      - text: US passport card
+        value: passport_us
+      - text: Home Office travel document
+        value: passport_document
+
       - text: UK photocard driving licence
         value: driving_licence_uk_photocard
+      - text: EU or EEA driving licence
+        value: driving_licence_eea
+      - text: Digital tachograph driver smart card
+        value: driving_licence_tachograph
+      
+      - text: Armed forces identity card
+        value: id_card_forces
+      - text: Biometric residence permit
+        value: id_card_residence_permit
+      - text: An identity card from an EU or European Economic Area (EEA) country that meets the Council Regulation (EC) No 2252/2004 standards
+        value: id_card_eea_non_biometric
+      - text: An identity card from an EU or EEA country that meets the Council Regulation (EC) No 2252/2004 standards and contains biometric information
+        value: id_card_eea_biometric
+      - text: Proof of age card recognised under the Proof of Age Standards Scheme (PASS)
+        value: id_card_proof_of_age_no_reference_number
+      - text: Proof of age card with a Proof of Age Standards Scheme (PASS) with a reference number
+        value: id_card_proof_of_age_with_reference_number
+      - text: Northern Ireland electoral identity card
+        value: id_card_ni_electoral
+    
+      - text: Student loan account
+        value: account_student_loan
+      - text: Bank, building society or credit union current account
+        value: account_bank
+      - text: Credit account
+        value: account_credit
+      - text: Mortgage account
+        value: account_mortgage
+      - text: Secured loan account
+        value: account_loan
+      - text: Building, contents or vehicle insurance
+        value: account_insurance
+      - text: Rental or purchase agreement for a residential property
+        value: account_rental
+      
+      - text: Birth or adoption certificate
+        value: certificate_birth
+      - text: Marriage certificate
+        value: certificate_marriage
+      - text: Education certificate from a regulated and recognised educational institution
+        value: certificate_education
+      - text: Firearm certificate
+        value: certificate_firearm
+      
+      - text: Older person’s bus pass
+        value: local_authority_doc_bus_pass
+      - text: Freedom pass
+        value: local_authority_doc_freedom_pass
+      - text: Letter from a local authority
+        value: local_authority_doc_letter
+
+      - text: What is the evidence called?
+        value: other
