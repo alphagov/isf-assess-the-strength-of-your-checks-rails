@@ -15,6 +15,18 @@ class AssessmentQuestionsController < AssessmentsController
     assessment['confidence_level_required'] = params[:confidence_level_required]
     save(assessment)
 
+    if params[:confidence_level_required] == "none"
+      redirect_to controller: 'assessment_questions', action: 'no_risk_get'
+    else
+      redirect_to controller: 'assessments', action: 'overview'
+    end
+  end
+
+  def no_risk_get
+    render "assessments/no-risk"
+  end
+
+  def no_risk_post
     redirect_to controller: 'assessments', action: 'overview'
   end
 
