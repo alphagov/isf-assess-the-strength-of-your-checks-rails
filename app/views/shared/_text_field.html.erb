@@ -1,0 +1,8 @@
+<% hint = nil if local_assigns[:hint].nil? %>
+<div class="govuk-form-group">
+  <%= label_tag(name, label, {class: "govuk-label"}.merge(local_assigns.fetch(:attributes, {}))) %>
+  <% if hint.present? %>
+    <span class="govuk-hint govuk-radios__hint"><%= hint %></span>
+  <% end %>
+  <%= text_field_tag(name, "", class: "govuk-input") %>
+</div>

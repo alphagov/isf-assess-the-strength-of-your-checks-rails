@@ -41,7 +41,7 @@ class AssessmentQuestionsController < AssessmentsController
       evidence = find_evidence
     end
 
-    if params[:choose_evidence] == "other"
+    if params[:evidence_group] == "other"
       params[:evidence_type] = nil
     else
       params[:evidence_type_other] = nil

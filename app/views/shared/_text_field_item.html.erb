@@ -1,7 +1,0 @@
-<div class="govuk-form-group">
-  <%= label_tag("#{list.name}_#{item.value}",  item.text, {class: "govuk-label"}.merge(local_assigns.fetch(:attributes, {}))) %>
-  <%= text_field_tag("#{list.name}_#{item.value}", "", class: "govuk-input") %>
-  <% if item.hint.present? %>
-    <span class="govuk-hint govuk-radios__hint"><%= item.hint %></span>
-  <% end %>
-</div>

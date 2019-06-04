@@ -84,5 +84,3 @@ lists:
       - text: Letter from a local authority
         value: local_authority_doc_letter
 
-      - text: What is the evidence called?
-        value: other

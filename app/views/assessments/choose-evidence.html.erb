@@ -89,7 +89,7 @@
 
             <%= render 'shared/radio_item', list: evidence_group, item: evidence_group.items['other'], attributes: { 'data-aria-controls' => "conditional-choose_evidence_other" } %>
             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-choose_evidence_other">
-              <%= render 'shared/text_field_item', list: evidence_type, item: evidence_type.items['other'] %>
+              <%= render 'shared/text_field', name: "evidence_type_other", label: "What is the evidence called?" %>
             </div>
           
           </div>
