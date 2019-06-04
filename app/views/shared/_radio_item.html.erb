@@ -1,0 +1,7 @@
+<div class="govuk-radios__item">
+  <%= radio_button_tag(name, item.value, false, { class: "govuk-radios__input" }.merge(local_assigns.fetch(:attributes, {}))) %>
+  <%= label_tag("#{name}_#{item.value}", item.text, class: "govuk-label govuk-radios__label") %>
+  <% if item.hint.present? %>
+    <span class="govuk-hint govuk-radios__hint"><%= item.hint %></span>
+  <% end %>
+</div>

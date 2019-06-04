@@ -26,182 +26,60 @@
           <p class="govuk-hint">
             Select one option.
           </p>
+
           <div class="govuk-radios govuk-radios--conditional" data-module="radios">
-            <div class="govuk-radios__item">
-              <%= radio_button_tag(:choose_evidence, "passport", false, { class: "govuk-radios__input", 'data-aria-controls' => "conditional-choose_evidence_passport" }) %>
-              <%= label_tag(:choose_evidence_passport, "Passport or travel document", class: "govuk-label govuk-radios__label") %>
-            </div>
+            <% evidence_group = @form.lists['evidence_group'] %>
+            <% evidence_type = @form.lists['evidence_type'] %>
+
+            <%= render 'shared/radio_item', name: :evidence_group, item: evidence_group.items['passport'], attributes: { 'data-aria-controls' => "conditional-choose_evidence_passport" }%>
             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-choose_evidence_passport">
-              <div class="govuk-radios__item">
-                <%= radio_button_tag(:evidence_type, "passport_uk", false, class: "govuk-radios__input") %>
-                <%= label_tag(:evidence_type_passport_uk, "UK passport", class: "govuk-label govuk-radios__label") %>
-              </div>
-              <div class="govuk-radios__item">
-                <%= radio_button_tag(:evidence_type, "passport_icao", false, class: "govuk-radios__input") %>
-                <%= label_tag(:evidence_type_passport_icao, "A passport that meets the International Civil Aviation Organisation (ICAO) specifications for machine-readable travel documents (9303)", class: "govuk-label govuk-radios__label") %>
-              </div>
-              <div class="govuk-radios__item">
-                <%= radio_button_tag(:evidence_type, "passport_biometric", false, class: "govuk-radios__input") %>
-                <%= label_tag(:evidence_type_passport_biometric, "Biometric passports that meet the ICAO specifications for e-passports", class: "govuk-label govuk-radios__label") %>
-              </div>
-              <div class="govuk-radios__item">
-                <%= radio_button_tag(:evidence_type, "passport_us", false, class: "govuk-radios__input") %>
-                <%= label_tag(:evidence_type_passport_us, "US passport card", class: "govuk-label govuk-radios__label") %>
-              </div>
-              <div class="govuk-radios__item">
-                <%= radio_button_tag(:evidence_type, "passport_document", false, class: "govuk-radios__input") %>
-                <%= label_tag(:evidence_type_passport_document, "Home Office travel document", class: "govuk-label govuk-radios__label") %>
-              </div>
+              <% ['passport_uk', 'passport_icao', 'passport_biometric', 'passport_us', 'passport_document'].each do |evidence| %>
+                <%= render 'shared/radio_item', name: :evidence_type, item: evidence_type.items[evidence] %>
+              <% end %>
             </div>
 
-            <div class="govuk-radios__item">
-              <%= radio_button_tag(:choose_evidence, "driving_license", false, { class: "govuk-radios__input", 'data-aria-controls' => "conditional-choose_evidence_driving_license" }) %>
-              <%= label_tag(:choose_evidence_driving_license, "Driving licence or card", class: "govuk-label govuk-radios__label") %>
-            </div>
-            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-choose_evidence_driving_license">
-              <div class="govuk-radios__item">
-                <%= radio_button_tag(:evidence_type, "driving_license_uk_photocard", false, class: "govuk-radios__input") %>
-                <%= label_tag(:evidence_type_driving_license_uk_photocard, "UK photocard driving licence", class: "govuk-label govuk-radios__label") %>
-              </div>
-              <div class="govuk-radios__item">
-                <%= radio_button_tag(:evidence_type, "driving_license_eea", false, class: "govuk-radios__input") %>
-                <%= label_tag(:evidence_type_driving_license_eea, "EU or EEA driving licence", class: "govuk-label govuk-radios__label") %>
-              </div>
-              <div class="govuk-radios__item">
-                <%= radio_button_tag(:evidence_type, "driving_license_tachograph", false, class: "govuk-radios__input") %>
-                <%= label_tag(:evidence_type_driving_license_tachograph, "Digital tachograph driver smart card", class: "govuk-label govuk-radios__label") %>
-              </div>
+            <%= render 'shared/radio_item', name: :evidence_group, item: evidence_group.items['driving_licence'], attributes: { 'data-aria-controls' => "conditional-choose_evidence_driving_licence" } %>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-choose_evidence_driving_licence">
+              <% ['driving_licence_uk_photocard', 'driving_licence_eea', 'driving_licence_tachograph'].each do |evidence| %>
+                <%= render 'shared/radio_item', name: :evidence_type, item: evidence_type.items[evidence] %>
+              <% end %>
             </div>
 
-            <div class="govuk-radios__item">
-              <%= radio_button_tag(:choose_evidence, "id_card", false, { class: "govuk-radios__input", 'data-aria-controls' => "conditional-choose_evidence_id_card" }) %>
-              <%= label_tag(:choose_evidence_id_card, "Identity card", class: "govuk-label govuk-radios__label") %>
-            </div>
+            <%= render 'shared/radio_item', name: :evidence_group, item: evidence_group.items['id_card'], attributes: { 'data-aria-controls' => "conditional-choose_evidence_id_card" } %>
             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-choose_evidence_id_card">
-              <div class="govuk-radios__item">
-                <%= radio_button_tag(:evidence_type, "id_card_forces", false, class: "govuk-radios__input") %>
-                <%= label_tag(:evidence_type_id_card_forces, "Armed forces identity card", class: "govuk-label govuk-radios__label") %>
-              </div>
-              <div class="govuk-radios__item">
-                <%= radio_button_tag(:evidence_type, "id_card_residence_permit", false, class: "govuk-radios__input") %>
-                <%= label_tag(:evidence_type_id_card_residence_permit, "Biometric residence permit", class: "govuk-label govuk-radios__label") %>
-              </div>
-              <div class="govuk-radios__item">
-                <%= radio_button_tag(:evidence_type, "id_card_eea_non_biometric", false, class: "govuk-radios__input") %>
-                <%= label_tag(:evidence_type_id_card_eea_non_biometric, "An identity card from an EU or European Economic Area (EEA) country that meets the Council Regulation (EC) No 2252/2004 standards", class: "govuk-label govuk-radios__label") %>
-              </div>
-              <div class="govuk-radios__item">
-                <%= radio_button_tag(:evidence_type, "id_card_eea_biometric", false, class: "govuk-radios__input") %>
-                <%= label_tag(:evidence_type_id_card_eea_biometric, "An identity card from an EU or EEA country that meets the Council Regulation (EC) No 2252/2004 standards and contains biometric information", class: "govuk-label govuk-radios__label") %>
-              </div>
-              <div class="govuk-radios__item">
-                <%= radio_button_tag(:evidence_type, "id_card_proof_of_age_no_reference_number", false, class: "govuk-radios__input") %>
-                <%= label_tag(:evidence_type_id_card_proof_of_age_no_reference_number, "Proof of age card recognised under the Proof of Age Standards Scheme (PASS)", class: "govuk-label govuk-radios__label") %>
-              </div>
-              <div class="govuk-radios__item">
-                <%= radio_button_tag(:evidence_type, "id_card_proof_of_age_with_reference_number", false, class: "govuk-radios__input") %>
-                <%= label_tag(:evidence_type_id_card_proof_of_age_with_reference_number, "Proof of age card with a Proof of Age Standards Scheme (PASS) with a reference number", class: "govuk-label govuk-radios__label") %>
-              </div>
-              <div class="govuk-radios__item">
-                <%= radio_button_tag(:evidence_type, "id_card_ni_electoral", false, class: "govuk-radios__input") %>
-                <%= label_tag(:evidence_type_id_card_ni_electoral, "Northern Ireland electoral identity card", class: "govuk-label govuk-radios__label") %>
-              </div>
+              <% ['id_card_forces', 'id_card_residence_permit', 'id_card_eea_non_biometric', 'id_card_eea_biometric', 'id_card_proof_of_age_no_reference_number', 'id_card_proof_of_age_with_reference_number', 'id_card_ni_electoral'].each do |evidence| %>
+                <%= render 'shared/radio_item', name: :evidence_type, item: evidence_type.items[evidence] %>
+              <% end %>
             </div>
 
-            <div class="govuk-radios__item">
-              <%= radio_button_tag(:choose_evidence, "account", false, { class: "govuk-radios__input", 'data-aria-controls' => "conditional-choose_evidence_account" }) %>
-              <%= label_tag(:choose_evidence_account, "Account, bill or statement", class: "govuk-label govuk-radios__label") %>
-            </div>
+            <%= render 'shared/radio_item', name: :evidence_group, item: evidence_group.items['account'], attributes: { 'data-aria-controls' => "conditional-choose_evidence_account" } %>
             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-choose_evidence_account">
-              <div class="govuk-radios__item">
-                <%= radio_button_tag(:evidence_type, "account_utility_bill", false, class: "govuk-radios__input") %>
-                <%= label_tag(:evidence_type_account_utility_bill, "Gas or electric bill", class: "govuk-label govuk-radios__label") %>
-              </div>
-              <div class="govuk-radios__item">
-                <%= radio_button_tag(:evidence_type, "account_student_loan", false, class: "govuk-radios__input") %>
-                <%= label_tag(:evidence_type_account_student_loan, "Student loan account", class: "govuk-label govuk-radios__label") %>
-              </div>
-              <div class="govuk-radios__item">
-                <%= radio_button_tag(:evidence_type, "account_bank", false, class: "govuk-radios__input") %>
-                <%= label_tag(:evidence_type_account_bank, "Bank, building society or credit union current account", class: "govuk-label govuk-radios__label") %>
-              </div>
-              <div class="govuk-radios__item">
-                <%= radio_button_tag(:evidence_type, "account_credit", false, class: "govuk-radios__input") %>
-                <%= label_tag(:evidence_type_account_credit, "Credit account", class: "govuk-label govuk-radios__label") %>
-              </div>
-              <div class="govuk-radios__item">
-                <%= radio_button_tag(:evidence_type, "account_mortgage", false, class: "govuk-radios__input") %>
-                <%= label_tag(:evidence_type_account_mortgage, "Mortgage account", class: "govuk-label govuk-radios__label") %>
-              </div>
-              <div class="govuk-radios__item">
-                <%= radio_button_tag(:evidence_type, "account_loan", false, class: "govuk-radios__input") %>
-                <%= label_tag(:evidence_type_account_loan, "Secured loan account", class: "govuk-label govuk-radios__label") %>
-              </div>
-              <div class="govuk-radios__item">
-                <%= radio_button_tag(:evidence_type, "account_insurance", false, class: "govuk-radios__input") %>
-                <%= label_tag(:evidence_type_account_insurance, "Building, contents or vehicle insurance", class: "govuk-label govuk-radios__label") %>
-              </div>
-              <div class="govuk-radios__item">
-                <%= radio_button_tag(:evidence_type, "account_rental", false, class: "govuk-radios__input") %>
-                <%= label_tag(:evidence_type_account_rental, "Rental or purchase agreement for a residential property", class: "govuk-label govuk-radios__label") %>
-              </div>
+              <% ['account_utility_bill', 'account_student_loan', 'account_bank', 'account_credit', 'account_mortgage', 'account_loan', 'account_insurance', 'account_rental'].each do |evidence| %>
+                <%= render 'shared/radio_item', name: :evidence_type, item: evidence_type.items[evidence] %>
+              <% end %>
             </div>
 
-            <div class="govuk-radios__item">
-              <%= radio_button_tag(:choose_evidence, "certificate", false, { class: "govuk-radios__input", 'data-aria-controls' => "conditional-choose_evidence_certificate" }) %>
-              <%= label_tag(:choose_evidence_certificate, "Certificate", class: "govuk-label govuk-radios__label") %>
-            </div>
+            <%= render 'shared/radio_item', name: :evidence_group, item: evidence_group.items['certificate'], attributes: { 'data-aria-controls' => "conditional-choose_evidence_certificate" } %>
             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-choose_evidence_certificate">
-              <div class="govuk-radios__item">
-                <%= radio_button_tag(:evidence_type, "certificate_birth", false, class: "govuk-radios__input") %>
-                <%= label_tag(:evidence_type_certificate_birth, "Birth or adoption certificate", class: "govuk-label govuk-radios__label") %>
-              </div>
-              <div class="govuk-radios__item">
-                <%= radio_button_tag(:evidence_type, "certificate_marriage", false, class: "govuk-radios__input") %>
-                <%= label_tag(:evidence_type_certificate_marriage, "Marriage certificate", class: "govuk-label govuk-radios__label") %>
-              </div>
-              <div class="govuk-radios__item">
-                <%= radio_button_tag(:evidence_type, "certificate_education", false, class: "govuk-radios__input") %>
-                <%= label_tag(:evidence_type_certificate_education, "Education certificate from a regulated and recognised educational institution", class: "govuk-label govuk-radios__label") %>
-              </div>
-              <div class="govuk-radios__item">
-                <%= radio_button_tag(:evidence_type, "certificate_firearm", false, class: "govuk-radios__input") %>
-                <%= label_tag(:evidence_type_certificate_firearm, "Firearm certificate", class: "govuk-label govuk-radios__label") %>
-              </div>
+              <% ['certificate_birth', 'certificate_marriage', 'certificate_education', 'certificate_firearm'].each do |evidence| %>
+                <%= render 'shared/radio_item', name: :evidence_type, item: evidence_type.items[evidence] %>
+              <% end %>
             </div>
 
-            <div class="govuk-radios__item">
-              <%= radio_button_tag(:choose_evidence, "local_authority_doc", false, { class: "govuk-radios__input", 'data-aria-controls' => "conditional-choose_evidence_local_authority_doc" }) %>
-              <%= label_tag(:choose_evidence_local_authority_doc, "Document issued by a local authority", class: "govuk-label govuk-radios__label") %>
-            </div>
+            <%= render 'shared/radio_item', name: :evidence_group, item: evidence_group.items['local_authority_doc'], attributes: { 'data-aria-controls' => "conditional-choose_evidence_local_authority_doc" } %>
             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-choose_evidence_local_authority_doc">
-              <div class="govuk-radios__item">
-                <%= radio_button_tag(:evidence_type, "local_authority_doc_bus_pass", false, class: "govuk-radios__input") %>
-                <%= label_tag(:evidence_type_local_authority_doc_bus_pass, "Older person’s bus pass", class: "govuk-label govuk-radios__label") %>
-              </div>
-              <div class="govuk-radios__item">
-                <%= radio_button_tag(:evidence_type, "local_authority_doc_freedom_pass", false, class: "govuk-radios__input") %>
-                <%= label_tag(:evidence_type_local_authority_doc_freedom_pass, "Freedom pass", class: "govuk-label govuk-radios__label") %>
-              </div>
-              <div class="govuk-radios__item">
-                <%= radio_button_tag(:evidence_type, "local_authority_doc_letter", false, class: "govuk-radios__input") %>
-                <%= label_tag(:evidence_type_local_authority_doc_letter, "Letter from a local authority", class: "govuk-label govuk-radios__label") %>
-              </div>
+              <% ['local_authority_doc_bus_pass', 'local_authority_doc_freedom_pass', 'local_authority_doc_letter'].each do |evidence| %>
+                <%= render 'shared/radio_item', name: :evidence_type, item: evidence_type.items[evidence] %>
+              <% end %>
             </div>
 
             <p> or <p>
-            <div class="govuk-radios__item">
-              <%= radio_button_tag(:choose_evidence, "other", false, { class: "govuk-radios__input", 'aria-controls' => "conditional-choose_evidence_other" } ) %>
-              <%= label_tag(:choose_evidence_other, "Other evidence not listed", class: "govuk-label govuk-radios__label") %>
-            </div>
+
+            <%= render 'shared/radio_item', name: :evidence_group, item: evidence_group.items['other'], attributes: { 'data-aria-controls' => "conditional-choose_evidence_other" } %>
             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-choose_evidence_other">
-              <div class="govuk-form-group">
-                <%= label_tag(:evidence_type_other, "What is the evidence called?", class: "govuk-label") %>
-                <%= text_field_tag(:evidence_type_other, "", class: "govuk-input") %>
-              </div>
+              <%= render 'shared/text_field', name: :evidence_type_other, label: "What is the evidence called?" %>
             </div>
           </div>
-          <p>You'll usually need to be more confident if your service gives users something valuable, like money or benefits. This is because your service is more likely to be targeted by users pretending to be someone they're not to get something they shouldn't.</p>
         </fieldset>
 
         <%= submit_tag("Continue", class: "govuk-button") %>
