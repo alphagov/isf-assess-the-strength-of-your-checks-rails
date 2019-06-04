@@ -1,0 +1,33 @@
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        You might not need to check a user’s identity.
+      </h1>
+
+      <p>
+        You might not need to do checks if the service does not give:
+      </p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>access to any personal information about a user</li>
+        <li>something valuable to a user, such as money or benefits</li>
+      </ul>
+
+      <p>
+        If your service does not need to check a user’s identity but needs to let them access the service 
+        again to see or update their information, you can let the user create an account instead.
+      </p>
+
+      <div class="govuk-inset-text">
+      <h2 class="govuk-heading-s"> Example </h2>
+        <p>The Department for Work and Pensions (DWP) lets a user create an account for their Find a job service. 
+        This is so the user can upload and update their CV and check on any job applications they’ve made.</p>
+        <p>The service does not need to use GOV.UK Verify, because it does not give users anything valuable, 
+        or allow them to see any personal information they have not provided themselves.</p>      
+      </div>
+
+      <%= form_tag(url_for(:action => "no_risk_post"), method: "post") do %>
+        <%= submit_tag("Continue to assess your checks", class: "govuk-button") %>
+      <% end %>
+    </div>
+  </div>
