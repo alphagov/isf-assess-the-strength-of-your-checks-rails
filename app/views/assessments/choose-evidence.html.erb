@@ -31,69 +31,55 @@
             <% evidence_group = @form.lists['evidence_group'] %>
             <% evidence_type = @form.lists['evidence_type'] %>
 
-            <%= render 'shared/radio_item', list: evidence_group, item: evidence_group.items['passport'], attributes: { 'data-aria-controls' => "conditional-choose_evidence_passport" }%>
+            <%= render 'shared/radio_item', name: :evidence_group, item: evidence_group.items['passport'], attributes: { 'data-aria-controls' => "conditional-choose_evidence_passport" }%>
             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-choose_evidence_passport">
-              <%= render 'shared/radio_item', list: evidence_type, item: evidence_type.items['passport_uk'] %>
-              <%= render 'shared/radio_item', list: evidence_type, item: evidence_type.items['passport_icao'] %>
-              <%= render 'shared/radio_item', list: evidence_type, item: evidence_type.items['passport_biometric'] %>
-              <%= render 'shared/radio_item', list: evidence_type, item: evidence_type.items['passport_us'] %>
-              <%= render 'shared/radio_item', list: evidence_type, item: evidence_type.items['passport_document'] %>
+              <% ['passport_uk', 'passport_icao', 'passport_biometric', 'passport_us', 'passport_document'].each do |evidence| %>
+                <%= render 'shared/radio_item', name: :evidence_type, item: evidence_type.items[evidence] %>
+              <% end %>
             </div>
 
-            <%= render 'shared/radio_item', list: evidence_group, item: evidence_group.items['driving_licence'], attributes: { 'data-aria-controls' => "conditional-choose_evidence_driving_licence" } %>
+            <%= render 'shared/radio_item', name: :evidence_group, item: evidence_group.items['driving_licence'], attributes: { 'data-aria-controls' => "conditional-choose_evidence_driving_licence" } %>
             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-choose_evidence_driving_licence">
-              <%= render 'shared/radio_item', list: evidence_type, item: evidence_type.items['driving_licence_uk_photocard'] %>
-              <%= render 'shared/radio_item', list: evidence_type, item: evidence_type.items['driving_licence_eea'] %>
-              <%= render 'shared/radio_item', list: evidence_type, item: evidence_type.items['driving_licence_tachograph'] %>
+              <% ['driving_licence_uk_photocard', 'driving_licence_eea', 'driving_licence_tachograph'].each do |evidence| %>
+                <%= render 'shared/radio_item', name: :evidence_type, item: evidence_type.items[evidence] %>
+              <% end %>
             </div>
 
-            <%= render 'shared/radio_item', list: evidence_group, item: evidence_group.items['id_card'], attributes: { 'data-aria-controls' => "conditional-choose_evidence_id_card" } %>
+            <%= render 'shared/radio_item', name: :evidence_group, item: evidence_group.items['id_card'], attributes: { 'data-aria-controls' => "conditional-choose_evidence_id_card" } %>
             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-choose_evidence_id_card">
-              <%= render 'shared/radio_item', list: evidence_type, item: evidence_type.items['id_card_forces'] %>
-              <%= render 'shared/radio_item', list: evidence_type, item: evidence_type.items['id_card_residence_permit'] %>
-              <%= render 'shared/radio_item', list: evidence_type, item: evidence_type.items['id_card_eea_non_biometric'] %>
-              <%= render 'shared/radio_item', list: evidence_type, item: evidence_type.items['id_card_eea_biometric'] %>
-              <%= render 'shared/radio_item', list: evidence_type, item: evidence_type.items['id_card_proof_of_age_no_reference_number'] %>
-              <%= render 'shared/radio_item', list: evidence_type, item: evidence_type.items['id_card_proof_of_age_with_reference_number'] %>
-              <%= render 'shared/radio_item', list: evidence_type, item: evidence_type.items['id_card_ni_electoral'] %>
+              <% ['id_card_forces', 'id_card_residence_permit', 'id_card_eea_non_biometric', 'id_card_eea_biometric', 'id_card_proof_of_age_no_reference_number', 'id_card_proof_of_age_with_reference_number', 'id_card_ni_electoral'].each do |evidence| %>
+                <%= render 'shared/radio_item', name: :evidence_type, item: evidence_type.items[evidence] %>
+              <% end %>
             </div>
 
-            <%= render 'shared/radio_item', list: evidence_group, item: evidence_group.items['account'], attributes: { 'data-aria-controls' => "conditional-choose_evidence_account" } %>
+            <%= render 'shared/radio_item', name: :evidence_group, item: evidence_group.items['account'], attributes: { 'data-aria-controls' => "conditional-choose_evidence_account" } %>
             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-choose_evidence_account">
-              <%= render 'shared/radio_item', list: evidence_type, item: evidence_type.items['account_utility_bill'] %>
-              <%= render 'shared/radio_item', list: evidence_type, item: evidence_type.items['account_student_loan'] %>
-              <%= render 'shared/radio_item', list: evidence_type, item: evidence_type.items['account_bank'] %>
-              <%= render 'shared/radio_item', list: evidence_type, item: evidence_type.items['account_credit'] %>
-              <%= render 'shared/radio_item', list: evidence_type, item: evidence_type.items['account_mortgage'] %>
-              <%= render 'shared/radio_item', list: evidence_type, item: evidence_type.items['account_loan'] %>
-              <%= render 'shared/radio_item', list: evidence_type, item: evidence_type.items['account_insurance'] %>
-              <%= render 'shared/radio_item', list: evidence_type, item: evidence_type.items['account_rental'] %>
+              <% ['account_utility_bill', 'account_student_loan', 'account_bank', 'account_credit', 'account_mortgage', 'account_loan', 'account_insurance', 'account_rental'].each do |evidence| %>
+                <%= render 'shared/radio_item', name: :evidence_type, item: evidence_type.items[evidence] %>
+              <% end %>
             </div>
 
-            <%= render 'shared/radio_item', list: evidence_group, item: evidence_group.items['certificate'], attributes: { 'data-aria-controls' => "conditional-choose_evidence_certificate" } %>
+            <%= render 'shared/radio_item', name: :evidence_group, item: evidence_group.items['certificate'], attributes: { 'data-aria-controls' => "conditional-choose_evidence_certificate" } %>
             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-choose_evidence_certificate">
-              <%= render 'shared/radio_item', list: evidence_type, item: evidence_type.items['certificate_birth'] %>
-              <%= render 'shared/radio_item', list: evidence_type, item: evidence_type.items['certificate_marriage'] %>
-              <%= render 'shared/radio_item', list: evidence_type, item: evidence_type.items['certificate_education'] %>
-              <%= render 'shared/radio_item', list: evidence_type, item: evidence_type.items['certificate_firearm'] %>
+              <% ['certificate_birth', 'certificate_marriage', 'certificate_education', 'certificate_firearm'].each do |evidence| %>
+                <%= render 'shared/radio_item', name: :evidence_type, item: evidence_type.items[evidence] %>
+              <% end %>
             </div>
 
-            <%= render 'shared/radio_item', list: evidence_group, item: evidence_group.items['local_authority_doc'], attributes: { 'data-aria-controls' => "conditional-choose_evidence_local_authority_doc" } %>
+            <%= render 'shared/radio_item', name: :evidence_group, item: evidence_group.items['local_authority_doc'], attributes: { 'data-aria-controls' => "conditional-choose_evidence_local_authority_doc" } %>
             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-choose_evidence_local_authority_doc">
-              <%= render 'shared/radio_item', list: evidence_type, item: evidence_type.items['local_authority_doc_bus_pass'] %>
-              <%= render 'shared/radio_item', list: evidence_type, item: evidence_type.items['local_authority_doc_freedom_pass'] %>
-              <%= render 'shared/radio_item', list: evidence_type, item: evidence_type.items['local_authority_doc_letter'] %>
+              <% ['local_authority_doc_bus_pass', 'local_authority_doc_freedom_pass', 'local_authority_doc_letter'].each do |evidence| %>
+                <%= render 'shared/radio_item', name: :evidence_type, item: evidence_type.items[evidence] %>
+              <% end %>
             </div>
 
             <p> or <p>
 
-            <%= render 'shared/radio_item', list: evidence_group, item: evidence_group.items['other'], attributes: { 'data-aria-controls' => "conditional-choose_evidence_other" } %>
+            <%= render 'shared/radio_item', name: :evidence_group, item: evidence_group.items['other'], attributes: { 'data-aria-controls' => "conditional-choose_evidence_other" } %>
             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-choose_evidence_other">
-              <%= render 'shared/text_field', name: "evidence_type_other", label: "What is the evidence called?" %>
+              <%= render 'shared/text_field', name: :evidence_type_other, label: "What is the evidence called?" %>
             </div>
-          
           </div>
-          <p>You'll usually need to be more confident if your service gives users something valuable, like money or benefits. This is because your service is more likely to be targeted by users pretending to be someone they're not to get something they shouldn't.</p>
         </fieldset>
 
         <%= submit_tag("Continue", class: "govuk-button") %>

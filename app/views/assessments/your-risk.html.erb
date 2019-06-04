@@ -15,12 +15,11 @@
 
           <div class="govuk-radios">
             <% confidence_level_required = @form.lists['confidence_level_required'] %>
-            <%= render 'shared/radio_item', list: confidence_level_required, item: confidence_level_required.items['none'] %>
-            <%= render 'shared/radio_item', list: confidence_level_required, item: confidence_level_required.items['low'] %>
-            <%= render 'shared/radio_item', list: confidence_level_required, item: confidence_level_required.items['medium'] %>
-            <%= render 'shared/radio_item', list: confidence_level_required, item: confidence_level_required.items['high'] %>
+            <% ['none', 'low', 'medium', 'high'].each do |confidence_level| %>
+              <%= render 'shared/radio_item', name: :confidence_level_required, item: confidence_level_required.items[confidence_level] %>
+            <% end %>
             <p> or <p>
-            <%= render 'shared/radio_item', list: confidence_level_required, item: confidence_level_required.items['not_sure'] %>
+            <%= render 'shared/radio_item', name: :confidence_level_required, item: confidence_level_required.items['not_sure'] %>
           </div>
         </fieldset>
       </div>
