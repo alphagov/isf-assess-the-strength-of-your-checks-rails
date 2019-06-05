@@ -6,23 +6,19 @@ Rails.application.routes.draw do
 
   get 'assessments/:assessment_id/overview', to: 'assessments#overview'
 
-  get 'assessments/:assessment_id/your-risk', to: 'assessment_questions#your_risk_get'
-  post 'assessments/:assessment_id/your-risk', to: 'assessment_questions#your_risk_post'
+  match 'assessments/:assessment_id/your-risk', to: 'assessment_questions#your_risk', via: %i[get post]
 
-  get 'assessments/:assessment_id/no-risk', to: 'assessment_questions#no_risk_get'
-  post 'assessments/:assessment_id/no-risk', to: 'assessment_questions#no_risk_post'
+  get 'assessments/:assessment_id/no-risk', to: 'assessment_questions#no_risk'
 
-  get 'assessments/:assessment_id/activity-start', to: 'assessment_questions#activity_start_get'
-  post 'assessments/:assessment_id/activity-start', to: 'assessment_questions#activity_start_post'
+  match 'assessments/:assessment_id/evidence/:evidence_id/choose-evidence', to: 'evidence_questions#choose_evidence', via: %i[get post]
 
-  match 'assessments/:assessment_id/activity-1', to: 'assessment_questions#activity_1', via: %i[get post]
-  match 'assessments/:assessment_id/activity-2', to: 'assessment_questions#activity_2', via: %i[get post]
-  match 'assessments/:assessment_id/activity-3', to: 'assessment_questions#activity_3', via: %i[get post]
+  match 'assessments/:assessment_id/activity-start', to: 'activity_questions#activity_start', via: %i[get post]
 
-  get 'assessments/:assessment_id/activity-result', to: 'assessment_questions#activity_result_get'
+  match 'assessments/:assessment_id/activity-1', to: 'activity_questions#activity_1', via: %i[get post]
+  match 'assessments/:assessment_id/activity-2', to: 'activity_questions#activity_2', via: %i[get post]
+  match 'assessments/:assessment_id/activity-3', to: 'activity_questions#activity_3', via: %i[get post]
 
-  get 'assessments/:assessment_id/evidence/:evidence_id/choose-evidence', to: 'assessment_questions#choose_evidence_get'
-  post 'assessments/:assessment_id/evidence/:evidence_id/choose-evidence', to: 'assessment_questions#choose_evidence_post'
+  get 'assessments/:assessment_id/activity-result', to: 'activity_questions#activity_result_get'
 
   post 'assessments/:assessment_id/evidence/:evidence_id/remove', to: 'assessments#remove_evidence_post'
 end

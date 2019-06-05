@@ -26,7 +26,7 @@
         or allow them to see any personal information they have not provided themselves.</p>      
       </div>
 
-      <%= form_tag(url_for(:action => "no_risk_post"), method: "post") do %>
+      <%= form_tag(url_for(:controller => "assessments", :action => "overview"), method: :get) do %>
         <%= submit_tag("Continue to assess your checks", class: "govuk-button") %>
       <% end %>
     </div>

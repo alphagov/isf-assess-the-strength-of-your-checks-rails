@@ -3,7 +3,7 @@ class AssessmentsController < ApplicationController
     @assessment = Assessment.new
     save(@assessment)
     reap_old_assessments
-    redirect_to controller: 'assessment_questions', action: 'your_risk_get', assessment_id: @assessment.id
+    redirect_to controller: 'assessment_questions', action: 'your_risk', assessment_id: @assessment.id
   end
 
   def overview
