@@ -1,0 +1,7 @@
+lists:
+  - name: yes_no
+    items:
+      - text: 'Yes'
+        value: 'yes'
+      - text: 'No'
+        value: 'no'

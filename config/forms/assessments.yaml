@@ -15,3 +15,24 @@ lists:
         hint: You'll need this if your service gives users access to secure buildings, like a nuclear power station.
       - text: You're not sure
         value: not_sure
+  - name: org_check_method
+    items:
+      - text: Using their own identity checking process
+        value: own
+      - text: By checking the person's details with an authoritative source
+        value: authoritative_source
+      - text: Using a process that met the requirements in the Money Laundering Regulations 2017
+        value: money_laundering_regulations_2017
+      - text: By physically comparing them to an image of the person they're claiming to be from an authoritative source
+        value: physically_comparing
+  - name: activity_time_period
+    items:
+      - text: The last 3 years
+        value: 36_months
+      - text: The last 12 months
+        value: 12_months
+      - text: The last 6 months
+        value: 6_months
+      - text: The last 3 months
+        value: 3_months
+
