@@ -1,4 +1,5 @@
 require "rails_helper"
+require_relative "steps_helper"
 
 RSpec.feature 'New assessment flow', type: :system do
   scenario 'Create a new assessment' do
@@ -12,22 +13,4 @@ RSpec.feature 'New assessment flow', type: :system do
     click_button 'Continue'
     then_i_am_told_to_choose_a_confidence_level
   end
-end
-
-def when_i_start_a_new_assessment
-  visit 'assessments/new'
-  click_button 'Start assessment'
-end
-
-def and_i_choose_a_regular_confidence_level
-  choose 'Medium confidence'
-  click_button 'Continue'
-end
-
-def then_i_am_told_to_choose_a_confidence_level
-  expect(page).to have_content 'You must choose a confidence level'
-end
-
-def then_i_see_the_overview_screen
-  expect(page).to have_content 'Your scores'
 end

@@ -1,5 +1,5 @@
 require "rails_helper"
-require_relative "add_evidence_flow_spec"
+require_relative "steps_helper"
 
 RSpec.feature 'Remove evidence flow', type: :system do
   scenario 'Remove evidence from an assessment' do

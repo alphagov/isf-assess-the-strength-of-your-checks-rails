@@ -35,4 +35,23 @@ lists:
         value: 6_months
       - text: The last 3 months
         value: 3_months
-
+  - name: check_identity_not_stolen_or_used_fraudulently
+    items:
+      - text: The person has not had their details stolen (even if those details have not been used fraudulently yet)
+        value: not_had_details_stolen
+      - text: The person's identity has not been reported as stolen
+        value: not_reported_stolen
+      - text: The person is not at a high risk of being impersonated (for example if they’re a ‘politically exposed person’, like a politician or a judge)
+        value: not_high_risk_impersonated
+      - text: The person's details do not belong to someone who has died
+        value: details_not_belong_to_somone_who_died
+      - text: The person's details are known by an organisation that should have a record of that person (for example an Electoral Registration Office in a local authority)
+        value: record_of_person
+      - text: None of these things
+        value: none
+  - name: counter_fraud_data_sources
+    items:
+      - text: One
+        value: one
+      - text: More than one
+        value: more_than_one

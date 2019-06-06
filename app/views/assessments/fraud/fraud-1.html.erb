@@ -1,0 +1,23 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_tag("#{request.fullpath}", method: "post") do %>
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <div class="govuk-caption-l">Fraud checks</div >
+            <h1 class="govuk-fieldset__heading">
+              What do you check to make sure the person's identity has not been stolen or used fraudulently?
+            </h1>
+          </legend>
+            <% check_identity_not_stolen_or_used_fraudulently = @form.lists['check_identity_not_stolen_or_used_fraudulently'] %>
+            <% ['not_had_details_stolen', 'not_reported_stolen', 'not_high_risk_impersonated', 'details_not_belong_to_somone_who_died', 'record_of_person'].each do |indentity_check| %>
+              <%= render 'shared/check_box_item', name: :check_identity_not_stolen_or_used_fraudulently, item: check_identity_not_stolen_or_used_fraudulently.items[indentity_check] %>
+            <% end %>
+            <p> or </p>
+            <%= render 'shared/check_box_item', name: :check_identity_not_stolen_or_used_fraudulently, item: check_identity_not_stolen_or_used_fraudulently.items['none'] %>
+        </fieldset>
+      </div>
+      <%= submit_tag("Continue", class: "govuk-button") %>
+    <% end %>
+  </div>
+</div>
