@@ -1,5 +1,5 @@
 require "rails_helper"
-require_relative "new_assessment_flow_spec"
+require_relative "steps_helper"
 
 RSpec.feature 'Add evidence flow', type: :system do
   scenario 'Add new evidence to an assessment' do
