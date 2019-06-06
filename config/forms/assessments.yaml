@@ -35,7 +35,7 @@ lists:
         value: 6_months
       - text: The last 3 months
         value: 3_months
-  - name: identity_stolen_fraud
+  - name: check_identity_not_stolen_or_used_fraudulently
     items:
       - text: The person has not had their details stolen (even if those details have not been used fraudulently yet)
         value: not_had_details_stolen

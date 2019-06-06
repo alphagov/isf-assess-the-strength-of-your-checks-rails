@@ -24,8 +24,8 @@ class FraudQuestionsController < AssessmentsController
 
   def fraud_1
     if request.post?
-      if !params[:identity_stolen_fraud]
-        @errors[:identity_stolen_fraud] = 'You must answer the question'
+      if !params[:check_identity_not_stolen_or_used_fraudulently]
+        @errors[:check_identity_not_stolen_or_used_fraudulently] = 'You must answer the question'
       end
     end
 
@@ -35,17 +35,17 @@ class FraudQuestionsController < AssessmentsController
       return
     end
 
-    params[:identity_stolen_fraud].each do |item|
+    params[:check_identity_not_stolen_or_used_fraudulently].each do |item|
       if item == "none"
-        params[:identity_stolen_fraud] = []
+        params[:check_identity_not_stolen_or_used_fraudulently] = []
       end
     end
 
     assessment = find_assessment
-    assessment['identity_stolen_fraud'] = params[:identity_stolen_fraud]
+    assessment['check_identity_not_stolen_or_used_fraudulently'] = params[:check_identity_not_stolen_or_used_fraudulently]
     save(assessment)
 
-    if params[:identity_stolen_fraud] == []
+    if params[:check_identity_not_stolen_or_used_fraudulently] == []
       redirect_to action: 'fraud_result_get'
     else
       redirect_to action: 'fraud_2'
