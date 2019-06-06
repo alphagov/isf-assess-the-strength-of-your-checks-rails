@@ -1,17 +1,15 @@
 require 'design_system/form'
 class AssessmentQuestionsController < AssessmentsController
-  def your_risk_get
-    @form = Form.new('assessments')
-
-    render "assessments/your-risk"
-  end
-
-  def your_risk_post
+  def your_risk
     # TODO more validation – perhaps once this is driven via YAML?
-    if not params[:confidence_level_required]
+    if request.post? && !params[:confidence_level_required]
       @errors[:confidence_level_required] = 'You must choose a confidence level'
-      return your_risk_get
+    end
 
+    if request.get? || !@errors.empty?
+      @form = Form.new('assessments')
+      render "assessments/your-risk"
+      return
     end
 
     assessment = find_assessment
@@ -19,50 +17,13 @@ class AssessmentQuestionsController < AssessmentsController
     save(assessment)
 
     if params[:confidence_level_required] == "none"
-      redirect_to controller: 'assessment_questions', action: 'no_risk_get'
+      redirect_to controller: 'assessment_questions', action: 'no_risk'
     else
       redirect_to controller: 'assessments', action: 'overview'
     end
   end
 
-  def no_risk_get
+  def no_risk
     render "assessments/no-risk"
-  end
-
-  def no_risk_post
-    redirect_to controller: 'assessments', action: 'overview'
-  end
-
-  def choose_evidence_get
-    @form = Form.new('evidence')
-    render "assessments/choose-evidence"
-  end
-
-  def choose_evidence_post
-    if (not params[:evidence_type]) && params[:evidence_type_other].blank?
-      @errors[:evidence_type] = 'You must choose a piece of evidence'
-      return choose_evidence_get
-    end
-
-    if params[:evidence_id] == "new"
-      evidence = Evidence.new
-      assessment = find_assessment
-      assessment.add_evidence(evidence)
-      save(assessment)
-    else
-      evidence = find_evidence
-    end
-
-    if params[:evidence_group] == "other"
-      params[:evidence_type] = nil
-    else
-      params[:evidence_type_other] = nil
-    end
-
-    evidence['evidence_type'] = params[:evidence_type]
-    evidence['evidence_type_other'] = params[:evidence_type_other]
-    save(evidence)
-
-    redirect_to controller: 'assessments', action: 'overview'
   end
 end

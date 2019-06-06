@@ -1,0 +1,46 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_tag("#{request.fullpath}", method: "post") do %>
+      <div class="govuk-form-group">
+        <div class="govuk-caption-l">Activity checks</div >
+        <h1 class="govuk-heading-l">Check the identity has existed over time</h1>
+
+        <p>Checking the identity has existed over time will lower the risk of you accepting either:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>a synthetic identity</li>
+          <li>an identity that belongs to someone who's died</li>
+        </ul>
+        <p>You can check this by looking for interactions the person has had with other organisations. These could be:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>credit card transactions</li>
+          <li>student loan repayments</li>
+          <li>mortgage payments</li>
+          <li>gas or electricity account payments</li>
+          <li>when someone signs in to an online bank or retail account</li>
+        </ul>
+        <p>You can also check if any records exist that show if the person has been known by other organisations over time, such as their:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>health records</li>
+          <li>employment records</li>
+          <li>school records</li>
+        </ul>
+        <p>The highest score you can get for this part of the identity check is 4.</p>
+
+        <fieldset class="govuk-fieldset">
+
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            Do you check if the identity has existed over time?
+          </legend>
+
+          <div class="govuk-radios">
+            <% @shared.lists['yes_no'].items.each do |value, item| %>
+              <%= render 'shared/radio_item', name: :identity_exists_over_time, item: item %>
+            <% end %>
+          </div>
+        </fieldset>
+      </div>
+
+      <%= submit_tag("Continue", class: "govuk-button") %>
+    <% end %>
+  </div>
+</div>
