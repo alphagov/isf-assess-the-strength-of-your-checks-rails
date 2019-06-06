@@ -35,11 +35,21 @@ class FraudQuestionsController < AssessmentsController
       return
     end
 
+    params[:identity_stolen_fraud].each do |item|
+      if item == "none"
+        params[:identity_stolen_fraud] = []
+      end
+    end
+
     assessment = find_assessment
     assessment['identity_stolen_fraud'] = params[:identity_stolen_fraud]
     save(assessment)
 
-    redirect_to action: 'fraud_2'
+    if params[:identity_stolen_fraud] == []
+      redirect_to action: 'fraud_result_get'
+    else
+      redirect_to action: 'fraud_2'
+    end
   end
 
   def fraud_2

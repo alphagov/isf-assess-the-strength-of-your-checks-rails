@@ -36,9 +36,6 @@
         </details>
         <p>The highest score you can get for this part of the identity check is 3.</p>
         <fieldset class="govuk-fieldset">
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-            Do you check if the identity has existed over time?
-          </legend>
           <div class="govuk-radios">
             <% @shared.lists['yes_no'].items.each do |value, item| %>
               <%= render 'shared/radio_item', name: :identity_been_stolen_or_used_fraudulently, item: item %>

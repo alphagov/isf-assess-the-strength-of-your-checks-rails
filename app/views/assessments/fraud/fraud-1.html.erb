@@ -14,7 +14,7 @@
               <%= render 'shared/check_box_item', name: :identity_stolen_fraud, item: identity_stolen_fraud.items[item] %>
             <% end %>
             <p> or </p>
-              <%= render 'shared/check_box_item', name: :identity_stolen_fraud, item: identity_stolen_fraud.items['none'] %>
+            <%= render 'shared/check_box_item', name: :identity_stolen_fraud, item: identity_stolen_fraud.items['none'] %>
         </fieldset>
       </div>
       <%= submit_tag("Continue", class: "govuk-button") %>
