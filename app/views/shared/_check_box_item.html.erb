@@ -1,5 +1,5 @@
 <div class="govuk-checkboxes__item">
-  <%= check_box_tag(name, item.value, false, { class: "govuk-checkboxes__input" }.merge(local_assigns.fetch(:attributes, {}))) %>
+  <%= check_box_tag("#{name}[#{item.value}]", item.value, false, { class: "govuk-checkboxes__input" }.merge(local_assigns.fetch(:attributes, {}))) %>
   <%= label_tag("#{name}_#{item.value}", item.text, class: "govuk-label govuk-checkboxes__label") %>
   <% if item.hint.present? %>
     <span class="govuk-hint govuk-checkboxes__hint"><%= item.hint %></span>
