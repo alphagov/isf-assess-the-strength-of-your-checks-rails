@@ -1,0 +1,52 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_tag("#{request.fullpath}", method: "post") do %>
+      <div class="govuk-form-group">
+        <div class="govuk-caption-l">Fraud checks</div >
+        <h1 class="govuk-heading-l">Do you check if the identity has been stolen or used fraudulently?</h1>
+        <p>You should check that whoever the person is claiming to be is not:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>at a higher than usual risk of identity fraud</li>
+          <li>likely to be a 'synthetic' (made up) identity</li>
+        </ul>
+        <p>You can do this by checking the details of the claimed identity with authoritative counter-fraud data sources, such as a national fraud database.</p>
+        <details class="govuk-details govuk-!-margin-top-4" role="group">
+          <summary class="govuk-details__summary" role="button" aria-controls="details-content-ecec8d6c-62a1-4092-ac00-832c31af7ce9" aria-expanded="false">
+            <span class="govuk-details__summary-text">
+              How you can tell if a source is authoritative
+            </span>
+          </summary>
+          <div class="govuk-details__text" id="details-content-ecec8d6c-62a1-4092-ac00-832c31af7ce9" aria-hidden="true">
+            <p>
+              To be authoritative for a particular piece of information, the source must make sure:
+            </p>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>the integrity of the information is protected</li>
+              <li>the information is up to date</li>
+            </ul>
+            <p>
+              The source must also do one of the following:
+            </p>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>issue evidence</li>
+              <li>get information from an organisation that issues evidence</li>
+              <li>get information from another authoritative source</li>
+            </ul>
+          </div>
+        </details>
+        <p>The highest score you can get for this part of the identity check is 3.</p>
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            Do you check if the identity has existed over time?
+          </legend>
+          <div class="govuk-radios">
+            <% @shared.lists['yes_no'].items.each do |value, item| %>
+              <%= render 'shared/radio_item', name: :identity_been_stolen_or_used_fraudulently, item: item %>
+            <% end %>
+          </div>
+        </fieldset>
+      </div>
+      <%= submit_tag("Continue", class: "govuk-button") %>
+    <% end %>
+  </div>
+</div> 

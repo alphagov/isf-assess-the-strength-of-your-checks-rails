@@ -20,5 +20,12 @@ Rails.application.routes.draw do
 
   get 'assessments/:assessment_id/activity-result', to: 'activity_questions#activity_result_get'
 
+  match 'assessments/:assessment_id/fraud-start', to: 'fraud_questions#fraud_start', via: %i[get post]
+  get 'assessments/:assessment_id/fraud-result', to: 'fraud_questions#fraud_result_get'
+  match 'assessments/:assessment_id/fraud-1', to: 'fraud_questions#fraud_1', via: %i[get post]
+  match 'assessments/:assessment_id/fraud-2', to: 'fraud_questions#fraud_2', via: %i[get post]
+  match 'assessments/:assessment_id/fraud-3', to: 'fraud_questions#fraud_3', via: %i[get post]
+
+
   post 'assessments/:assessment_id/evidence/:evidence_id/remove', to: 'assessments#remove_evidence_post'
 end

@@ -24,8 +24,9 @@
             If you can't find interactions that happen in the way you'd expect for that person, you might be less sure they were actually involved in them.
           </p>
           <div class="govuk-radios">
-            <%= render 'shared/radio_item', name: :org_activity_found, item: @shared.lists['yes_no'].items['yes']%>
-            <%= render 'shared/radio_item', name: :org_activity_found, item: @shared.lists['yes_no'].items['no']%>
+            <% @shared.lists['yes_no'].items.each do |value, item| %>
+              <%= render 'shared/radio_item', name: :org_activity_found, item: item %>
+            <% end %>
           </div>
         </fieldset>
       </div>
