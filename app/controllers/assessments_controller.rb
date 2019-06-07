@@ -22,7 +22,7 @@ class AssessmentsController < ApplicationController
       assessment = find_assessment
       if !assessment['evidence'].delete(id).nil?
         save(assessment)
-        delete(id)
+        delete(Evidence, id)
       end
     end
     redirect_to action: 'overview'
@@ -36,12 +36,12 @@ private
   class FormResponsesNotFound < StandardError; end
 
   def find_assessment(id = nil)
-    form_responses = find_form_responses(id || params[:assessment_id])
+    form_responses = find_form_responses(Assessment, id || params[:assessment_id])
     Assessment.new(form_responses) if !form_responses.nil?
   end
 
   def find_evidence(id = nil)
-    form_responses = find_form_responses(id || params[:evidence_id])
+    form_responses = find_form_responses(Evidence, id || params[:evidence_id])
     Evidence.new(form_responses) if !form_responses.nil?
   end
 
@@ -49,27 +49,27 @@ private
     assessment.evidence_id_list.map { |evidence_id| find_evidence(evidence_id) }.compact
   end
 
-  def find_form_responses(id)
-    session[:form_responses][id] || raise(FormResponsesNotFound)
+  def find_form_responses(model_class, id)
+    session[:form_responses][model_class.name][id] || raise(FormResponsesNotFound)
   end
 
   def save(form_responses)
-    (session[:form_responses] ||= Hash.new)[form_responses[:id]] = form_responses
+    ((session[:form_responses] ||= Hash.new)[form_responses.class.name] ||= Hash.new)[form_responses[:id]] = form_responses
   end
 
   def delete_assessment(assessment)
     assessment.evidence_id_list.each do |evidence_id|
-      delete(evidence_id)
+      delete(Evidence, evidence_id)
     end
-    delete(assessment['id'])
+    delete(Assessment, assessment['id'])
   end
 
-  def delete(id)
-    session[:form_responses].delete(id)
+  def delete(model_class, id)
+    session[:form_responses][model_class.name].delete(id)
   end
 
   def all_assessments
-    session[:form_responses].each_value.select { |form_responses| form_responses['_type'] == 'assessment' }.map { |form_responses| Assessment.new(form_responses) }.compact
+    session[:form_responses][Assessment.name].each_value.map { |form_responses| Assessment.new(form_responses) }.compact
   end
 
   def reap_old_assessments

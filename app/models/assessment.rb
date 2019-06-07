@@ -3,7 +3,6 @@ require 'time'
 class Assessment < FormResponses
   def initialize(constructor = nil)
     super(constructor)
-    self['_type'] = 'assessment'
     self['date_created'] = Time.now.utc.iso8601
   end
 
