@@ -16,7 +16,7 @@ class AssessmentQuestionsController < AssessmentsController
     assessment.attributes = params.permit(:confidence_level_required)
     save(assessment)
 
-    if params[:confidence_level_required] == "none"
+    if assessment.confidence_level_required == "none"
       redirect_to controller: 'assessment_questions', action: 'no_risk'
     else
       redirect_to controller: 'assessments', action: 'overview'
