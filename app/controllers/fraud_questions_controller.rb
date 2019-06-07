@@ -42,7 +42,7 @@ class FraudQuestionsController < AssessmentsController
     end
 
     assessment = find_assessment
-    assessment['check_identity_not_stolen_or_used_fraudulently'] = params[:check_identity_not_stolen_or_used_fraudulently]
+    assessment['check_identity_not_stolen_or_used_fraudulently'] = checkboxes_params_to_list(params[:check_identity_not_stolen_or_used_fraudulently])
     save(assessment)
 
     if params[:check_identity_not_stolen_or_used_fraudulently] == []
