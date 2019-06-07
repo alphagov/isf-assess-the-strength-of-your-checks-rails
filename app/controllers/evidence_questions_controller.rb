@@ -3,7 +3,6 @@ class EvidenceQuestionsController < AssessmentsController
   def choose_evidence
     if request.post? && !params[:evidence_type] && params[:evidence_type_other].blank?
       @errors[:evidence_type] = 'You must choose a piece of evidence'
-      return choose_evidence_get
     end
 
     if request.get? || !@errors.empty?

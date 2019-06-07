@@ -46,6 +46,7 @@ group :development, :test do
   gem 'capybara'
   gem 'geckodriver-helper'
   gem 'pry-rescue'
+  gem 'rails-controller-testing'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
 end
