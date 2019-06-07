@@ -1,4 +1,4 @@
-FROM ruby:2.6-alpine
+FROM ruby:2.6.2-alpine
 RUN apk update
 RUN apk upgrade
 
