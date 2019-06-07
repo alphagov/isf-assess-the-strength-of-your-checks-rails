@@ -26,8 +26,8 @@ class EvidenceQuestionsController < AssessmentsController
       params[:evidence_type_other] = nil
     end
 
-    evidence['evidence_type'] = params[:evidence_type]
-    evidence['evidence_type_other'] = params[:evidence_type_other]
+    evidence.evidence_type = params[:evidence_type]
+    evidence.evidence_type_other = params[:evidence_type_other]
     save(evidence)
 
     redirect_to controller: 'assessments', action: 'overview'

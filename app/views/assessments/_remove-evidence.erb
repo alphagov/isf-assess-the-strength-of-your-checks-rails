@@ -4,7 +4,7 @@
       Are you sure you want to remove '<%= @remove_evidence.name %>'?
     </h2>
     <div class="govuk-error-summary__body">
-      <%= form_tag("evidence/#{@remove_evidence['id']}/remove", method: "post") do %>
+      <%= form_tag("evidence/#{@remove_evidence.id}/remove", method: "post") do %>
         <%= hidden_field_tag 'authenticity_token', form_authenticity_token %> <%# form_tag alone appears to generate wrong authenticity token when submitting to another controller? %>
         <%= submit_tag 'Yes, remove', name: 'confirmation', class: 'govuk-button govuk-button--warning' %>
         <a href="overview" class="cancel">Cancel</a>
