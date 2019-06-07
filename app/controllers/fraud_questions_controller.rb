@@ -1,4 +1,7 @@
+require 'set'
+
 require 'design_system/form'
+
 class FraudQuestionsController < AssessmentsController
   def fraud_start
     if request.post? && !params[:identity_been_stolen_or_used_fraudulently]
@@ -29,8 +32,8 @@ class FraudQuestionsController < AssessmentsController
       end
     end
 
+    @form = Form.new('assessments')
     if request.get? || !@errors.empty?
-      @form = Form.new('assessments')
       render "assessments/fraud/fraud-1"
       return
     end
@@ -45,10 +48,11 @@ class FraudQuestionsController < AssessmentsController
     assessment['check_identity_not_stolen_or_used_fraudulently'] = checkboxes_params_to_list(params[:check_identity_not_stolen_or_used_fraudulently])
     save(assessment)
 
-    if params[:check_identity_not_stolen_or_used_fraudulently] == []
-      redirect_to action: 'fraud_result_get'
-    else
+    all_options_selected = Set.new(checkboxes_params_to_list(params[:check_identity_not_stolen_or_used_fraudulently])) == Set.new(@form.lists['check_identity_not_stolen_or_used_fraudulently'].items.keys) - Set['none']
+    if all_options_selected
       redirect_to action: 'fraud_2'
+    else
+      redirect_to action: 'fraud_result_get'
     end
   end
 
