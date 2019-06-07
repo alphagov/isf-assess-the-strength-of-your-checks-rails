@@ -36,21 +36,20 @@ private
   class FormResponsesNotFound < StandardError; end
 
   def find_assessment(id = nil)
-    form_responses = find_form_responses(Assessment, id || params[:assessment_id])
-    Assessment.new(form_responses) if !form_responses.nil?
+    find(Assessment, id || params[:assessment_id])
   end
 
   def find_evidence(id = nil)
-    form_responses = find_form_responses(Evidence, id || params[:evidence_id])
-    Evidence.new(form_responses) if !form_responses.nil?
+    find(Evidence, id || params[:evidence_id])
   end
 
   def find_evidence_for_assessment(assessment)
-    assessment.evidence_id_list.map { |evidence_id| find_evidence(evidence_id) }.compact
+    assessment.evidence_id_list.map { |evidence_id| find(Evidence, evidence_id) }.compact
   end
 
-  def find_form_responses(model_class, id)
-    session[:form_responses][model_class.name][id] || raise(FormResponsesNotFound)
+  def find(model_class, id)
+    form_responses = session[:form_responses][model_class.name][id] || raise(FormResponsesNotFound)
+    model_class.new(form_responses) if !form_responses.nil?
   end
 
   def save(form_responses)
