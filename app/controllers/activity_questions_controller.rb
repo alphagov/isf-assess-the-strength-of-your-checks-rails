@@ -18,7 +18,7 @@ class ActivityQuestionsController < AssessmentsController
     end
 
     assessment = find_assessment
-    assessment.identity_exists_over_time = params[:identity_exists_over_time]
+    assessment.attributes = params.permit(:identity_exists_over_time)
     save(assessment)
   end
 
@@ -69,7 +69,7 @@ class ActivityQuestionsController < AssessmentsController
     end
 
     assessment = find_assessment
-    assessment.org_activity_found = params[:org_activity_found]
+    assessment.attributes = params.permit(:org_activity_found)
     save(assessment)
 
     if params[:org_activity_found] == 'no'
@@ -94,7 +94,7 @@ class ActivityQuestionsController < AssessmentsController
     end
 
     assessment = find_assessment
-    assessment.activity_time_period = params[:activity_time_period]
+    assessment.attributes = params.permit(:activity_time_period)
     save(assessment)
 
     redirect_to action: 'activity_result_get'

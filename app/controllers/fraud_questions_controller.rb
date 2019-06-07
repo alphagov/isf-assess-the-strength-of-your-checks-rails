@@ -21,7 +21,7 @@ class FraudQuestionsController < AssessmentsController
     end
 
     assessment = find_assessment
-    assessment.identity_been_stolen_or_used_fraudulently = params[:identity_been_stolen_or_used_fraudulently]
+    assessment.attributes = params.permit(:identity_been_stolen_or_used_fraudulently)
     save(assessment)
   end
 
@@ -70,7 +70,7 @@ class FraudQuestionsController < AssessmentsController
     end
 
     assessment = find_assessment
-    assessment.counter_fraud_data_sources = params[:counter_fraud_data_sources]
+    assessment.attributes = params.permit(:counter_fraud_data_sources)
     save(assessment)
 
 
@@ -95,7 +95,7 @@ class FraudQuestionsController < AssessmentsController
     end
 
     assessment = find_assessment
-    assessment.idependent_counter_fraud_sources = params[:idependent_counter_fraud_sources]
+    assessment.attributes = params.permit(:idependent_counter_fraud_sources)
     save(assessment)
 
     redirect_to action: 'fraud_result_get'

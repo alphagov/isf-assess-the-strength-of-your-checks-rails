@@ -13,7 +13,7 @@ class AssessmentQuestionsController < AssessmentsController
     end
 
     assessment = find_assessment
-    assessment.confidence_level_required = params[:confidence_level_required]
+    assessment.attributes = params.permit(:confidence_level_required)
     save(assessment)
 
     if params[:confidence_level_required] == "none"
