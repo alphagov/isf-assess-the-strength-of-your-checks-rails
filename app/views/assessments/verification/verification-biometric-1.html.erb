@@ -4,11 +4,9 @@
       <div class="govuk-form-group">
         <div class="govuk-caption-l">Verification checks</div >
         <h1 class="govuk-heading-l">How does your system check the biometric information?</h1>
-          <div class="govuk-radios">
-            <% @form.lists['biometric_system_checks'].items.each do |value, item| %>
-              <%= render 'shared/check_box_item', name: :biometric_system_checks, item: item %>
-            <% end %>
-          </div>
+          <% @form.lists['biometric_system_checks'].items.each do |value, item| %>
+            <%= render 'shared/check_box_item', name: :biometric_system_checks, item: item %>
+          <% end %>
         </fieldset>
       </div>
       <%= submit_tag("Continue", class: "govuk-button") %>
