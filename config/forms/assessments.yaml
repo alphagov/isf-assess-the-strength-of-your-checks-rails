@@ -55,3 +55,59 @@ lists:
         value: one
       - text: More than one
         value: more_than_one
+  - name: check_person_is_the_same_person_the_evidence_was_issued_to
+    items:
+      - text: Check the person physically matches the photo on the evidence
+        value: physcially_match
+      - text: Check the person’s biometric information (such as their iris or their fingerprints) matches what's on the evidence
+        value: biometric_match
+      - text: Ask them to complete ‘knowledge-based verification’ (KBV) challenges
+        value: kbv_challenge
+      - text: You don't check this
+        value: dont_check
+  - name: detect_imposters
+    items:
+      - text: 'Yes'
+        value: 'yes'
+      - text: No - they were trained by an equivalent specialist trainer
+        value: 'no'
+      - text: They haven’t had any training
+        value: no_training
+  - name: refresh_training
+    items:
+      - text: Every year
+        value: every_year
+      - text: Every 3 years
+        value: every_3_years
+      - text: They do not refresh their training
+        value: they_dont
+  - name: how_do_you_check_properly
+    items:
+      - text: Make sure the person whose identity is being checked is present
+        value: person_is_present
+      - text: Check the light conditions are good enough to clearly see the person and the image on the evidence
+        value: light_conditions
+      - text: Check the photo you're comparing the person to is from a genuine piece of evidence
+        value: geniune_photo_evidence
+      - text: Check the photo you're comparing the person to has not been tampered with
+        value: photo_not_tampered
+      - text: Make sure you can tell if someone is wearing a mask, makeup or prosthetics to look like someone else
+        value: mask_makeup_prosthetics
+      - text: Make sure the person's eyes are not hidden by any glare or reflections (if they're wearing glasses)
+        value: eyes_not_hidden
+      - text: You don't do any of these things
+        value: none
+  - name: system_checks
+    items:
+      - text: It makes sure the person whose identity is being checked is present when their image or video is captured (it should not use a scan or an upload from a photo or video feed)
+        value: present_when_captured
+      - text: It makes sure the image or video has not been intercepted and reused ('replayed')
+        value: not_intercepted_or_reused
+      - text: It makes sure it compares the image or video of the person to an image or video of a genuine piece of evidence
+        value: geniune_evidence
+      - text: It makes sure the image or video has been shared in a way that prevents it from being tampered with
+        value: not_tampered
+      - text: It can tell if someone is wearing a mask, makeup or prosthetics to look like someone else
+        value: mask_makeup_prosthetics
+      - text: It makes sure the person's eyes are not hidden by any glare or reflections (if they're wearing glasses)
+        value: eyes_not_hidden

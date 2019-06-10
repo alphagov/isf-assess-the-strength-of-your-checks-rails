@@ -1,0 +1,25 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_tag("#{request.fullpath}", method: "post") do %>
+      <div class="govuk-form-group">
+        <div class="govuk-caption-l">Verification checks</div >
+        <h1 class="govuk-heading-l">Has the person doing the check been taught how to detect impostors?</h1>
+        <p>They must have been trained by one of the following organisations:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Home Office</li>
+          <li>National Document Fraud Unit</li>
+          <li>Centre for the Protection of National Infrastructure (CPNI)</li>
+        </ul>
+        <fieldset class="govuk-fieldset">
+          <% detect_imposters = @form.lists['detect_imposters'] %>
+            <% ['yes', 'no'].each do |training| %>
+              <%= render 'shared/radio_item', name: :detect_imposters, item: detect_imposters.items[training] %>
+            <% end %>
+            <p> or </p>
+            <%= render 'shared/radio_item', name: :detect_imposters, item: detect_imposters.items['no_training'] %>
+        </fieldset>
+      </div>
+      <%= submit_tag("Continue", class: "govuk-button") %>
+    <% end %>
+  </div>
+</div> 

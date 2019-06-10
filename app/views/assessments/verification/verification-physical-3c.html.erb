@@ -1,0 +1,31 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_tag("#{request.fullpath}", method: "post") do %>
+      <div class="govuk-form-group">
+        <div class="govuk-caption-l">Verification checks</div >
+        <h1 class="govuk-heading-l">Can you properly see the person in the image or video?</h1>
+        <p>The image or video should be:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>clear and in focus</li>
+          <li>in colour</li>
+        </ul>
+        <p>In the image or video, the person must:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>be in clear contrast to the background</li>
+          <li>not have ‘red eye’</li>
+          <li>not wear a head covering (unless it’s for religious or medical reasons)</li>
+          <li>not have their eyes closed</li>
+          <li>not have anything covering their face or eyes (such as shadows or their hair)</li>
+        </ul>
+        <fieldset class="govuk-fieldset">
+          <div class="govuk-radios">
+            <% @shared.lists['yes_no'].items.each do |value, item| %>
+              <%= render 'shared/radio_item', name: :properly_see_person, item: item %>
+            <% end %>
+          </div>
+        </fieldset>
+      </div>
+      <%= submit_tag("Continue", class: "govuk-button") %>
+    <% end %>
+  </div>
+</div> 

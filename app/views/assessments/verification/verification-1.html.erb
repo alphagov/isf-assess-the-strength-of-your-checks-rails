@@ -1,0 +1,23 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_tag("#{request.fullpath}", method: "post") do %>
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <div class="govuk-caption-l">Verification checks</div >
+            <h1 class="govuk-fieldset__heading">
+               How do you check the person is the same person the evidence was issued to?
+            </h1>
+          </legend>
+            <% check_person_is_the_same_person_the_evidence_was_issued_to = @form.lists['check_person_is_the_same_person_the_evidence_was_issued_to'] %>
+            <% ['physcially_match', 'biometric_match', 'kbv_challenge'].each do |verification_check| %>
+              <%= render 'shared/check_box_item', name: :check_person_is_the_same_person_the_evidence_was_issued_to, item: check_person_is_the_same_person_the_evidence_was_issued_to.items[verification_check] %>
+            <% end %>
+            <p> or </p>
+            <%= render 'shared/check_box_item', name: :check_person_is_the_same_person_the_evidence_was_issued_to, item: check_person_is_the_same_person_the_evidence_was_issued_to.items['dont_check'] %>
+        </fieldset>
+      </div>
+      <%= submit_tag("Continue", class: "govuk-button") %>
+    <% end %>
+  </div>
+</div>
