@@ -1,0 +1,24 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_tag("#{request.fullpath}", method: "post") do %>
+      <div class="govuk-form-group">
+        <div class="govuk-caption-l">Verification checks</div >
+        <h1 class="govuk-heading-l">How do you protect your process against ‘spoofing’ attacks?</h1>
+        <p>A ‘spoofing’ attack is when someone uses false biometric information to pretend to be someone else. 
+           They can do this by using things like masks or recordings to look or sound like someone else.</p>
+          <div class="govuk-radios">
+            <% @form.lists['protect_against_spoofing'].items.each do |value, item| %>
+              <%= render 'shared/check_box_item', name: :protect_against_spoofing, item: item %>
+            <% end %>
+          </div>
+        </fieldset>
+      </div>
+      <%= submit_tag("Continue", class: "govuk-button") %>
+    <% end %>
+  </div>
+</div>
+
+
+
+
+

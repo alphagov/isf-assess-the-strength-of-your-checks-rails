@@ -1,0 +1,25 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_tag("#{request.fullpath}", method: "post") do %>
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <div class="govuk-caption-l">Verification checks</div>
+            <h1 class="govuk-fieldset__heading">How does the system check the person is real?</h1>
+            <p>Your system can do a ‘liveness’ check to confirm that the person is real. A ‘basic’ liveness check could be something 
+               like using a heart rate sensor to check the person is alive when it takes their fingerprint.</p>
+            <p>Your service will do an ‘enhanced’ liveness check if it uses multiple process or measures to confirm the person is real. 
+               This could be something like asking the person to take a short video of themselves, during which they repeat a random sequence of words back to you. </p>
+          </legend>
+            <% biometric_check_person_is_real = @form.lists['biometric_check_person_is_real'] %>
+            <% ['basic_liveness_test', 'enhanced_liveness_test'].each do |check| %>
+              <%= render 'shared/radio_item', name: :biometric_check_person_is_real, item: biometric_check_person_is_real.items[check] %>
+            <% end %>
+            <p> or </p>
+            <%= render 'shared/radio_item', name: :biometric_check_person_is_real, item: biometric_check_person_is_real.items['no_liveness_checks'] %>
+        </fieldset>
+      </div>
+      <%= submit_tag("Continue", class: "govuk-button") %>
+    <% end %>
+  </div>
+</div>

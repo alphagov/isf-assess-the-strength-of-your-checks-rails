@@ -108,6 +108,46 @@ class VerificationQuestionsController < AssessmentsController
     end
   end
 
+  def verification_biometric_1
+    if request.get? || !@errors.empty?
+      @form = Form.new('assessments')
+      render "assessments/verification/verification-biometric-1"
+      nil
+    end
+  end
+
+  def verification_biometric_2
+    if request.get? || !@errors.empty?
+      @form = Form.new('assessments')
+      render "assessments/verification/verification-biometric-2"
+      nil
+    end
+  end
+
+  def verification_biometric_3
+    if request.get? || !@errors.empty?
+      @form = Form.new('assessments')
+      render "assessments/verification/verification-biometric-3"
+      nil
+    end
+  end
+
+  def verification_biometric_4
+    if request.get? || !@errors.empty?
+      @form = Form.new('assessments')
+      render "assessments/verification/verification-biometric-4"
+      nil
+    end
+  end
+
+  def verification_biometric_5
+    if request.get? || !@errors.empty?
+      @shared = Form.new('shared')
+      render "assessments/verification/verification-biometric-5"
+      nil
+    end
+  end
+
   def verification_result_get
     render "assessments/verification/verification-result"
   end

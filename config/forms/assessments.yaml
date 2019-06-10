@@ -111,3 +111,41 @@ lists:
         value: mask_makeup_prosthetics
       - text: It makes sure the person's eyes are not hidden by any glare or reflections (if they're wearing glasses)
         value: eyes_not_hidden
+  - name: biometric_system_checks
+    items:
+      - text: It matches the person to biometric information that's known to belong to whoever they're claiming to be (known as 'one-to-one verification')
+        value: matches_the_person
+      - text: It makes sure the biometric information has not been tampered with (if it was taken from a piece of evidence)
+        value: not_tampered
+      - text: It makes sure the biometric information has been shared in a way that prevents it from being tampered with
+        value: shared_appropriately
+      - text: It can tell if the person’s biometric information has been intercepted and reused ('replayed')
+        value: not_intercepted_or_reused
+      - text: It uses a biometric algorithm that's been checked against a recognised benchmark
+        value: biometric_algorithm
+      - text: It captures the person’s biometric information under conditions that do not reduce the accuracy of the type of biometric check being used
+        value: biometric_accuracy
+  - name: biometric_check_person_is_real
+    items:
+      - text: Your system does a basic liveness test
+        value: basic_liveness_test
+      - text: Your system does an enhanced liveness test
+        value: enhanced_liveness_test
+      - text: Your system does not do any liveness checks
+        value: no_liveness_checks
+  - name: protect_against_spoofing
+    items:
+      - text: The system checks if someone's using an artefact to pretend to be someone else (for example holding up a photo)
+        value: using_an_artefact
+      - text: The system checks if the artefact took time, money and effort to create (for example if the person uses a 3D printed mask of someone's likeness)
+        value: time_money_effort_to_create_artefact
+      - text: The system checks if the artefact is sophisticated and needed criminal activity to create (for example if the person shows a 3D animated avatar on a computer or device when you check a facial biometric)
+        value: artefact_sophisticated
+  - name: biometric_false_handled
+    items:
+      - text: The number of false matches and non-matches in your system are appropriate for your security and usability needs
+        value: number_of_matches_appropriate
+      - text: The way your system handles false matches and non-matches was built following industry best practice (like ISO/IEC TR 29156:2015)
+        value: built_following_best_practices
+      - text: Your service does not handle false matches or non-matches
+        value: does_not_handle
