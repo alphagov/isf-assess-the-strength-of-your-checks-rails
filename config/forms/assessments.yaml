@@ -149,3 +149,40 @@ lists:
         value: built_following_best_practices
       - text: Your service does not handle false matches or non-matches
         value: does_not_handle
+  - name: kbv_static_or_dynamic
+    items:
+      - text: Static
+        value: static
+      - text: Dynamic
+        value: dynamic
+  - name: kbv_multiple_or_single
+    items:
+      - text: Multiple choice
+        value: multiple
+      - text: Single choice
+        value: single
+  - name: kbv_how_many_checks_mutliple
+    items: 
+      - text: '1'
+        value: '1'
+      - text: '2'
+        value: '2'
+      - text: '3'
+        value: '3'
+      - text: '4 to 7'
+        value: '4_to_7'
+      - text: '8 or more'
+        value: '8_or_more'
+  - name: kbv_how_many_checks_single
+    items: 
+      - text: '1'
+        value: '1'
+      - text: '2'
+        value: '2'
+      - text: '3'
+        value: '3'
+      - text: '4 or more'
+        value: '4_or_more'
+    
+    
+    

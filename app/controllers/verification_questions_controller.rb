@@ -148,6 +148,46 @@ class VerificationQuestionsController < AssessmentsController
     end
   end
 
+  def verification_kbv_1
+    if request.get? || !@errors.empty?
+      @form = Form.new('assessments')
+      render "assessments/verification/verification-kbv-1"
+      nil
+    end
+  end
+
+  def verification_kbv_2a
+    if request.get? || !@errors.empty?
+      @shared = Form.new('shared')
+      render "assessments/verification/verification-kbv-2a"
+      nil
+    end
+  end
+
+  def verification_kbv_2b
+    if request.get? || !@errors.empty?
+      @shared = Form.new('shared')
+      render "assessments/verification/verification-kbv-2b"
+      nil
+    end
+  end
+
+  def verification_kbv_2c
+    if request.get? || !@errors.empty?
+      @shared = Form.new('shared')
+      render "assessments/verification/verification-kbv-2c"
+      nil
+    end
+  end
+
+  def verification_kbv_3
+    if request.get? || !@errors.empty?
+      @form = Form.new('assessments')
+      render "assessments/verification/verification-kbv-3"
+      nil
+    end
+  end
+
   def verification_result_get
     render "assessments/verification/verification-result"
   end

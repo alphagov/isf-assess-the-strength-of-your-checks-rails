@@ -38,6 +38,11 @@ Rails.application.routes.draw do
   match 'assessments/:assessment_id/verification-biometric-3', to: 'verification_questions#verification_biometric_3', via: %i[get post]
   match 'assessments/:assessment_id/verification-biometric-4', to: 'verification_questions#verification_biometric_4', via: %i[get post]
   match 'assessments/:assessment_id/verification-biometric-5', to: 'verification_questions#verification_biometric_5', via: %i[get post]
+  match 'assessments/:assessment_id/verification-kbv-1', to: 'verification_questions#verification_kbv_1', via: %i[get post]
+  match 'assessments/:assessment_id/verification-kbv-2a', to: 'verification_questions#verification_kbv_2a', via: %i[get post]
+  match 'assessments/:assessment_id/verification-kbv-2b', to: 'verification_questions#verification_kbv_2b', via: %i[get post]
+  match 'assessments/:assessment_id/verification-kbv-2c', to: 'verification_questions#verification_kbv_2c', via: %i[get post]
+  match 'assessments/:assessment_id/verification-kbv-3', to: 'verification_questions#verification_kbv_3', via: %i[get post]
 
   post 'assessments/:assessment_id/evidence/:evidence_id/remove', to: 'assessments#remove_evidence_post'
 end

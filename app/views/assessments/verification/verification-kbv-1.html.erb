@@ -1,0 +1,24 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_tag("#{request.fullpath}", method: "post") do %>
+      <div class="govuk-form-group">
+        <div class="govuk-caption-l">Verification checks</div >
+        <h1 class="govuk-heading-l">Are the KBV questions ‘static’ or ‘dynamic’?</h1>
+        <p>A KBV question is ‘static’ if the information the person needs to answer it does not change over time. 
+           This could be something like their date of birth.</p> 
+        <p>A KBV question is ‘dynamic’ if the answer does change over time, for example the amount on the person's monthly 
+           credit card statement. These sort of questions are harder to be answered by impostors using information from 
+           things like data breaches.</p>
+        <fieldset class="govuk-fieldset">
+          <div class="govuk-radios">
+            <% @form.lists['kbv_static_or_dynamic'].items.each do |value, item| %>
+              <%= render 'shared/radio_item', name: :kbv_static_or_dynamic, item: item %>
+            <% end %>
+          </div>
+        </fieldset>
+      </div>
+      <%= submit_tag("Continue", class: "govuk-button") %>
+    <% end %>
+  </div>
+</div> 
+

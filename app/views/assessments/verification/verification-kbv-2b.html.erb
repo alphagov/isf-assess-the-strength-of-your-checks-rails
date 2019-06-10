@@ -1,0 +1,28 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_tag("#{request.fullpath}", method: "post") do %>
+      <div class="govuk-form-group">
+        <div class="govuk-caption-l">Verification checks</div >
+        <h1 class="govuk-heading-l">Medium quality KBV challenges</h1>
+        <p>Medium quality KBV challenges must also:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>come from a source that did its own identity checks on whoever the person is claiming to be</li>
+          <li>share codes, like a one-time password sent to the their phone, in a way that means you 
+              can be sure they were given to them (if you use any codes)</li>
+        </ul>
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            Do you ask someone to complete medium quality KBV challenges?
+          </legend>
+          <div class="govuk-radios">
+            <% @shared.lists['yes_no'].items.each do |value, item| %>
+              <%= render 'shared/radio_item', name: :medium_quality_kbv_challenges, item: item %>
+            <% end %>
+          </div>
+        </fieldset>
+      </div>
+      <%= submit_tag("Continue", class: "govuk-button") %>
+    <% end %>
+  </div>
+</div>
+

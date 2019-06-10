@@ -1,0 +1,41 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_tag("#{request.fullpath}", method: "post") do %>
+      <div class="govuk-form-group">
+        <div class="govuk-caption-l">Verification checks</div >
+        <h1 class="govuk-heading-l">Low quality KBV challenges</h1>
+        <p>Low quality KBV challenges must be:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>about whoever the person is claiming to be</li>
+          <li>clear and simple so the person knows exactly what you're asking them</li>
+          <li>about something they can reasonably be expected to know</li>
+          <li>from a source that maintains the integrity of the information the question is based on</li>
+          <li>from a source that makes sure the information cannot be misused by the person 
+              (for example they should not be able to create false records)</li>
+        </ul>
+        <p>Low quality KBV challenges must not:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>be able to be answered with information that's available in the public domain 
+              (for example in an open dataset or on a website that anyone can access)</li>
+          <li>be able to be answered using information the person has submitted at another point in the identity checking process</li>
+          <li>be predictable (the questions and answers should change each time someone goes through your identity checking process)</li>
+          <li>have answers that can be easily guessed if you're asking multiple choice questions</li>
+          <li>include information that will give the person the answer to another question</li>
+          <li>show personal information (unless the person has already submitted it at another point during the identity checking process)</li>
+        </ul>
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            Do you ask someone to complete low quality KBV challenges?
+          </legend>
+          <div class="govuk-radios">
+            <% @shared.lists['yes_no'].items.each do |value, item| %>
+              <%= render 'shared/radio_item', name: :low_quality_kbv_challenges, item: item %>
+            <% end %>
+          </div>
+        </fieldset>
+      </div>
+      <%= submit_tag("Continue", class: "govuk-button") %>
+    <% end %>
+  </div>
+</div>
+
