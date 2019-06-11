@@ -21,9 +21,8 @@ class FormResponses
   end
 
   def attributes
-    all = Hash.new
-    self.class::ATTRS.each { |attribute| all[attribute] = nil }
-    all
+    # { field_name_1 => nil, field_name_2 => nil, ... }
+    Hash[self.class::ATTRS.map { |attribute| [attribute] }]
   end
 
   # attributes= is handled for us by ActiveModel::Model
