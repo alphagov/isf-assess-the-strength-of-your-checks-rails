@@ -44,7 +44,7 @@ class ActivityQuestionsController < AssessmentsController
 
     assessment = find_assessment
     assessment['identity_with_organisation_proved'] = params[:identity_with_organisation_proved]
-    assessment['org_check_method'] = params[:org_check_method]
+    assessment['org_check_method'] = checkboxes_params_to_list(params[:org_check_method])
     save(assessment)
 
     if params[:identity_with_organisation_proved] == 'no'
