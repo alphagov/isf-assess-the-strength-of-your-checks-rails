@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   match 'assessments/:assessment_id/fraud-3', to: 'fraud_questions#fraud_3', via: %i[get post]
 
   match 'assessments/:assessment_id/verification-start', to: 'verification_questions#verification_start', via: %i[get post]
-  match 'assessments/:assessment_id/verification-result', to: 'verification_questions#verification_result', via: %i[get post]
+  match 'assessments/:assessment_id/verification-result', to: 'verification_questions#verification_result_get', via: %i[get post]
   match 'assessments/:assessment_id/verification-1', to: 'verification_questions#verification_1', via: %i[get post]
   match 'assessments/:assessment_id/verification-physical-1', to: 'verification_questions#verification_physical_1', via: %i[get post]
   match 'assessments/:assessment_id/verification-physical-2a', to: 'verification_questions#verification_physical_2a', via: %i[get post]

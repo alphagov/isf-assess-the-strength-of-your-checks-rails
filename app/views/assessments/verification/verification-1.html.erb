@@ -10,7 +10,7 @@
             </h1>
           </legend>
           <% check_person_is_the_same_person_the_evidence_was_issued_to = @form.lists['check_person_is_the_same_person_the_evidence_was_issued_to'] %>
-          <% ['physcially_match', 'biometric_match', 'kbv_challenge'].each do |verification_check| %>
+          <% ['physically_match', 'biometric_match', 'kbv_challenge'].each do |verification_check| %>
             <%= render 'shared/check_box_item', name: :check_person_is_the_same_person_the_evidence_was_issued_to, item: check_person_is_the_same_person_the_evidence_was_issued_to.items[verification_check] %>
           <% end %>
           <p> or </p>

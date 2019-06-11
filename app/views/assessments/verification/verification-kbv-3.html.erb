@@ -10,7 +10,7 @@
           <div class="govuk-radios govuk-radios--conditional" data-module="radios">
             <%= render 'shared/radio_item', name: :kbv_multiple_or_single, item: @form.lists['kbv_multiple_or_single'].items['multiple'], attributes: { 'data-aria-controls' => "conditional-kbv_how_many_checks_multiple" }%>
             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-kbv_how_many_checks_multiple">
-              <% @form.lists['kbv_how_many_checks_mutliple'].items.each do |key, item| %>
+              <% @form.lists['kbv_how_many_checks_multiple'].items.each do |key, item| %>
                 <%= render 'shared/radio_item', name: :kbv_how_many_checks_multiple, item: item %>
               <% end %>
             </div>

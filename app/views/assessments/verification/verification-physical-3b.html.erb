@@ -2,7 +2,7 @@
   <div class="govuk-grid-column-two-thirds">
     <%= form_tag("#{request.fullpath}", method: "post") do %>
       <div class="govuk-form-group">
-        <div class="govuk-caption-l">Fraud checks</div >
+        <div class="govuk-caption-l">Verification checks</div >
         <h1 class="govuk-heading-l">What does the system do when it does the checks?</h1>
           <div class="govuk-radios">
             <% @form.lists['system_checks'].items.each do |value, item| %>
