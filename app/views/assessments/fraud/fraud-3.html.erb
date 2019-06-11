@@ -16,7 +16,7 @@
           </ul>
           <div class="govuk-radios">
           <% @shared.lists['yes_no'].items.each do |value, item| %>
-            <%= render 'shared/radio_item', name: :idependent_counter_fraud_sources, item: item %>
+            <%= render 'shared/radio_item', name: :independent_counter_fraud_sources, item: item %>
           <% end %>
           </div>
         </fieldset>
@@ -24,4 +24,4 @@
       <%= submit_tag("Continue", class: "govuk-button") %>
     <% end %>
   </div>
-</div> 
+</div>

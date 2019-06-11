@@ -83,8 +83,8 @@ class FraudQuestionsController < AssessmentsController
 
   def fraud_3
     if request.post?
-      if !params[:idependent_counter_fraud_sources]
-        @errors[:idependent_counter_fraud_sources] = 'You must answer the question'
+      if !params[:independent_counter_fraud_sources]
+        @errors[:independent_counter_fraud_sources] = 'You must answer the question'
       end
     end
 
@@ -95,7 +95,7 @@ class FraudQuestionsController < AssessmentsController
     end
 
     assessment = find_assessment
-    assessment.attributes = params.permit(:idependent_counter_fraud_sources)
+    assessment.attributes = params.permit(:independent_counter_fraud_sources)
     save(assessment)
 
     redirect_to action: 'fraud_result_get'
