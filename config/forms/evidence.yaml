@@ -23,6 +23,7 @@ lists:
       - text: Gas or electric bill
         value: account_utility_bill
       - text: A passport that meets the International Civil Aviation Organisation (ICAO) specifications for machine-readable travel documents (9303)
+        short_name: passport
         value: passport_icao
       - text: Biometric passports that meet the ICAO specifications for e-passports
         value: passport_biometric
@@ -37,14 +38,16 @@ lists:
         value: driving_licence_eea
       - text: Digital tachograph driver smart card
         value: driving_licence_tachograph
-      
+
       - text: Armed forces identity card
         value: id_card_forces
       - text: Biometric residence permit
         value: id_card_residence_permit
       - text: An identity card from an EU or European Economic Area (EEA) country that meets the Council Regulation (EC) No 2252/2004 standards
+        short_name: identity card
         value: id_card_eea_non_biometric
       - text: An identity card from an EU or EEA country that meets the Council Regulation (EC) No 2252/2004 standards and contains biometric information
+        short_name: identity card
         value: id_card_eea_biometric
       - text: Proof of age card recognised under the Proof of Age Standards Scheme (PASS)
         value: id_card_proof_of_age_no_reference_number
@@ -52,7 +55,7 @@ lists:
         value: id_card_proof_of_age_with_reference_number
       - text: Northern Ireland electoral identity card
         value: id_card_ni_electoral
-    
+
       - text: Student loan account
         value: account_student_loan
       - text: Bank, building society or credit union current account
@@ -67,7 +70,7 @@ lists:
         value: account_insurance
       - text: Rental or purchase agreement for a residential property
         value: account_rental
-      
+
       - text: Birth or adoption certificate
         value: certificate_birth
       - text: Marriage certificate
@@ -76,7 +79,7 @@ lists:
         value: certificate_education
       - text: Firearm certificate
         value: certificate_firearm
-      
+
       - text: Older person’s bus pass
         value: local_authority_doc_bus_pass
       - text: Freedom pass

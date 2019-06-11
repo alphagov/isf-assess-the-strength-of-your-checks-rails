@@ -21,10 +21,11 @@ class List
 end
 
 class ListItem
-  attr_reader :text, :value, :hint
+  attr_reader :text, :value, :hint, :short_name
   def initialize(data)
     @text = data['text']
     @value = data['value']
     @hint = data['hint']
+    @short_name = data['short_name']
   end
 end

@@ -10,6 +10,11 @@ Rails.application.routes.draw do
   get 'assessments/:assessment_id/no-risk', to: 'assessment_questions#no_risk'
 
   match 'assessments/:assessment_id/evidence/:evidence_id/choose-evidence', to: 'evidence_questions#choose_evidence', via: %i[get post]
+  match 'assessments/:assessment_id/evidence/:evidence_id/physical-0', to: 'evidence_questions#physical_0', via: %i[get post]
+  match 'assessments/:assessment_id/evidence/:evidence_id/crypto-0', to: 'evidence_questions#crypto_0', via: %i[get post]
+  match 'assessments/:assessment_id/evidence/:evidence_id/issuance', to: 'evidence_questions#issuance', via: %i[get post]
+  match 'assessments/:assessment_id/evidence/:evidence_id/revocation', to: 'evidence_questions#revocation', via: %i[get post]
+  get 'assessments/:assessment_id/evidence/:evidence_id/result', to: 'evidence_questions#evidence_result_get'
 
   match 'assessments/:assessment_id/activity-start', to: 'activity_questions#activity_start', via: %i[get post]
   get 'assessments/:assessment_id/activity-result', to: 'activity_questions#activity_result_get'
