@@ -20,7 +20,7 @@ class AssessmentsController < ApplicationController
       id = params[:evidence_id]
       # note: evidence is created in AssessmentQuestionsController::choose_evidence_post
       assessment = find_assessment
-      if !assessment['evidence'].delete(id).nil?
+      if !assessment.evidence_id_list.delete(id).nil?
         save(assessment)
         delete(Evidence, id)
       end
@@ -53,14 +53,14 @@ private
   end
 
   def save(form_responses)
-    ((session[:form_responses] ||= Hash.new)[form_responses.class.name] ||= Hash.new)[form_responses[:id]] = form_responses
+    ((session[:form_responses] ||= Hash.new)[form_responses.class.name] ||= Hash.new)[form_responses.id] = form_responses.serializable_hash
   end
 
   def delete_assessment(assessment)
     assessment.evidence_id_list.each do |evidence_id|
       delete(Evidence, evidence_id)
     end
-    delete(Assessment, assessment['id'])
+    delete(Assessment, assessment.id)
   end
 
   def delete(model_class, id)
@@ -72,7 +72,7 @@ private
   end
 
   def reap_old_assessments
-    assessments_sorted_by_date = all_assessments.sort_by { |assessment| assessment["date_created"] }
+    assessments_sorted_by_date = all_assessments.sort_by(&:date_created)
     all_but_most_recent = assessments_sorted_by_date[0..-(Rails.configuration.number_of_assessments_to_keep + 1)]
     if !all_but_most_recent.nil?
       all_but_most_recent.each do |assessment|
