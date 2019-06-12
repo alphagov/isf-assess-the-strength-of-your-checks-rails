@@ -10,8 +10,8 @@ RSpec.feature 'Activity questions', type: :system do
     and_i_respond 'Yes', to_prompt: 'Did the person have to prove their identity before they interacted with the organisation?'
     check 'Using their own identity checking process'
     click_button 'Continue'
-    and_i_respond 'Yes', to_prompt: 'Have you found interactions that you’d expect that person to have?', and_continue: true
     and_i_respond 'The last 12 months', to_prompt: 'Over what period of time did you find the interactions?', and_continue: true
+    and_i_respond 'Yes', to_prompt: "Do you check if the interactions you've found are interactions you'd expect users to have?", and_continue: true
     then_i_get_a_score 'XXX', 'out of 4' # TODO scoring!
   end
 end
