@@ -33,94 +33,66 @@ class EvidenceQuestionsController < AssessmentsController
   end
 
   def physical_0
-    @evidence = find_evidence
-
-    if request.post? && !params[:physical_check]
-      @errors[:physical_check] = 'You must answer the question'
-    end
-
-    if request.get? || !@errors.empty?
-      @shared = Form.new('shared')
-      @form = Form.new('evidence')
-      render "assessments/evidence/physical-0"
-      return
-    end
-
-    @evidence.attributes = params.permit(:physical_check)
-    save(@evidence)
-
-    if @evidence.physical_check == 'yes'
-      redirect_to action: 'physical_1'
-    else
-      redirect_to action: 'crypto_0'
+    handle_evidence "assessments/evidence/physical-0", [:physical_check] do
+      if @evidence.physical_check == 'yes'
+        redirect_to action: 'physical_1'
+      else
+        redirect_to action: 'crypto_0'
+      end
     end
   end
 
   def crypto_0
-    @evidence = find_evidence
-
-    if request.post? && !params[:crypto_check]
-      @errors[:crypto_check] = 'You must answer the question'
-    end
-
-    if request.get? || !@errors.empty?
-      @shared = Form.new('shared')
-      @form = Form.new('evidence')
-      render "assessments/evidence/crypto-0"
-      return
-    end
-
-    @evidence.attributes = params.permit(:crypto_check)
-    save(@evidence)
-
-    if @evidence.crypto_check == 'yes'
-      redirect_to action: 'crypto_1'
-    else
-      redirect_to action: 'issuance'
+    handle_evidence "assessments/evidence/crypto-0", [:crypto_check] do
+      if @evidence.crypto_check == 'yes'
+        redirect_to action: 'crypto_1'
+      else
+        redirect_to action: 'issuance'
+      end
     end
   end
 
   def issuance
+    handle_evidence "assessments/evidence/issuance", [:authoritative_source_check] do
+      redirect_to action: 'revocation'
+    end
+  end
+
+  def revocation
+    handle_evidence "assessments/evidence/revocation", [:cancellation_check] do
+      redirect_to action: :evidence_result_get
+    end
+  end
+
+  def evidence_result_get
+    render 'assessments/evidence/result'
+  end
+
+private
+
+  def handle_evidence(view, required_params)
+    @shared = Form.new('shared')
+    @form = Form.new('evidence')
     @evidence = find_evidence
 
-    if request.post? && !params[:authoritative_source_check]
-      @errors[:authoritative_source_check] = 'You must answer the question'
+    if request.post?
+      begin
+        params.require(required_params)
+      rescue ActionController::ParameterMissing => e
+        @errors[e.param] = 'You must answer the question'
+      end
+
     end
 
     if request.get? || !@errors.empty?
       @shared = Form.new('shared')
       @form = Form.new('evidence')
-      render "assessments/evidence/issuance"
+      render view
       return
     end
 
-    @evidence.attributes = params.permit(:authoritative_source_check)
+    @evidence.attributes = params.permit(required_params)
     save(@evidence)
-
-    redirect_to action: 'revocation'
-  end
-
-  def revocation
-    @shared = Form.new('shared')
-    @form = Form.new('evidence')
-    @evidence = find_evidence
-
-    if request.post? && !params[:cancellation_check]
-      @errors[:cancellation_check] = 'You must answer the question'
-    end
-
-    if request.get? || !@errors.empty?
-      render "assessments/evidence/revocation"
-      return
-    end
-
-    @evidence.attributes = params.permit(:cancellation_check)
-    save(@evidence)
-
-    redirect_to action: :evidence_result_get
-  end
-
-  def evidence_result_get
-    render 'assessments/evidence/result'
+    yield
   end
 end
