@@ -7,7 +7,7 @@
       <ul class="govuk-list govuk-error-summary__list">
         <% @errors.each do |field_id, message| %>
           <li>
-            <%= link_to "#{message}" , "##{field_id}" %>
+            <%= message %>
           </li>
         <% end %>
       </ul>
