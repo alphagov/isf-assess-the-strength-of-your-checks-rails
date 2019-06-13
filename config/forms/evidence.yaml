@@ -106,7 +106,7 @@ lists:
       - text: birth or adoption certificate
         value: certificate_birth
         strength: 2
-      - text: marriage certificate
+      - text: marriage or civil partnership certificate
         value: certificate_marriage
         strength: 2
       - text: education certificate from a regulated and recognised educational institution
