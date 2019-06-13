@@ -65,6 +65,8 @@ class EvidenceQuestionsController < AssessmentsController
   end
 
   def evidence_result_get
+    @form = Form.new('evidence')
+    @evidence = find_evidence
     render 'assessments/evidence/result'
   end
 
