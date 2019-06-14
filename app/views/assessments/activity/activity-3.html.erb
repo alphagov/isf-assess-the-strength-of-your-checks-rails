@@ -5,11 +5,26 @@
         <fieldset class="govuk-fieldset">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             <div class="govuk-caption-l">Activity checks</div >
-            <h1 class="govuk-fieldset__heading">Over what period of time did you find the interactions?</h1>
+            <h1 class="govuk-fieldset__heading">
+              Do you check if the interactions you've found are interactions you'd expect users to have?
+            </h1>
           </legend>
+          <p>
+            Some people’s interactions might appear differently to others. The interactions you expect someone to have will usually depend on:
+          </p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>the type of interaction</li>
+            <li>who they are (their interactions can depend on things like their age or financial situation)</li>
+          </ul>
+          <p>
+            For example, you can expect someone who's been working for 20 years to have frequent financial transactions, but someone who's recently left school might not.
+          </p>
+          <p>
+            If you can't find interactions that happen in the way you'd expect for that person, you might be less sure they were actually involved in them.
+          </p>
           <div class="govuk-radios">
-            <% @form.lists['activity_time_period'].items.each do |key, item| %>
-              <%= render 'shared/radio_item', name: :activity_time_period, item: item %>
+            <% @shared.lists['yes_no'].items.each do |value, item| %>
+              <%= render 'shared/radio_item', name: :org_activity_found, item: item %>
             <% end %>
           </div>
         </fieldset>

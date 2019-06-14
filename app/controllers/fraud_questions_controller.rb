@@ -38,9 +38,9 @@ class FraudQuestionsController < AssessmentsController
       return
     end
 
-    params[:check_identity_not_stolen_or_used_fraudulently].each do |item|
-      if item == "none"
-        params[:check_identity_not_stolen_or_used_fraudulently] = []
+    params[:check_identity_not_stolen_or_used_fraudulently].each do |_key, value|
+      if value == "none"
+        params[:check_identity_not_stolen_or_used_fraudulently] = {}
       end
     end
 
@@ -49,6 +49,7 @@ class FraudQuestionsController < AssessmentsController
     save(assessment)
 
     all_options_selected = Set.new(assessment.check_identity_not_stolen_or_used_fraudulently) == Set.new(@form.lists['check_identity_not_stolen_or_used_fraudulently'].items.keys) - Set['none']
+
     if all_options_selected
       redirect_to action: 'fraud_2'
     else

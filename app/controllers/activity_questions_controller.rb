@@ -11,15 +11,15 @@ class ActivityQuestionsController < AssessmentsController
       return
     end
 
+    assessment = find_assessment
+    assessment.attributes = params.permit(:identity_exists_over_time)
+    save(assessment)
+
     if params[:identity_exists_over_time] == 'no'
       redirect_to action: 'activity_result_get'
     else
       redirect_to action: 'activity_1'
     end
-
-    assessment = find_assessment
-    assessment.attributes = params.permit(:identity_exists_over_time)
-    save(assessment)
   end
 
   def activity_1
@@ -39,11 +39,11 @@ class ActivityQuestionsController < AssessmentsController
     end
 
     if params[:identity_with_organisation_proved] == "no"
-      params[:org_check_method] = []
+      params[:org_check_method] = {}
     end
 
     assessment = find_assessment
-    assessment.identity_with_organisation_proved = params[:identity_with_organisation_proved]
+    assessment.attributes = params.permit(:identity_with_organisation_proved)
     assessment.org_check_method = checkboxes_params_to_list(params[:org_check_method])
     save(assessment)
 
@@ -56,8 +56,8 @@ class ActivityQuestionsController < AssessmentsController
 
   def activity_2
     if request.post?
-      if !params[:org_activity_found]
-        @errors[:org_activity_found] = 'You must answer the question'
+      if !params[:activity_time_period]
+        @errors[:activity_time_period] = 'You must answer the question'
       end
     end
 
@@ -69,20 +69,16 @@ class ActivityQuestionsController < AssessmentsController
     end
 
     assessment = find_assessment
-    assessment.attributes = params.permit(:org_activity_found)
+    assessment.attributes = params.permit(:activity_time_period)
     save(assessment)
 
-    if params[:org_activity_found] == 'no'
-      redirect_to action: 'activity_result_get'
-    else
-      redirect_to action: 'activity_3'
-    end
+    redirect_to action: 'activity_3'
   end
 
   def activity_3
     if request.post?
-      if !params[:activity_time_period]
-        @errors[:activity_time_period] = 'You must answer the question'
+      if !params[:org_activity_found]
+        @errors[:org_activity_found] = 'You must answer the question'
       end
     end
 
@@ -94,7 +90,7 @@ class ActivityQuestionsController < AssessmentsController
     end
 
     assessment = find_assessment
-    assessment.attributes = params.permit(:activity_time_period)
+    assessment.attributes = params.permit(:org_activity_found)
     save(assessment)
 
     redirect_to action: 'activity_result_get'
