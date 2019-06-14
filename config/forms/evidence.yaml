@@ -20,67 +20,111 @@ lists:
     items:
       - text: UK passport
         value: passport_uk
-      - text: Gas or electric bill
-        value: account_utility_bill
+        short_name: UK passport
+        strength: 4
       - text: A passport that meets the International Civil Aviation Organisation (ICAO) specifications for machine-readable travel documents (9303)
         value: passport_icao
-      - text: Biometric passports that meet the ICAO specifications for e-passports
+        short_name: passport
+        strength: 3
+      - text: biometric passports that meet the ICAO specifications for e-passports
         value: passport_biometric
+        short_name: biometric passport
+        strength: 4
       - text: US passport card
         value: passport_us
+        strength: 3
       - text: Home Office travel document
         value: passport_document
+        strength: 2
 
       - text: UK photocard driving licence
         value: driving_licence_uk_photocard
+        short_name: UK driving licence
+        strength: 3
       - text: EU or EEA driving licence
         value: driving_licence_eea
+        strength: 3
       - text: Digital tachograph driver smart card
         value: driving_licence_tachograph
-      
-      - text: Armed forces identity card
+        short_name: tachograph smart card
+        strength: 3
+
+      - text: armed forces identity card
         value: id_card_forces
-      - text: Biometric residence permit
+        strength: 3
+      - text: biometric residence permit
         value: id_card_residence_permit
+        strength: 4
       - text: An identity card from an EU or European Economic Area (EEA) country that meets the Council Regulation (EC) No 2252/2004 standards
+        short_name: EU or EEA identity card
         value: id_card_eea_non_biometric
+        strength: 3
       - text: An identity card from an EU or EEA country that meets the Council Regulation (EC) No 2252/2004 standards and contains biometric information
         value: id_card_eea_biometric
+        short_name: EU or EEA biometric identity card
+        strength: 4
       - text: Proof of age card recognised under the Proof of Age Standards Scheme (PASS)
         value: id_card_proof_of_age_no_reference_number
+        short_name: proof of age card
+        strength: 2
       - text: Proof of age card with a Proof of Age Standards Scheme (PASS) with a reference number
         value: id_card_proof_of_age_with_reference_number
+        short_name: proof of age card (with reference number)
+        strength: 3
       - text: Northern Ireland electoral identity card
         value: id_card_ni_electoral
-    
-      - text: Student loan account
+        short_name: NI electoral identity card
+        strength: 3
+
+      - text: gas or electric bill
+        value: account_utility_bill
+        strength: 2
+      - text: student loan account
         value: account_student_loan
-      - text: Bank, building society or credit union current account
+        strength: 3
+      - text: bank, building society or credit union current account
         value: account_bank
-      - text: Credit account
+        strength: 3
+      - text: credit account
         value: account_credit
-      - text: Mortgage account
+        strength: 3
+      - text: mortgage account
         value: account_mortgage
-      - text: Secured loan account
+        strength: 3
+      - text: secured loan account
         value: account_loan
-      - text: Building, contents or vehicle insurance
+        strength: 3
+      - text: building, contents or vehicle insurance
         value: account_insurance
-      - text: Rental or purchase agreement for a residential property
+        short_name: insurance document
+        strength: 2
+      - text: rental or purchase agreement for a residential property
         value: account_rental
-      
-      - text: Birth or adoption certificate
+        short_name: rental or purchase agreement
+        strength: 2
+
+      - text: birth or adoption certificate
         value: certificate_birth
-      - text: Marriage certificate
+        strength: 2
+      - text: marriage or civil partnership certificate
         value: certificate_marriage
-      - text: Education certificate from a regulated and recognised educational institution
+        strength: 2
+      - text: education certificate from a regulated and recognised educational institution
         value: certificate_education
-      - text: Firearm certificate
+        short_name: education certificate
+        strength: 2
+      - text: firearm certificate
         value: certificate_firearm
-      
-      - text: Older person’s bus pass
+        strength: 2
+
+      - text: older person’s bus pass
         value: local_authority_doc_bus_pass
-      - text: Freedom pass
+        short_name: bus pass
+        strength: 2
+      - text: freedom pass
         value: local_authority_doc_freedom_pass
-      - text: Letter from a local authority
+        strength: 2
+      - text: letter from a local authority
         value: local_authority_doc_letter
+        strength: 1
 
