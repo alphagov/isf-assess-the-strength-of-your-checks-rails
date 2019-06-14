@@ -8,12 +8,12 @@ RSpec.feature 'Remove evidence flow', type: :system do
     and_i_add_a_new_piece_of_evidence('Passport or travel document', 'UK passport')
     and_i_answer_no_to_every_question
     then_i_get_a_score('XX', 'out of 4')
-    and_i_add_a_new_piece_of_evidence('Certificate', 'Marriage certificate')
+    and_i_add_a_new_piece_of_evidence('Certificate', 'Marriage or civil partnership certificate')
     and_i_answer_no_to_every_question
     then_i_get_a_score('XX', 'out of 4')
     then_i_remove_that_evidence('UK passport')
     then_i_cannot_see_that_evidence_in_the_overview('UK passport')
-    and_i_can_see_that_evidence_in_the_overview('Marriage certificate')
+    and_i_can_see_that_evidence_in_the_overview('Marriage or civil partnership certificate')
   end
 end
 
