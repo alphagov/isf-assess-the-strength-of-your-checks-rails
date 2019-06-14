@@ -1,3 +1,5 @@
+require 'ostruct'
+
 class Form
   attr_reader :form, :lists
   def initialize(form_name)
@@ -20,11 +22,5 @@ class List
   end
 end
 
-class ListItem
-  attr_reader :text, :value, :hint
-  def initialize(data)
-    @text = data['text']
-    @value = data['value']
-    @hint = data['hint']
-  end
+class ListItem < OpenStruct
 end

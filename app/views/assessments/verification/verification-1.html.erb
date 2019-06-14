@@ -1,0 +1,38 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_tag("#{request.fullpath}", method: "post") do %>
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <div class="govuk-caption-l">Verification checks</div >
+            <h1 class="govuk-fieldset__heading">
+               How do you check the person is the same person the evidence was issued to?
+            </h1>
+          </legend>
+          <% check_person_is_the_same_person_the_evidence_was_issued_to = @form.lists['check_person_is_the_same_person_the_evidence_was_issued_to'] %>
+          <% ['physically_match', 'biometric_match', 'kbv_challenge'].each do |verification_check| %>
+            <%= render 'shared/check_box_item', name: :check_person_is_the_same_person_the_evidence_was_issued_to, item: check_person_is_the_same_person_the_evidence_was_issued_to.items[verification_check] %>
+          <% end %>
+          <p> or </p>
+          <%= render 'shared/check_box_item', name: :check_person_is_the_same_person_the_evidence_was_issued_to, item: check_person_is_the_same_person_the_evidence_was_issued_to.items['dont_check'] %>
+          <details class="govuk-details govuk-!-margin-top-4" role="group">
+            <summary class="govuk-details__summary" role="button" aria-controls="details-content-ecec8d6c-62a1-4092-ac00-832c31af7ce9" aria-expanded="false">
+              <span class="govuk-details__summary-text">
+                Find out more about knowledge-based verification
+              </span>
+            </summary>
+            <div class="govuk-details__text" id="details-content-ecec8d6c-62a1-4092-ac00-832c31af7ce9" aria-hidden="true">
+              <p>Knowledge-based verification (KBV) is when you ask someone questions that only the person they're claiming to be would know the answer to. 
+                 The questions should be about things that you can also find the answer to.</p>
+              <p>For example, you could ask the person how much their monthly mortgage payments are. To be able to answer this, they'll need a mortgage 
+                 (they would have had to prove their identity to get one) and have bills that were sent to their address.</p>
+              <p>You could also make a zero balance transaction into their bank account and attach a reference number (which is valid for a short period of time) 
+                 to it. This will show up as a code on their bank statement. If they give you the correct code, it will prove the person you’re dealing with has control of and access to that bank account.</p>
+            </div>
+          </details>
+        </fieldset>
+      </div>
+      <%= submit_tag("Continue", class: "govuk-button") %>
+    <% end %>
+  </div>
+</div>

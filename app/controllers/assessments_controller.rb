@@ -1,3 +1,5 @@
+require 'design_system/form'
+
 class AssessmentsController < ApplicationController
   def create
     @assessment = Assessment.new
@@ -7,6 +9,7 @@ class AssessmentsController < ApplicationController
   end
 
   def overview
+    @evidence_form = Form.new('evidence')
     @assessment = find_assessment
     @evidence_list = find_evidence_for_assessment(@assessment)
     @remove_evidence = if params[:remove_evidence_id].present?

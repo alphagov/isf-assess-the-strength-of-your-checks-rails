@@ -10,6 +10,11 @@ Rails.application.routes.draw do
   get 'assessments/:assessment_id/no-risk', to: 'assessment_questions#no_risk'
 
   match 'assessments/:assessment_id/evidence/:evidence_id/choose-evidence', to: 'evidence_questions#choose_evidence', via: %i[get post]
+  match 'assessments/:assessment_id/evidence/:evidence_id/physical-0', to: 'evidence_questions#physical_0', via: %i[get post]
+  match 'assessments/:assessment_id/evidence/:evidence_id/crypto-0', to: 'evidence_questions#crypto_0', via: %i[get post]
+  match 'assessments/:assessment_id/evidence/:evidence_id/issuance', to: 'evidence_questions#issuance', via: %i[get post]
+  match 'assessments/:assessment_id/evidence/:evidence_id/revocation', to: 'evidence_questions#revocation', via: %i[get post]
+  get 'assessments/:assessment_id/evidence/:evidence_id/result', to: 'evidence_questions#evidence_result_get'
 
   match 'assessments/:assessment_id/activity-start', to: 'activity_questions#activity_start', via: %i[get post]
   get 'assessments/:assessment_id/activity-result', to: 'activity_questions#activity_result_get'
@@ -22,6 +27,27 @@ Rails.application.routes.draw do
   match 'assessments/:assessment_id/fraud-1', to: 'fraud_questions#fraud_1', via: %i[get post]
   match 'assessments/:assessment_id/fraud-2', to: 'fraud_questions#fraud_2', via: %i[get post]
   match 'assessments/:assessment_id/fraud-3', to: 'fraud_questions#fraud_3', via: %i[get post]
+
+  match 'assessments/:assessment_id/verification-start', to: 'verification_questions#verification_start', via: %i[get post]
+  match 'assessments/:assessment_id/verification-result', to: 'verification_questions#verification_result_get', via: %i[get post]
+  match 'assessments/:assessment_id/verification-1', to: 'verification_questions#verification_1', via: %i[get post]
+  match 'assessments/:assessment_id/verification-physical-1', to: 'verification_questions#verification_physical_1', via: %i[get post]
+  match 'assessments/:assessment_id/verification-physical-2a', to: 'verification_questions#verification_physical_2a', via: %i[get post]
+  match 'assessments/:assessment_id/verification-physical-2b', to: 'verification_questions#verification_physical_2b', via: %i[get post]
+  match 'assessments/:assessment_id/verification-physical-2c', to: 'verification_questions#verification_physical_2c', via: %i[get post]
+  match 'assessments/:assessment_id/verification-physical-3a', to: 'verification_questions#verification_physical_3a', via: %i[get post]
+  match 'assessments/:assessment_id/verification-physical-3b', to: 'verification_questions#verification_physical_3b', via: %i[get post]
+  match 'assessments/:assessment_id/verification-physical-3c', to: 'verification_questions#verification_physical_3c', via: %i[get post]
+  match 'assessments/:assessment_id/verification-biometric-1', to: 'verification_questions#verification_biometric_1', via: %i[get post]
+  match 'assessments/:assessment_id/verification-biometric-2', to: 'verification_questions#verification_biometric_2', via: %i[get post]
+  match 'assessments/:assessment_id/verification-biometric-3', to: 'verification_questions#verification_biometric_3', via: %i[get post]
+  match 'assessments/:assessment_id/verification-biometric-4', to: 'verification_questions#verification_biometric_4', via: %i[get post]
+  match 'assessments/:assessment_id/verification-biometric-5', to: 'verification_questions#verification_biometric_5', via: %i[get post]
+  match 'assessments/:assessment_id/verification-kbv-1', to: 'verification_questions#verification_kbv_1', via: %i[get post]
+  match 'assessments/:assessment_id/verification-kbv-2a', to: 'verification_questions#verification_kbv_2a', via: %i[get post]
+  match 'assessments/:assessment_id/verification-kbv-2b', to: 'verification_questions#verification_kbv_2b', via: %i[get post]
+  match 'assessments/:assessment_id/verification-kbv-2c', to: 'verification_questions#verification_kbv_2c', via: %i[get post]
+  match 'assessments/:assessment_id/verification-kbv-3', to: 'verification_questions#verification_kbv_3', via: %i[get post]
 
   post 'assessments/:assessment_id/evidence/:evidence_id/remove', to: 'assessments#remove_evidence_post'
 end

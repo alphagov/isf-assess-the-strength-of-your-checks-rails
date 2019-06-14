@@ -1,0 +1,21 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_tag("#{request.fullpath}", method: "post") do %>
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <div class="govuk-caption-l">Verification checks</div >
+            <h1 class="govuk-fieldset__heading">How do you make sure you do the check properly?</h1>
+          </legend>
+            <% how_do_you_check_properly = @form.lists['how_do_you_check_properly'] %>
+            <% ['person_is_present', 'light_conditions', 'geniune_photo_evidence', 'photo_not_tampered', 'mask_makeup_prosthetics', 'eyes_not_hidden'].each do |check| %>
+              <%= render 'shared/check_box_item', name: :how_do_you_check_properly, item: how_do_you_check_properly.items[check] %>
+            <% end %>
+            <p> or </p>
+            <%= render 'shared/check_box_item', name: :how_do_you_check_properly, item: how_do_you_check_properly.items['none'] %>
+        </fieldset>
+      </div>
+      <%= submit_tag("Continue", class: "govuk-button") %>
+    <% end %>
+  </div>
+</div>

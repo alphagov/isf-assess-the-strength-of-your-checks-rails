@@ -2,15 +2,11 @@
   <div class="govuk-grid-column-two-thirds">
     <%= form_tag("#{request.fullpath}", method: "post") do %>
       <div class="govuk-form-group">
-
         <fieldset class="govuk-fieldset">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             <div class="govuk-caption-l">Activity checks</div >
-            <h1 class="govuk-fieldset__heading">
-              Did the person have to prove their identity before they interacted with the organisation?
-            </h1>
+            <h1 class="govuk-fieldset__heading">Did the person have to prove their identity before they interacted with the organisation?</h1>
           </legend>
-
           <div class="govuk-radios govuk-radios--conditional" data-module="radios">
             <%= render 'shared/radio_item', name: :identity_with_organisation_proved, item: @shared.lists['yes_no'].items['yes'], attributes: { 'data-aria-controls' => "conditional-org-check-method" }%>
             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-org-check-method">
@@ -27,16 +23,13 @@
                   <p>
                     To be authoritative for a particular piece of information, the source must make sure:
                   </p>
-
                   <ul class="govuk-list govuk-list--bullet">
                     <li>the integrity of the information is protected</li>
                     <li>the information is up to date</li>
                   </ul>
-
                   <p>
                     The source must also do one of the following:
                   </p>
-
                   <ul class="govuk-list govuk-list--bullet">
                     <li>issue evidence</li>
                     <li>get information from an organisation that issues evidence</li>
@@ -46,7 +39,6 @@
               </details>
             </div>
             <%= render 'shared/radio_item', name: :identity_with_organisation_proved, item: @shared.lists['yes_no'].items['no']%>
-
           </div>
         </fieldset>
       </div>

@@ -1,0 +1,23 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_tag("#{request.fullpath}", method: "post") do %>
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <div class="govuk-caption-l">Verification checks</div>
+            <h1 class="govuk-fieldset__heading">How are ‘false matches’ and ‘false non-matches’ handled in your system?</h1>
+            <p>A ‘false match rate’ happens when a person's biometric information appears to be the same as biometric information that belongs to someone else.</p>
+            <p>A ‘false non-match’ happens when someone’s biometric information does not match biometric information that your system has previously collected.</p>
+          </legend>
+            <% biometric_false_handled = @form.lists['biometric_false_handled'] %>
+            <% ['number_of_matches_appropriate', 'built_following_best_practices'].each do |check| %>
+              <%= render 'shared/check_box_item', name: :biometric_false_handled, item: biometric_false_handled.items[check] %>
+            <% end %>
+            <p> or </p>
+            <%= render 'shared/check_box_item', name: :biometric_false_handled, item: biometric_false_handled.items['does_not_handle'] %>
+        </fieldset>
+      </div>
+      <%= submit_tag("Continue", class: "govuk-button") %>
+    <% end %>
+  </div>
+</div>

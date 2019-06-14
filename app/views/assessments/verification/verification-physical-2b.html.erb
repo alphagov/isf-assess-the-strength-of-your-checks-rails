@@ -1,0 +1,19 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_tag("#{request.fullpath}", method: "post") do %>
+      <div class="govuk-form-group">
+        <div class="govuk-caption-l">Verification checks</div >
+        <h1 class="govuk-heading-l">How often do they refresh their training?</h1>
+        <fieldset class="govuk-fieldset">
+          <% refresh_training = @form.lists['refresh_training'] %>
+            <% ['every_year', 'every_3_years'].each do |training| %>
+              <%= render 'shared/radio_item', name: :refresh_training, item: refresh_training.items[training] %>
+            <% end %>
+            <p> or </p>
+            <%= render 'shared/radio_item', name: :refresh_training, item: refresh_training.items['they_dont'] %>
+        </fieldset>
+      </div>
+      <%= submit_tag("Continue", class: "govuk-button") %>
+    <% end %>
+  </div>
+</div> 

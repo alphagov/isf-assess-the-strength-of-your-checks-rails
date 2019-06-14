@@ -29,6 +29,72 @@ class EvidenceQuestionsController < AssessmentsController
     evidence.attributes = params.permit(:evidence_type, :evidence_type_other)
     save(evidence)
 
-    redirect_to controller: 'assessments', action: 'overview'
+    redirect_to action: :physical_0, evidence_id: evidence.id
+  end
+
+  def physical_0
+    handle_evidence "assessments/evidence/physical-0", [:physical_check] do
+      if @evidence.physical_check == 'yes'
+        redirect_to action: 'physical_1'
+      else
+        redirect_to action: 'crypto_0'
+      end
+    end
+  end
+
+  def crypto_0
+    handle_evidence "assessments/evidence/crypto-0", [:crypto_check] do
+      if @evidence.crypto_check == 'yes'
+        redirect_to action: 'crypto_1'
+      else
+        redirect_to action: 'issuance'
+      end
+    end
+  end
+
+  def issuance
+    handle_evidence "assessments/evidence/issuance", [:authoritative_source_check] do
+      redirect_to action: 'revocation'
+    end
+  end
+
+  def revocation
+    handle_evidence "assessments/evidence/revocation", [:cancellation_check] do
+      redirect_to action: :evidence_result_get
+    end
+  end
+
+  def evidence_result_get
+    @form = Form.new('evidence')
+    @evidence = find_evidence
+    render 'assessments/evidence/result'
+  end
+
+private
+
+  def handle_evidence(view, required_params)
+    @shared = Form.new('shared')
+    @form = Form.new('evidence')
+    @evidence = find_evidence
+
+    if request.post?
+      begin
+        params.require(required_params)
+      rescue ActionController::ParameterMissing => e
+        @errors[e.param] = 'You must answer the question'
+      end
+
+    end
+
+    if request.get? || !@errors.empty?
+      @shared = Form.new('shared')
+      @form = Form.new('evidence')
+      render view
+      return
+    end
+
+    @evidence.attributes = params.permit(required_params)
+    save(@evidence)
+    yield
   end
 end

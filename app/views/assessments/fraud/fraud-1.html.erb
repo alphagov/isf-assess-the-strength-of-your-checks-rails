@@ -4,10 +4,8 @@
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-            <div class="govuk-caption-l">Fraud checks</div >
-            <h1 class="govuk-fieldset__heading">
-              What do you check to make sure the person's identity has not been stolen or used fraudulently?
-            </h1>
+            <div class="govuk-caption-l">Fraud checks</div>
+            <h1 class="govuk-fieldset__heading">What do you check to make sure the person's identity has not been stolen or used fraudulently?</h1>
           </legend>
             <% check_identity_not_stolen_or_used_fraudulently = @form.lists['check_identity_not_stolen_or_used_fraudulently'] %>
             <% ['not_had_details_stolen', 'not_reported_stolen', 'not_high_risk_impersonated', 'details_not_belong_to_somone_who_died', 'record_of_person'].each do |indentity_check| %>

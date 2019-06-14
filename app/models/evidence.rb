@@ -1,8 +1,5 @@
 class Evidence < FormResponses
-  ATTRS = %i[id evidence_type evidence_type_other].freeze
+  ATTRS = %i[id evidence_type evidence_type_other
+             physical_check crypto_check authoritative_source_check cancellation_check].freeze
   attr_accessor(*ATTRS)
-
-  def name
-    self.evidence_type || self.evidence_type_other
-  end
 end
