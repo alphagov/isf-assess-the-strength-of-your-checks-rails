@@ -7,6 +7,21 @@
             <div class="govuk-caption-l">Evidence validity</div >
             <h1 class="fieldset__heading">Do you check the details on the <%= evidence_short_name(@form, @evidence) %> match those held by an authoritative source?</h1>
           </legend>
+          <p>To be authoritative for a particular piece of information, the source must make sure:</p>
+
+          <ul class="govuk-list govuk-list--bullet">
+            <li>the integrity of the information is protected</li>
+            <li>the information is up to date</li>
+          </ul>
+
+          <p>The source must also do one of the following:</p>
+
+          <ul class="govuk-list govuk-list--bullet">
+            <li>issue evidence</li>
+            <li>get information from an organisation that issues evidence</li>
+            <li>get information from another authoritative source</li>
+          </ul>
+
           <div class="govuk-radios">
             <% @shared.lists['yes_no'].items.each do |value, item| %>
               <%= render 'shared/radio_item', name: :authoritative_source_check, item: item %>

@@ -7,6 +7,9 @@
             <div class="govuk-caption-l">Evidence validity</div >
             <h1 class="fieldset__heading">Do you check the <%= evidence_short_name(@form, @evidence) %> has not been cancelled?</h1>
           </legend>
+          <p>
+            You should check an authoritative database of cancelled evidence, for example Interpol for passports or a mobile phone operator for mobile phone contracts.
+          </p>
           <div class="govuk-radios">
             <% @shared.lists['yes_no'].items.each do |value, item| %>
               <%= render 'shared/radio_item', name: :cancellation_check, item: item %>
