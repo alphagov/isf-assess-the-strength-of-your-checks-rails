@@ -1,0 +1,21 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_tag("#{request.fullpath}", method: "post") do %>
+      <div class="govuk-form-group">
+        <div class="govuk-caption-l">Verification checks</div >
+        <h1 class="govuk-heading-l">Do you check the person is the same person they’re claiming to be?</h1>
+        <p>You should prove that the person going through your identity checking process is the same person they’re claiming to be</p>
+        <p>If you don't do this, you won't know if someone is using evidence that belongs to someone else.</p>
+        <p>The highest score you can get for this part of the identity check is 4.</p>
+        <fieldset class="govuk-fieldset">
+          <div class="govuk-radios">
+            <% @shared.lists['yes_no'].items.each do |value, item| %>
+              <%= render 'shared/radio_item', name: :check_person_is_who_they_claim_to_be, item: item %>
+            <% end %>
+          </div>
+        </fieldset>
+      </div>
+      <%= submit_tag("Continue", class: "govuk-button") %>
+    <% end %>
+  </div>
+</div> 

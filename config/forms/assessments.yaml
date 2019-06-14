@@ -55,3 +55,134 @@ lists:
         value: one
       - text: More than one
         value: more_than_one
+  - name: check_person_is_the_same_person_the_evidence_was_issued_to
+    items:
+      - text: Check the person physically matches the photo on the evidence
+        value: physically_match
+      - text: Check the person’s biometric information (such as their iris or their fingerprints) matches what's on the evidence
+        value: biometric_match
+      - text: Ask them to complete ‘knowledge-based verification’ (KBV) challenges
+        value: kbv_challenge
+      - text: You don't check this
+        value: dont_check
+  - name: detect_imposters
+    items:
+      - text: 'Yes'
+        value: 'yes'
+      - text: No - they were trained by an equivalent specialist trainer
+        value: 'no'
+      - text: They haven’t had any training
+        value: no_training
+  - name: refresh_training
+    items:
+      - text: Every year
+        value: every_year
+      - text: Every 3 years
+        value: every_3_years
+      - text: They do not refresh their training
+        value: they_dont
+  - name: how_do_you_check_properly
+    items:
+      - text: Make sure the person whose identity is being checked is present
+        value: person_is_present
+      - text: Check the light conditions are good enough to clearly see the person and the image on the evidence
+        value: light_conditions
+      - text: Check the photo you're comparing the person to is from a genuine piece of evidence
+        value: geniune_photo_evidence
+      - text: Check the photo you're comparing the person to has not been tampered with
+        value: photo_not_tampered
+      - text: Make sure you can tell if someone is wearing a mask, makeup or prosthetics to look like someone else
+        value: mask_makeup_prosthetics
+      - text: Make sure the person's eyes are not hidden by any glare or reflections (if they're wearing glasses)
+        value: eyes_not_hidden
+      - text: You don't do any of these things
+        value: none
+  - name: system_checks
+    items:
+      - text: It makes sure the person whose identity is being checked is present when their image or video is captured (it should not use a scan or an upload from a photo or video feed)
+        value: present_when_captured
+      - text: It makes sure the image or video has not been intercepted and reused ('replayed')
+        value: not_intercepted_or_reused
+      - text: It makes sure it compares the image or video of the person to an image or video of a genuine piece of evidence
+        value: geniune_evidence
+      - text: It makes sure the image or video has been shared in a way that prevents it from being tampered with
+        value: not_tampered
+      - text: It can tell if someone is wearing a mask, makeup or prosthetics to look like someone else
+        value: mask_makeup_prosthetics
+      - text: It makes sure the person's eyes are not hidden by any glare or reflections (if they're wearing glasses)
+        value: eyes_not_hidden
+  - name: biometric_system_checks
+    items:
+      - text: It matches the person to biometric information that's known to belong to whoever they're claiming to be (known as 'one-to-one verification')
+        value: matches_the_person
+      - text: It makes sure the biometric information has not been tampered with (if it was taken from a piece of evidence)
+        value: not_tampered
+      - text: It makes sure the biometric information has been shared in a way that prevents it from being tampered with
+        value: shared_appropriately
+      - text: It can tell if the person’s biometric information has been intercepted and reused ('replayed')
+        value: not_intercepted_or_reused
+      - text: It uses a biometric algorithm that's been checked against a recognised benchmark
+        value: biometric_algorithm
+      - text: It captures the person’s biometric information under conditions that do not reduce the accuracy of the type of biometric check being used
+        value: biometric_accuracy
+  - name: biometric_check_person_is_real
+    items:
+      - text: Your system does a basic liveness test
+        value: basic_liveness_test
+      - text: Your system does an enhanced liveness test
+        value: enhanced_liveness_test
+      - text: Your system does not do any liveness checks
+        value: no_liveness_checks
+  - name: protect_against_spoofing
+    items:
+      - text: The system checks if someone's using an artefact to pretend to be someone else (for example holding up a photo)
+        value: using_an_artefact
+      - text: The system checks if the artefact took time, money and effort to create (for example if the person uses a 3D printed mask of someone's likeness)
+        value: time_money_effort_to_create_artefact
+      - text: The system checks if the artefact is sophisticated and needed criminal activity to create (for example if the person shows a 3D animated avatar on a computer or device when you check a facial biometric)
+        value: artefact_sophisticated
+  - name: biometric_false_handled
+    items:
+      - text: The number of false matches and non-matches in your system are appropriate for your security and usability needs
+        value: number_of_matches_appropriate
+      - text: The way your system handles false matches and non-matches was built following industry best practice (like ISO/IEC TR 29156:2015)
+        value: built_following_best_practices
+      - text: Your service does not handle false matches or non-matches
+        value: does_not_handle
+  - name: kbv_static_or_dynamic
+    items:
+      - text: Static
+        value: static
+      - text: Dynamic
+        value: dynamic
+  - name: kbv_multiple_or_single
+    items:
+      - text: Multiple choice
+        value: multiple
+      - text: Single choice
+        value: single
+  - name: kbv_how_many_checks_multiple
+    items: 
+      - text: '1'
+        value: '1'
+      - text: '2'
+        value: '2'
+      - text: '3'
+        value: '3'
+      - text: '4 to 7'
+        value: '4_to_7'
+      - text: '8 or more'
+        value: '8_or_more'
+  - name: kbv_how_many_checks_single
+    items: 
+      - text: '1'
+        value: '1'
+      - text: '2'
+        value: '2'
+      - text: '3'
+        value: '3'
+      - text: '4 or more'
+        value: '4_or_more'
+    
+    
+    

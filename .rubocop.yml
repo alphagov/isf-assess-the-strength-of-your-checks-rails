@@ -1,4 +1,5 @@
 AllCops:
   Exclude:
     - config/environments/*.rb
-
+Metrics/BlockLength:
+  Max: 1000

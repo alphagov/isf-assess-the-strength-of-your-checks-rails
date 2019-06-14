@@ -4,7 +4,6 @@
       <div class="govuk-form-group">
         <div class="govuk-caption-l">Activity checks</div >
         <h1 class="govuk-heading-l">Check the identity has existed over time</h1>
-
         <p>Checking the identity has existed over time will lower the risk of you accepting either:</p>
         <ul class="govuk-list govuk-list--bullet">
           <li>a synthetic identity</li>
@@ -25,13 +24,10 @@
           <li>school records</li>
         </ul>
         <p>The highest score you can get for this part of the identity check is 4.</p>
-
         <fieldset class="govuk-fieldset">
-
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
             Do you check if the identity has existed over time?
           </legend>
-
           <div class="govuk-radios">
             <% @shared.lists['yes_no'].items.each do |value, item| %>
               <%= render 'shared/radio_item', name: :identity_exists_over_time, item: item %>
@@ -39,7 +35,6 @@
           </div>
         </fieldset>
       </div>
-
       <%= submit_tag("Continue", class: "govuk-button") %>
     <% end %>
   </div>

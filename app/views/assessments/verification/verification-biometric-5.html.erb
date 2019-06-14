@@ -1,0 +1,28 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_tag("#{request.fullpath}", method: "post") do %>
+      <div class="govuk-form-group">
+        <div class="govuk-caption-l">Verification checks</div >
+        <h1 class="govuk-heading-l">Is the biometric information captured under ‘controlled conditions’?</h1>
+        <p>This means:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>any equipment has been designed in a way that makes it difficult to be tampered with</li>
+          <li>someone who was trained in how to compare people to their identity evidence by a specialist trainer 
+              (such as the Home Office, National Document Fraud Unit or CPNI) supervises how the biometric information is captured</li>
+          <li>the supervisor refreshes their training every year</li>
+          <li>the supervisor monitors the behaviour of the person who's biometric information is being captured to make sure it's not suspicious</li>
+          <li>the area and equipment used to capture the biometric information has been designed in a way that reduces the likelihood of 
+              incorrect matches for the type of biometric information being used</li>
+        </ul>
+        <fieldset class="govuk-fieldset">
+          <div class="govuk-radios">
+            <% @shared.lists['yes_no'].items.each do |value, item| %>
+              <%= render 'shared/radio_item', name: :biometric_captured_under_controlled_conditions, item: item %>
+            <% end %>
+          </div>
+        </fieldset>
+      </div>
+      <%= submit_tag("Continue", class: "govuk-button") %>
+    <% end %>
+  </div>
+</div> 

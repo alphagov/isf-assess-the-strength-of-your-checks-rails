@@ -1,0 +1,23 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_tag("#{request.fullpath}", method: "post") do %>
+      <div class="govuk-form-group">
+        <div class="govuk-caption-l">Verification checks</div >
+        <h1 class="govuk-heading-l">Does you use a system?</h1>
+        <p>A system could be something like:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>a document capture app</li>
+          <li>an automated barrier, like an eGate</li>
+        </ul>
+        <fieldset class="govuk-fieldset">
+          <div class="govuk-radios">
+            <% @shared.lists['yes_no'].items.each do |value, item| %>
+              <%= render 'shared/radio_item', name: :verification_system, item: item %>
+            <% end %>
+          </div>
+        </fieldset>
+      </div>
+      <%= submit_tag("Continue", class: "govuk-button") %>
+    <% end %>
+  </div>
+</div> 

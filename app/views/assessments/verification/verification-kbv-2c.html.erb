@@ -1,0 +1,32 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_tag("#{request.fullpath}", method: "post") do %>
+      <div class="govuk-form-group">
+        <div class="govuk-caption-l">Verification checks</div >
+        <h1 class="govuk-heading-l">High quality KBV challenges</h1>
+        <p>High quality KBV challenges must also:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>come from a source that checked the person was who they said they were in a way that 
+              followed the Money Laundering Regulations 2017</li>
+          <li>come from a source that makes sure the information cannot be accessed, modified or created by its employees</li>
+          <li>come from a source that's separate from your organisation</li>
+          <li>come from a source that's regulated by a statutory or independent body</li>
+          <li>be based on information that cannot be known or accessed by anyone apart from the person and their immediate 
+              family without breaking the law (for example information that could be found on the dark web should not be used)</li>
+        </ul>
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            Do you ask someone to complete high quality KBV challenges?
+          </legend>
+          <div class="govuk-radios">
+            <% @shared.lists['yes_no'].items.each do |value, item| %>
+              <%= render 'shared/radio_item', name: :high_quality_kbv_challenges, item: item %>
+            <% end %>
+          </div>
+        </fieldset>
+      </div>
+      <%= submit_tag("Continue", class: "govuk-button") %>
+    <% end %>
+  </div>
+</div>
+
