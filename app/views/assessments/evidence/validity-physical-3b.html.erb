@@ -8,12 +8,12 @@
             <h1 class="fieldset__heading">How often do they refresh their training?</h1>
           </legend>
           <div class="govuk-radios">
-            <% checker_training_frequency = @form.lists['checker_training_frequency'] %>
-            <% ['every_year', 'every_3_years'].each do |check| %>
-              <%= render 'shared/radio_item', name: :checker_training_frequency, item: checker_training_frequency.items[check] %>
+            <% training_frequency = @shared.lists['training_frequency'] %>
+            <% ['12_months', '36_months'].each do |check| %>
+              <%= render 'shared/radio_item', name: :checker_training_frequency, item: training_frequency.items[check] %>
             <% end %>
             <p> or </p>
-            <%= render 'shared/radio_item', name: :checker_training_frequency, item: checker_training_frequency.items['they_dont'] %>
+            <%= render 'shared/radio_item', name: :checker_training_frequency, item: training_frequency.items['none'] %>
           </div>
         </fieldset>
       </div>

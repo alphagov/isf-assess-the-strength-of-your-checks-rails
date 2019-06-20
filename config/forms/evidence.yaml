@@ -128,15 +128,6 @@ lists:
         value: local_authority_doc_letter
         strength: 1
 
-  - name: checker_training_frequency
-    items:
-      - text: Every year
-        value: every_year
-      - text: Every 3 years
-        value: every_3_years
-      - text: They do not refresh their training
-        value: they_dont
-
   - name: official_templates_update_frequency
     items:
       - text: Every year
