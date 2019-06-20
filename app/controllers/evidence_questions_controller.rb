@@ -124,33 +124,25 @@ class EvidenceQuestionsController < AssessmentsController
   def physical_6
     handle_evidence "assessments/evidence/physical-6", [:replay_attack_check] do
       if @evidence.replay_attack_check == 'yes'
-        redirect_to action: 'physical_7'
+        redirect_to action: 'visible_0'
       else
         redirect_to action: 'crypto_0'
       end
     end
   end
 
-  def physical_7
-    handle_evidence "assessments/evidence/physical-7", [:security_features_check] do
-      redirect_to action: 'physical_8'
-    end
-  end
-
-  def physical_8
-    handle_evidence "assessments/evidence/physical-8", [:security_features] do
-      if @evidence.security_features.include? 'visible'
+  def visible_0
+    handle_evidence "assessments/evidence/visible-0", [:visible_features_check] do
+      if @evidence.visible_features_check == 'yes'
         redirect_to action: 'visible_1'
-      elsif @evidence.security_features.include? 'uv_ir'
-        redirect_to action: 'uv_ir_1'
       else
-        redirect_to action: 'crypto_0'
+        redirect_to action: 'uv_ir_0'
       end
     end
   end
 
   def visible_1
-    handle_evidence "assessments/evidence/visible-1", [:tamper_protected] do
+    handle_evidence "assessments/evidence/visible-1", [:visible_tamper_check] do
       if @evidence.tamper_protected == 'yes'
         redirect_to action: 'visible_2'
       elsif @evidence.security_features.include? 'uv_ir'
@@ -187,7 +179,13 @@ class EvidenceQuestionsController < AssessmentsController
 
   def visible_6
     handle_evidence "assessments/evidence/visible-6", [:visible_features_supervision] do
-      if @evidence.security_features.include? 'uv_ir'
+      redirect_to action: 'uv_ir_0'
+    end
+  end
+
+  def uv_ir_0
+    handle_evidence "assessments/evidence/uv-ir-0", [:uv_ir_features_check] do
+      if @evidence.visible_security_features_check == 'yes'
         redirect_to action: 'uv_ir_1'
       else
         redirect_to action: 'crypto_0'
@@ -197,12 +195,6 @@ class EvidenceQuestionsController < AssessmentsController
 
   def uv_ir_1
     handle_evidence "assessments/evidence/uv-ir-1", [:uv_ir_features] do
-      redirect_to action: 'uv_ir_2'
-    end
-  end
-
-  def uv_ir_1
-    handle_evidence "assessments/evidence/uv-ir-1", [:uv_ir_tamper_check] do
       redirect_to action: 'crypto_0'
     end
   end

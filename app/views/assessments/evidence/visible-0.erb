@@ -1,0 +1,27 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_tag("#{request.fullpath}", method: "post") do %>
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" id='physical_check'>
+          <legend class="govuk-fieldset__legend">
+            <div class="govuk-caption-l">Evidence validity</div >
+            <h1 class="fieldset__heading">
+              Do you check any visible security features on the
+              <%= evidence_short_name(@form, @evidence) %>?
+            </h1>
+          </legend>
+          <p>
+            These are security features that can be seen using non-specialist light sources like natural sunlight, indoor lights or desk lamps. You should be able to clearly see these security features when you check them, which means you'll need to make sure there are not any shadows or glare in the way.
+          </p>
+
+          <div class="govuk-radios">
+            <% @shared.lists['yes_no'].items.each do |value, item| %>
+              <%= render 'shared/radio_item', name: :visible_features_check, item: item %>
+            <% end %>
+          </div>
+        </fieldset>
+      </div>
+      <%= submit_tag("Continue", class: "govuk-button") %>
+    <% end %>
+  </div>
+</div>
