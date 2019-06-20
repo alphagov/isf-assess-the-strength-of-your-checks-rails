@@ -12,9 +12,8 @@ class EvidenceQuestionsController < AssessmentsController
     end
 
     if params[:evidence_id] == "new"
-      evidence = Evidence.new
       assessment = find_assessment
-      assessment.add_evidence(evidence)
+      evidence = assessment.evidence.create
       save(assessment)
     else
       evidence = find_evidence
