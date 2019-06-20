@@ -73,14 +73,6 @@ lists:
         value: 'no'
       - text: They haven’t had any training
         value: no_training
-  - name: refresh_training
-    items:
-      - text: Every year
-        value: every_year
-      - text: Every 3 years
-        value: every_3_years
-      - text: They do not refresh their training
-        value: they_dont
   - name: how_do_you_check_properly
     items:
       - text: Make sure the person whose identity is being checked is present
@@ -162,7 +154,7 @@ lists:
       - text: Single choice
         value: single
   - name: kbv_how_many_checks_multiple
-    items: 
+    items:
       - text: '1'
         value: '1'
       - text: '2'
@@ -174,7 +166,7 @@ lists:
       - text: '8 or more'
         value: '8_or_more'
   - name: kbv_how_many_checks_single
-    items: 
+    items:
       - text: '1'
         value: '1'
       - text: '2'
@@ -183,6 +175,6 @@ lists:
         value: '3'
       - text: '4 or more'
         value: '4_or_more'
-    
-    
-    
+
+
+

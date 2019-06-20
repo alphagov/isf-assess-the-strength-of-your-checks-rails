@@ -109,6 +109,7 @@ class VerificationQuestionsController < AssessmentsController
 
     if request.get? || !@errors.empty?
       @form = Form.new('assessments')
+      @shared = Form.new('shared')
       render "assessments/verification/verification-physical-2b"
       return
     end
@@ -117,7 +118,7 @@ class VerificationQuestionsController < AssessmentsController
     assessment.attributes = params.permit(:refresh_training)
     save(assessment)
 
-    if assessment.refresh_training == 'they_dont'
+    if assessment.refresh_training == 'none'
       redirect_to action: 'verification_physical_3a'
     else
       redirect_to action: 'verification_physical_2c'
