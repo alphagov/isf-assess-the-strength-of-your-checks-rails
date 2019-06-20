@@ -10,10 +10,35 @@ Rails.application.routes.draw do
   get 'assessments/:assessment_id/no-risk', to: 'assessment_questions#no_risk'
 
   match 'assessments/:assessment_id/evidence/:evidence_id/choose-evidence', to: 'evidence_questions#choose_evidence', via: %i[get post]
+
   match 'assessments/:assessment_id/evidence/:evidence_id/physical-0', to: 'evidence_questions#physical_0', via: %i[get post]
+  match 'assessments/:assessment_id/evidence/:evidence_id/physical-1a', to: 'evidence_questions#physical_1a', via: %i[get post]
+  match 'assessments/:assessment_id/evidence/:evidence_id/physical-1b', to: 'evidence_questions#physical_1b', via: %i[get post]
+  match 'assessments/:assessment_id/evidence/:evidence_id/physical-2a', to: 'evidence_questions#physical_2a', via: %i[get post]
+  match 'assessments/:assessment_id/evidence/:evidence_id/physical-2b', to: 'evidence_questions#physical_2b', via: %i[get post]
+  match 'assessments/:assessment_id/evidence/:evidence_id/physical-3a', to: 'evidence_questions#physical_3a', via: %i[get post]
+  match 'assessments/:assessment_id/evidence/:evidence_id/physical-3b', to: 'evidence_questions#physical_3b', via: %i[get post]
+  match 'assessments/:assessment_id/evidence/:evidence_id/physical-4a', to: 'evidence_questions#physical_4a', via: %i[get post]
+  match 'assessments/:assessment_id/evidence/:evidence_id/physical-4b', to: 'evidence_questions#physical_4b', via: %i[get post]
+  match 'assessments/:assessment_id/evidence/:evidence_id/physical-5', to: 'evidence_questions#physical_5', via: %i[get post]
+  match 'assessments/:assessment_id/evidence/:evidence_id/physical-6', to: 'evidence_questions#physical_6', via: %i[get post]
+  match 'assessments/:assessment_id/evidence/:evidence_id/physical-7', to: 'evidence_questions#physical_7', via: %i[get post]
+  match 'assessments/:assessment_id/evidence/:evidence_id/physical-8', to: 'evidence_questions#physical_8', via: %i[get post]
+  match 'assessments/:assessment_id/evidence/:evidence_id/visible-1', to: 'evidence_questions#visible_1', via: %i[get post]
+  match 'assessments/:assessment_id/evidence/:evidence_id/visible-2', to: 'evidence_questions#visible_2', via: %i[get post]
+  match 'assessments/:assessment_id/evidence/:evidence_id/visible-3', to: 'evidence_questions#visible_3', via: %i[get post]
+  match 'assessments/:assessment_id/evidence/:evidence_id/visible-4', to: 'evidence_questions#visible_4', via: %i[get post]
+  match 'assessments/:assessment_id/evidence/:evidence_id/visible-5', to: 'evidence_questions#visible_5', via: %i[get post]
+  match 'assessments/:assessment_id/evidence/:evidence_id/visible-6', to: 'evidence_questions#visible_6', via: %i[get post]
+
   match 'assessments/:assessment_id/evidence/:evidence_id/crypto-0', to: 'evidence_questions#crypto_0', via: %i[get post]
+  match 'assessments/:assessment_id/evidence/:evidence_id/crypto-1', to: 'evidence_questions#crypto_1', via: %i[get post]
+  match 'assessments/:assessment_id/evidence/:evidence_id/uv-ir-1', to: 'evidence_questions#uv_ir_1', via: %i[get post]
+  match 'assessments/:assessment_id/evidence/:evidence_id/uv-ir-2', to: 'evidence_questions#uv_ir_2', via: %i[get post]
+
   match 'assessments/:assessment_id/evidence/:evidence_id/issuance', to: 'evidence_questions#issuance', via: %i[get post]
   match 'assessments/:assessment_id/evidence/:evidence_id/revocation', to: 'evidence_questions#revocation', via: %i[get post]
+
   get 'assessments/:assessment_id/evidence/:evidence_id/result', to: 'evidence_questions#evidence_result_get'
 
   match 'assessments/:assessment_id/activity-start', to: 'activity_questions#activity_start', via: %i[get post]

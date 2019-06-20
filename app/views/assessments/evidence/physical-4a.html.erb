@@ -1,0 +1,52 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_tag("#{request.fullpath}", method: "post") do %>
+      <div class="govuk-form-group">
+        <div class="govuk-caption-l">Fraud checks</div >
+        <h1 class="govuk-heading-l">
+          Does the person or system check the <%= evidence_short_name(@form, @evidence) %> against official templates?
+        </h1>
+        <p>
+          By checking documents against official templates, you can be sure the following
+          features look the way they should:
+        </p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>background printing</li>
+          <li>fonts and alignment</li>
+          <li>holograms and positioning</li>
+          <li>the way it’s been laminated</li>
+          <li>designs printed with optical variable ink (and check they look the way they should at certain angles)</li>
+          <li>the format of any ‘compound identifiers’, such as a DVLA driver number or a machine-readable zone (MRZ)</li>
+          <li>the position of any photographs on the evidence (they should not have been replaced or edited)</li>
+        </ul>
+
+        <details class="govuk-details govuk-!-margin-top-4" role="group">
+          <summary class="govuk-details__summary" role="button" aria-controls="details-content-ecec8d6c-62a1-4092-ac00-832c31af7ce9" aria-expanded="false">
+            <span class="govuk-details__summary-text">
+              Where to find official templates
+            </span>
+          </summary>
+          <div class="govuk-details__text" id="details-content-ecec8d6c-62a1-4092-ac00-832c31af7ce9" aria-hidden="true">
+            <p>
+              Some official templates you can use are:
+            </p>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>the <a href="https://www.consilium.europa.eu/prado/en/search-by-document-country.html" target="_blank">Public Register of Authentic travel and identity Documents Online</a> (PRADO)</li>
+              <li>the <a href="https://publications.europa.eu/en/publication-detail/-/publication/ae58b7c9-4716-46e2-8868-2920735bc95d" target="_blank">EU and EEA driving licence handbook</a></li>
+              <li><a href="http://www.edisontd.net/" target="_blank">EdisonTD</a>/li>
+            </ul>
+          </div>
+        </details>
+
+        <fieldset class="govuk-fieldset">
+          <div class="govuk-radios">
+            <% @shared.lists['yes_no'].items.each do |value, item| %>
+              <%= render 'shared/radio_item', name: :official_templates_used, item: item %>
+            <% end %>
+          </div>
+        </fieldset>
+      </div>
+      <%= submit_tag("Continue", class: "govuk-button") %>
+    <% end %>
+  </div>
+</div>

@@ -127,4 +127,23 @@ lists:
       - text: letter from a local authority
         value: local_authority_doc_letter
         strength: 1
-
+  - name: check_original
+    items:
+      - text: 'Yes'
+        value: 'yes'
+      - text: No – you check a photo, scan or certified copy
+        value: 'no'
+  - name: template_update_frequency
+    items:
+      - text: Every year
+        value: 12_months
+      - text: Every 3 years
+        value: 36_months
+      - text: The templates are never updated
+        value: none
+  - name: security_features
+    items:
+      - text: Visible security features (these are security features that can be seen using non-specialist light sources like natural sunlight, indoor lights or desk lamps)
+        value: visible
+      - text: Ultraviolet (UV) or infrared (IR) security features
+        value: invisible
