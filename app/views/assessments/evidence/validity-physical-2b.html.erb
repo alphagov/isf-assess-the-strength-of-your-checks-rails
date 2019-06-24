@@ -1,0 +1,22 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_tag("#{request.fullpath}", method: "post") do %>
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" id='physical_check'>
+          <legend class="govuk-fieldset__legend">
+            <div class="govuk-caption-l">Evidence validity</div >
+            <h1 class="fieldset__heading">Was the system built following recognised guidance?</h1>
+          </legend>
+          <p>Check with the manufacturer to find out if the system was built to follow recognised guidance, like the 
+            Home Office's guidance on identification document validation technology.</p>
+          <div class="govuk-radios">
+            <% @shared.lists['yes_no'].items.each do |value, item| %>
+              <%= render 'shared/radio_item', name: :digital_tool_follows_standard, item: item %>
+            <% end %>
+          </div>
+        </fieldset>
+      </div>
+      <%= submit_tag("Continue", class: "govuk-button") %>
+    <% end %>
+  </div>
+</div>

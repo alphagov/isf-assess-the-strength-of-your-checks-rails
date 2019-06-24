@@ -1,0 +1,20 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_tag("#{request.fullpath}", method: "post") do %>
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" id='physical_check'>
+          <legend class="govuk-fieldset__legend">
+            <div class="govuk-caption-l">Evidence validity</div >
+            <h1 class="fieldset__heading">Which security features on the <%= evidence_short_name(@form, @evidence) %> do you check?</h1>
+          </legend>
+          <div class="govuk-radios">
+            <% @form.lists['visible_features'].items.each do |value, item| %>
+              <%= render 'shared/check_box_item', name: :visible_features, item: item %>
+            <% end %>
+          </div>
+        </fieldset>
+      </div>
+      <%= submit_tag("Continue", class: "govuk-button") %>
+    <% end %>
+  </div>
+</div>

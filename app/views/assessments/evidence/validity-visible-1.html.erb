@@ -1,0 +1,22 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_tag("#{request.fullpath}", method: "post") do %>
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" id='physical_check'>
+          <legend class="govuk-fieldset__legend">
+            <div class="govuk-caption-l">Evidence validity</div >
+            <h1 class="fieldset__heading">Are the documents shared in a way that protects them from being tampered with?</h1>
+          </legend>
+          <p>For example, if a document is sent by secure delivery, it's less likely to have been opened and tampered with 
+            than a piece of evidence sent by regular post.</p>
+          <div class="govuk-radios">
+            <% @shared.lists['yes_no'].items.each do |value, item| %>
+              <%= render 'shared/radio_item', name: :visible_tamper_check, item: item %>
+            <% end %>
+          </div>
+        </fieldset>
+      </div>
+      <%= submit_tag("Continue", class: "govuk-button") %>
+    <% end %>
+  </div>
+</div>

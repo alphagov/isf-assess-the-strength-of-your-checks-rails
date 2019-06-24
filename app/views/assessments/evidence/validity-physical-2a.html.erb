@@ -1,0 +1,21 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_tag("#{request.fullpath}", method: "post") do %>
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" id='physical_check'>
+          <legend class="govuk-fieldset__legend">
+            <div class="govuk-caption-l">Evidence validity</div >
+            <h1 class="fieldset__heading">Does the person who's checking the <%= evidence_short_name(@form, @evidence) %> 
+                                          use a document capture app or an electronic document reader?</h1>
+          </legend>
+          <div class="govuk-radios">
+            <% @shared.lists['yes_no'].items.each do |value, item| %>
+              <%= render 'shared/radio_item', name: :digital_tool_used, item: item %>
+            <% end %>
+          </div>
+        </fieldset>
+      </div>
+      <%= submit_tag("Continue", class: "govuk-button") %>
+    <% end %>
+  </div>
+</div>

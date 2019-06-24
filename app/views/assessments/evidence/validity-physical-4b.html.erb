@@ -1,0 +1,23 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_tag("#{request.fullpath}", method: "post") do %>
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" id='physical_check'>
+          <legend class="govuk-fieldset__legend">
+            <div class="govuk-caption-l">Evidence validity</div >
+            <h1 class="fieldset__heading">How often are the official templates updated?</h1>
+          </legend>
+          <div class="govuk-radios">
+            <% official_templates_update_frequency = @form.lists['official_templates_update_frequency'] %>
+            <% ['every_year', 'every_3_years'].each do |check| %>
+              <%= render 'shared/radio_item', name: :official_templates_update_frequency, item: official_templates_update_frequency.items[check] %>
+            <% end %>
+            <p> or </p>
+            <%= render 'shared/radio_item', name: :official_templates_update_frequency, item: official_templates_update_frequency.items['never'] %>
+          </div>
+        </fieldset>
+      </div>
+      <%= submit_tag("Continue", class: "govuk-button") %>
+    <% end %>
+  </div>
+</div>

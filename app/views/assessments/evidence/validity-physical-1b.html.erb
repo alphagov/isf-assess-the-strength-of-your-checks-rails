@@ -1,0 +1,31 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_tag("#{request.fullpath}", method: "post") do %>
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" id='physical_check'>
+          <legend class="govuk-fieldset__legend">
+            <div class="govuk-caption-l">Evidence validity</div >
+            <h1 class="fieldset__heading">Do you check if there are any errors on the <%= evidence_short_name(@form, @evidence) %>?</h1>
+          </legend>
+          <p>An error could be something like:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>the document is printed on the wrong paper</li>
+            <li>there are spelling mistakes throughout the document</li>
+            <li>the document uses the wrong fonts</li>
+            <li>there are pages missing from the document</li>
+            <li>the logos do not look the way they should</li>
+            <li>the design and layout of the document does not look how it should</li>
+            <li>the information is not the same across the document (for example the address in the body text of a letter is different 
+                to the address at the top)</li>
+          </ul>
+          <div class="govuk-radios">
+            <% @shared.lists['yes_no'].items.each do |value, item| %>
+              <%= render 'shared/radio_item', name: :physical_errors_check, item: item %>
+            <% end %>
+          </div>
+        </fieldset>
+      </div>
+      <%= submit_tag("Continue", class: "govuk-button") %>
+    <% end %>
+  </div>
+</div>
