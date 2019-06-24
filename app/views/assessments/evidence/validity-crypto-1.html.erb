@@ -1,0 +1,25 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_tag("#{request.fullpath}", method: "post") do %>
+      <div class="govuk-form-group">
+       <fieldset class="govuk-fieldset" id='crypto_check'>
+          <legend class="govuk-fieldset__legend">
+            <div class="govuk-caption-l">Evidence validity</div >
+            <h1 class="fieldset__heading">What do you check to be sure the cryptographic security features are genuine?</h1>
+          </legend>
+          <p>The system you're using will need to read the cryptographically protected information and supply any 
+            required cryptographic keys before checking the security features. </p>
+          <div class="govuk-radios">
+          <% crypto_features = @form.lists['crypto_features'] %>
+          <% ['not_expired', 'digital_signature', 'organisation_signing_key', 'evidence_signing_key', 'revoked_signing_key'].each do |check| %>
+            <%= render 'shared/check_box_item', name: :crypto_features, item: crypto_features.items[check] %>
+          <% end %>
+          <p> or </p>
+          <%= render 'shared/check_box_item', name: :crypto_features, item: crypto_features.items['dont_check'] %>
+          </div>
+        </fieldset>
+      </div>
+      <%= submit_tag("Continue", class: "govuk-button") %>
+    <% end %>
+  </div>
+</div>
