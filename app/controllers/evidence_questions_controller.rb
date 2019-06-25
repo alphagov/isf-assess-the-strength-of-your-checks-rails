@@ -144,7 +144,7 @@ class EvidenceQuestionsController < AssessmentsController
       if @evidence.visible_tamper_check == 'yes'
         redirect_to action: 'validity_visible_2'
       else
-        redirect_to action: 'validity_uv_ir_1'
+        redirect_to action: 'validity_uv_ir_0'
       end
     end
   end
@@ -182,7 +182,7 @@ class EvidenceQuestionsController < AssessmentsController
   def validity_uv_ir_0
     handle_evidence "assessments/evidence/validity-uv-ir-0", [:uv_ir_features_check] do
       if @evidence.uv_ir_features_check == 'yes'
-        redirect_to action: 'validity_uv_ir_0'
+        redirect_to action: 'validity_uv_ir_1'
       else
         redirect_to action: 'validity_crypto_0'
       end
