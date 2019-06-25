@@ -38,12 +38,6 @@ class FraudQuestionsController < AssessmentsController
       return
     end
 
-    params[:check_identity_not_stolen_or_used_fraudulently].each do |_key, value|
-      if value == "none"
-        params[:check_identity_not_stolen_or_used_fraudulently] = {}
-      end
-    end
-
     assessment = find_assessment
     assessment.check_identity_not_stolen_or_used_fraudulently = checkboxes_params_to_list(params[:check_identity_not_stolen_or_used_fraudulently])
     save(assessment)

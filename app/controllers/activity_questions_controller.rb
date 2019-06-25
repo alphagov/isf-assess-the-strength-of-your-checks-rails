@@ -38,10 +38,6 @@ class ActivityQuestionsController < AssessmentsController
       return
     end
 
-    if params[:identity_with_organisation_proved] == "no"
-      params[:org_check_method] = {}
-    end
-
     assessment = find_assessment
     assessment.attributes = params.permit(:identity_with_organisation_proved)
     assessment.org_check_method = checkboxes_params_to_list(params[:org_check_method])
