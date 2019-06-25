@@ -18,7 +18,7 @@ class AddFurtherEvidenceFields < ActiveRecord::Migration[5.2]
     add_column :evidence, :visible_features_controlled_conditions, :string
     add_column :evidence, :visible_features_supervision, :string
     add_column :evidence, :uv_ir_features_check, :string
-    add_column :evidence, :uv_ir_features, :string
+    add_column :evidence, :uv_ir_features, :json
     add_column :evidence, :crypto_features, :json
   end
 end

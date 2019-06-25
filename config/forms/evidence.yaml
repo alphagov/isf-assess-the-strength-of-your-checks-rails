@@ -165,9 +165,11 @@ lists:
         value: magnification_tool
       - text: A low angle ('oblique') light
         value: low_angle_light
-      - text: Another piece of equipment that can be used to identify forged or counterfeit documents 
+      - text: Another piece of equipment that can be used to identify forged or counterfeit documents
         value: other_equipment
-        
+      - text: A non-specialist light source, like natural sunlight, indoor lights or a desk lamp
+        value: non_specialist_light_source
+
   - name: uv_ir_features
     items:
       - text: The paper the document is printed on
@@ -176,7 +178,7 @@ lists:
         value: layout_of_document
       - text: Any fluorescent features (such as fluorescent inks or fibres)
         value: fluorescent_features
-  
+
   - name: crypto_features
     items:
       - text: Check the evidence has not expired

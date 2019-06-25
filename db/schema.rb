@@ -11,6 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2019_06_25_120409) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -78,8 +79,9 @@ ActiveRecord::Schema.define(version: 2019_06_25_120409) do
     t.string "visible_features_controlled_conditions"
     t.string "visible_features_supervision"
     t.string "uv_ir_features_check"
-    t.string "uv_ir_features"
+    t.json "uv_ir_features"
     t.json "crypto_features"
-    t.index %w[assessment_id], name: "index_evidence_on_assessment_id"
+    t.index ["assessment_id"], name: "index_evidence_on_assessment_id"
   end
+
 end

@@ -150,7 +150,7 @@ class EvidenceQuestionsController < AssessmentsController
   end
 
   def validity_visible_2
-    handle_evidence "assessments/evidence/validity-visible-2", [:visible_features] do
+    handle_evidence "assessments/evidence/validity-visible-2", [:visible_features], [:visible_features] do
       redirect_to action: 'validity_visible_3'
     end
   end
@@ -162,7 +162,7 @@ class EvidenceQuestionsController < AssessmentsController
   end
 
   def validity_visible_4
-    handle_evidence "assessments/evidence/validity-visible-4", [:visible_features_equipment] do
+    handle_evidence "assessments/evidence/validity-visible-4", [:visible_features_equipment], [:visible_features_equipment] do
       redirect_to action: 'validity_visible_5'
     end
   end
@@ -190,7 +190,7 @@ class EvidenceQuestionsController < AssessmentsController
   end
 
   def validity_uv_ir_1
-    handle_evidence "assessments/evidence/validity-uv-ir-1", [:uv_ir_features] do
+    handle_evidence "assessments/evidence/validity-uv-ir-1", [:uv_ir_features], [:uv_ir_features] do
       redirect_to action: 'validity_crypto_0'
     end
   end
@@ -206,7 +206,7 @@ class EvidenceQuestionsController < AssessmentsController
   end
 
   def validity_crypto_1
-    handle_evidence "assessments/evidence/validity-crypto-1", [:crypto_features] do
+    handle_evidence "assessments/evidence/validity-crypto-1", [:crypto_features], [:crypto_features] do
       redirect_to action: 'issuance'
     end
   end
@@ -231,7 +231,7 @@ class EvidenceQuestionsController < AssessmentsController
 
 private
 
-  def handle_evidence(view, required_params)
+  def handle_evidence(view, required_params, checkboxes_params = [])
     @shared = Form.new('shared')
     @form = Form.new('evidence')
     @evidence = find_evidence
@@ -253,6 +253,9 @@ private
     end
 
     @evidence.attributes = params.permit(required_params)
+    checkboxes_params.each do |param|
+      @evidence[param] = checkboxes_params_to_list(params[param])
+    end
     save(@evidence)
     yield
   end
