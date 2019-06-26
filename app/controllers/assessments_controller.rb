@@ -1,9 +1,10 @@
 require 'design_system/form'
+require 'securerandom'
 
 class AssessmentsController < ApplicationController
   def create
-    @assessment = Assessment.new
-    @assessment.save
+    @assessment = Assessment.create
+    AssessmentSessionAccess.create(assessment: @assessment, session_id: get_session_id)
     #reap_old_assessments
     redirect_to controller: 'assessment_questions', action: 'your_risk', assessment_id: @assessment.id
   end
@@ -28,8 +29,19 @@ class AssessmentsController < ApplicationController
 
 private
 
+  def get_session_id
+    session['identifier'] ||= SecureRandom.uuid # not using session.id as it doesn't work in test :/
+  end
+
   def find_assessment(id = nil)
-    Assessment.find(id || params[:assessment_id])
+    assessment = Assessment.find(id || params[:assessment_id])
+    check_access assessment
+    assessment
+  end
+
+  def check_access(assessment)
+    AssessmentSessionAccess.find_by! assessment: assessment, session_id: get_session_id
+    # will throw a 404 if no access found, which is perfect
   end
 
   def find_evidence(id = nil)
@@ -38,6 +50,7 @@ private
   end
 
   def find_evidence_for_assessment(assessment)
+    # no access control here, we assume you used `find_assessment` to safely retrieve `assessment`
     assessment.evidence
   end
 
