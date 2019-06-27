@@ -39,19 +39,20 @@ Rails.application.routes.draw do
   post 'assessments/:assessment_id/evidence/:evidence_id/result', to: 'evidence_questions#evidence_result_post'
 
   match 'assessments/:assessment_id/activity-start', to: 'activity_questions#activity_start', via: %i[get post]
-  get 'assessments/:assessment_id/activity-result', to: 'activity_questions#activity_result_get'
   match 'assessments/:assessment_id/activity-1', to: 'activity_questions#activity_1', via: %i[get post]
   match 'assessments/:assessment_id/activity-2', to: 'activity_questions#activity_2', via: %i[get post]
   match 'assessments/:assessment_id/activity-3', to: 'activity_questions#activity_3', via: %i[get post]
+  get 'assessments/:assessment_id/activity-result', to: 'activity_questions#activity_result_get'
+  post 'assessments/:assessment_id/activity-result', to: 'activity_questions#activity_result_post'
 
   match 'assessments/:assessment_id/fraud-start', to: 'fraud_questions#fraud_start', via: %i[get post]
-  get 'assessments/:assessment_id/fraud-result', to: 'fraud_questions#fraud_result_get'
   match 'assessments/:assessment_id/fraud-1', to: 'fraud_questions#fraud_1', via: %i[get post]
   match 'assessments/:assessment_id/fraud-2', to: 'fraud_questions#fraud_2', via: %i[get post]
   match 'assessments/:assessment_id/fraud-3', to: 'fraud_questions#fraud_3', via: %i[get post]
+  get 'assessments/:assessment_id/fraud-result', to: 'fraud_questions#fraud_result_get'
+  post 'assessments/:assessment_id/fraud-result', to: 'fraud_questions#fraud_result_post'
 
   match 'assessments/:assessment_id/verification-start', to: 'verification_questions#verification_start', via: %i[get post]
-  match 'assessments/:assessment_id/verification-result', to: 'verification_questions#verification_result_get', via: %i[get post]
   match 'assessments/:assessment_id/verification-1', to: 'verification_questions#verification_1', via: %i[get post]
   match 'assessments/:assessment_id/verification-physical-1', to: 'verification_questions#verification_physical_1', via: %i[get post]
   match 'assessments/:assessment_id/verification-physical-2a', to: 'verification_questions#verification_physical_2a', via: %i[get post]
@@ -70,6 +71,8 @@ Rails.application.routes.draw do
   match 'assessments/:assessment_id/verification-kbv-2b', to: 'verification_questions#verification_kbv_2b', via: %i[get post]
   match 'assessments/:assessment_id/verification-kbv-2c', to: 'verification_questions#verification_kbv_2c', via: %i[get post]
   match 'assessments/:assessment_id/verification-kbv-3', to: 'verification_questions#verification_kbv_3', via: %i[get post]
+  get 'assessments/:assessment_id/verification-result', to: 'verification_questions#verification_result_get'
+  post 'assessments/:assessment_id/verification-result', to: 'verification_questions#verification_result_post'
 
   post 'assessments/:assessment_id/evidence/:evidence_id/remove', to: 'assessments#remove_evidence_post'
 end

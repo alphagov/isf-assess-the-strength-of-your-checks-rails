@@ -99,4 +99,11 @@ class FraudQuestionsController < AssessmentsController
   def fraud_result_get
     render "assessments/fraud/fraud-result"
   end
+
+  def fraud_result_post
+    @assessment = find_assessment
+    @assessment.fraud_section_is_complete = true
+    @assessment.save
+    redirect_to controller: :assessments, action: :overview
+  end
 end
