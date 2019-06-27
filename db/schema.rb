@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_25_120409) do
+ActiveRecord::Schema.define(version: 2019_06_26_144326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "assessment_session_access", force: :cascade do |t|
+    t.bigint "assessment_id"
+    t.string "session_id", null: false
+    t.index ["assessment_id"], name: "index_assessment_session_access_on_assessment_id"
+    t.index ["session_id"], name: "index_assessment_session_access_on_session_id"
+  end
 
   create_table "assessments", force: :cascade do |t|
     t.string "confidence_level_required"
@@ -84,4 +91,5 @@ ActiveRecord::Schema.define(version: 2019_06_25_120409) do
     t.index ["assessment_id"], name: "index_evidence_on_assessment_id"
   end
 
+  add_foreign_key "assessment_session_access", "assessments"
 end
