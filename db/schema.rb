@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_20_095047) do
+ActiveRecord::Schema.define(version: 2019_06_25_120409) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -60,6 +61,27 @@ ActiveRecord::Schema.define(version: 2019_06_20_095047) do
     t.bigint "assessment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index %w[assessment_id], name: "index_evidence_on_assessment_id"
+    t.string "physical_original_check"
+    t.string "physical_errors_check"
+    t.string "digital_tool_used"
+    t.string "digital_tool_follows_standard"
+    t.string "checker_trained"
+    t.string "checker_training_frequency"
+    t.string "official_templates_used"
+    t.string "official_templates_update_frequency"
+    t.string "expiry_check"
+    t.string "replay_attack_check"
+    t.string "visible_features_check"
+    t.string "visible_tamper_check"
+    t.json "visible_features"
+    t.string "visible_features_consistency"
+    t.json "visible_features_equipment"
+    t.string "visible_features_controlled_conditions"
+    t.string "visible_features_supervision"
+    t.string "uv_ir_features_check"
+    t.json "uv_ir_features"
+    t.json "crypto_features"
+    t.index ["assessment_id"], name: "index_evidence_on_assessment_id"
   end
+
 end

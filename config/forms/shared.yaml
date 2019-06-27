@@ -5,3 +5,11 @@ lists:
         value: 'yes'
       - text: 'No'
         value: 'no'
+  - name: training_frequency
+    items:
+      - text: Every year
+        value: 12_months
+      - text: Every 3 years
+        value: 36_months
+      - text: They do not refresh their training
+        value: none

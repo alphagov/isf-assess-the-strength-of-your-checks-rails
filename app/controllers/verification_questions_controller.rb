@@ -35,12 +35,6 @@ class VerificationQuestionsController < AssessmentsController
       return
     end
 
-    params[:check_person_is_the_same_person_the_evidence_was_issued_to].each do |item|
-      if item == "dont_check"
-        params[:check_person_is_the_same_person_the_evidence_was_issued_to] = []
-      end
-    end
-
     assessment = find_assessment
     assessment.check_person_is_the_same_person_the_evidence_was_issued_to = checkboxes_params_to_list(params[:check_person_is_the_same_person_the_evidence_was_issued_to])
     save(assessment)
@@ -109,6 +103,7 @@ class VerificationQuestionsController < AssessmentsController
 
     if request.get? || !@errors.empty?
       @form = Form.new('assessments')
+      @shared = Form.new('shared')
       render "assessments/verification/verification-physical-2b"
       return
     end
@@ -117,7 +112,7 @@ class VerificationQuestionsController < AssessmentsController
     assessment.attributes = params.permit(:refresh_training)
     save(assessment)
 
-    if assessment.refresh_training == 'they_dont'
+    if assessment.refresh_training == 'none'
       redirect_to action: 'verification_physical_3a'
     else
       redirect_to action: 'verification_physical_2c'
@@ -135,12 +130,6 @@ class VerificationQuestionsController < AssessmentsController
       @form = Form.new('assessments')
       render "assessments/verification/verification-physical-2c"
       return
-    end
-
-    params[:how_do_you_check_properly].each do |item|
-      if item == "they_dont"
-        params[:how_do_you_check_properly] = []
-      end
     end
 
     assessment = find_assessment
@@ -427,16 +416,8 @@ class VerificationQuestionsController < AssessmentsController
       return
     end
 
-    if params[:kbv_multiple_or_single] == "multiple"
-      params[:kbv_how_many_checks_single] = []
-    elsif params[:kbv_multiple_or_single] == "single"
-      params[:kbv_how_many_checks_multiple] = []
-    end
-
     assessment = find_assessment
-    assessment.kbv_multiple_or_single = params[:kbv_multiple_or_single]
-    assessment.attributes = params.permit(:kbv_multiple_or_single)
-    assessment.attributes = params.permit(:kbv_how_many_checks_multiple)
+    assessment.attributes = params.permit(:kbv_multiple_or_single, :kbv_how_many_checks_multiple, :kbv_how_many_checks_single)
     save(assessment)
 
     redirect_to action: 'verification_result_get'

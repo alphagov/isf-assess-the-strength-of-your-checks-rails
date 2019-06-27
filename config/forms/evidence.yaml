@@ -128,3 +128,59 @@ lists:
         value: local_authority_doc_letter
         strength: 1
 
+  - name: official_templates_update_frequency
+    items:
+      - text: Every year
+        value: every_year
+      - text: Every 3 years
+        value: every_3_years
+      - text: The templates are never updated
+        value: never
+
+  - name: visible_features
+    items:
+      - text: Designs printed using intaglio (raised) ink
+        value: printed_using_intaglio
+      - text: Designs that have been laser etched
+        value: laser_etched
+      - text: Watermarks
+        value: watermarks
+      - text: Security fibres
+        value: security_fibres
+      - text: Secondary background ('ghost') images
+        value: secondary_background
+
+  - name: visible_features_equipment
+    items:
+      - text: A magnification tool (such as a magnifier)
+        value: magnification_tool
+      - text: A low angle ('oblique') light
+        value: low_angle_light
+      - text: Another piece of equipment that can be used to identify forged or counterfeit documents
+        value: other_equipment
+      - text: A non-specialist light source, like natural sunlight, indoor lights or a desk lamp
+        value: non_specialist_light_source
+
+  - name: uv_ir_features
+    items:
+      - text: The paper the document is printed on
+        value: paper_printed_on
+      - text: The layout and design of the document
+        value: layout_of_document
+      - text: Any fluorescent features (such as fluorescent inks or fibres)
+        value: fluorescent_features
+
+  - name: crypto_features
+    items:
+      - text: Check the evidence has not expired
+        value: not_expired
+      - text: Check the digital signature is correct
+        value: digital_signature
+      - text: Check the signing key belongs to the organisation that issued the evidence
+        value: organisation_signing_key
+      - text: Check the signing key is correct for that type of evidence
+        value: evidence_signing_key
+      - text: Check the signing key has not been revoked (this could happen if the security features have been compromised)
+        value: revoked_signing_key
+      - text: You do not check any of these things
+        value: dont_check
