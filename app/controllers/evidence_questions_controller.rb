@@ -229,6 +229,13 @@ class EvidenceQuestionsController < AssessmentsController
     render 'assessments/evidence/result'
   end
 
+  def evidence_result_post
+    @evidence = find_evidence
+    @evidence.is_complete = true
+    @evidence.save
+    redirect_to controller: :assessments, action: :overview
+  end
+
 private
 
   def handle_evidence(view, required_params, checkboxes_params = [])

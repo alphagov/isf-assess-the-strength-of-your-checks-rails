@@ -95,4 +95,11 @@ class ActivityQuestionsController < AssessmentsController
   def activity_result_get
     render "assessments/activity/activity-result"
   end
+
+  def activity_result_post
+    @assessment = find_assessment
+    @assessment.activity_section_is_complete = true
+    @assessment.save
+    redirect_to controller: :assessments, action: :overview
+  end
 end

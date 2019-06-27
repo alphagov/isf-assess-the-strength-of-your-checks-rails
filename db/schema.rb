@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_26_144326) do
+ActiveRecord::Schema.define(version: 2019_06_27_090600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,9 @@ ActiveRecord::Schema.define(version: 2019_06_26_144326) do
     t.json "biometric_system_checks"
     t.json "protect_against_spoofing"
     t.json "biometric_false_handled"
+    t.boolean "activity_section_is_complete", default: false, null: false
+    t.boolean "fraud_section_is_complete", default: false, null: false
+    t.boolean "verification_section_is_complete", default: false, null: false
   end
 
   create_table "evidence", force: :cascade do |t|
@@ -88,6 +91,7 @@ ActiveRecord::Schema.define(version: 2019_06_26_144326) do
     t.string "uv_ir_features_check"
     t.json "uv_ir_features"
     t.json "crypto_features"
+    t.boolean "is_complete", default: false, null: false
     t.index ["assessment_id"], name: "index_evidence_on_assessment_id"
   end
 

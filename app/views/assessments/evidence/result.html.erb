@@ -1,25 +1,23 @@
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">Your score for evidence</h1>
-      <p>
-        The <%= evidence_short_name(@form, @evidence) %> has a strength score of XX out of 4.
-      </p>
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Your score for evidence</h1>
+    <p>
+      The <%= evidence_short_name(@form, @evidence) %> has a strength score of XX out of 4.
+    </p>
 
-      <p>
-        The way you check if the armed forces identity card is real has a validity score of YY out of 4.
-      </p>
+    <p>
+      The way you check if the armed forces identity card is real has a validity score of YY out of 4.
+    </p>
 
-      <p>
-        To find out why you got these scores, you can <a
-        href="https://www.gov.uk/government/publications/identity-proofing-and-verification-of-an-individual/identity-proofing-and-verification-of-an-individual#strength" target="_blank"
-        >read the guidance about identity proofing and verification <span class="new-tab">(link opens
-        in a new tab)</span></a>.
-      </p>
+    <p>
+      To find out why you got these scores, you can <a
+      href="https://www.gov.uk/government/publications/identity-proofing-and-verification-of-an-individual/identity-proofing-and-verification-of-an-individual#strength" target="_blank"
+      >read the guidance about identity proofing and verification <span class="new-tab">(link opens
+      in a new tab)</span></a>.
+    </p>
 
-      <form action="<%= url_for(controller: 'assessments', action: 'overview') %>">
-        <button type="submit" class="govuk-button">
-          Continue
-        </button>
-      </form>
-    </div>
+    <%= form_tag("#{request.fullpath}", method: "post") do %>
+      <%= submit_tag("Continue", class: "govuk-button") %>
+    <% end %>
   </div>
+</div>

@@ -426,4 +426,11 @@ class VerificationQuestionsController < AssessmentsController
   def verification_result_get
     render "assessments/verification/verification-result"
   end
+
+  def verification_result_post
+    @assessment = find_assessment
+    @assessment.verification_section_is_complete = true
+    @assessment.save
+    redirect_to controller: :assessments, action: :overview
+  end
 end
