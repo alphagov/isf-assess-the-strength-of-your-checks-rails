@@ -50,6 +50,16 @@ RSpec.feature 'Add evidence flow', type: :system do
     then_i_get_a_score('XX', 'out of 4')
     and_i_can_see_that_evidence_in_the_overview('UK passport')
   end
+
+  scenario 'Add new evidence but without completing it' do
+    when_i_start_a_new_assessment
+    and_i_choose_a_regular_confidence_level
+    and_i_record_the_current_uri
+    and_i_add_a_new_piece_of_evidence('Passport or travel document', 'UK passport')
+    and_i_answer_no_to_every_question
+    and_i_go_to_that_uri # skip submission on 'results' screen: evidence not marked 'complete'
+    then_i_cannot_see_that_evidence_in_the_overview('UK passport')
+  end
 end
 
 def and_i_add_a_new_piece_of_evidence(evidence_group, evidence_type)
@@ -159,6 +169,11 @@ end
 def and_i_can_see_that_evidence_in_the_overview(evidence_type)
   then_i_see_the_overview_screen
   expect(page).to have_content evidence_type
+end
+
+def then_i_cannot_see_that_evidence_in_the_overview(evidence_type)
+  then_i_see_the_overview_screen
+  expect(page).not_to have_content evidence_type
 end
 
 def and_i_switch_between_evidence_type_to_other(evidence_group, evidence_type, evidence_other_name)

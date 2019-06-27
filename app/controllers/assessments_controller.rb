@@ -51,7 +51,7 @@ private
 
   def find_evidence_for_assessment(assessment)
     # no access control here, we assume you used `find_assessment` to safely retrieve `assessment`
-    assessment.evidence
+    assessment.evidence.where(is_complete: true)
   end
 
   def save(form_responses)

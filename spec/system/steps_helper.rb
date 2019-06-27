@@ -23,3 +23,17 @@ end
 def then_i_see_the_overview_screen
   expect(page).to have_content 'Your scores'
 end
+
+def and_i_record_the_current_uri
+  @uri = current_url
+end
+
+def then_i_cannot_go_to_that_uri
+  assert_raises(ActiveRecord::RecordNotFound) do
+    visit @uri
+  end
+end
+
+def and_i_go_to_that_uri
+  visit @uri
+end

@@ -16,10 +16,8 @@
         in a new tab)</span></a>.
       </p>
 
-      <form action="<%= url_for(controller: 'assessments', action: 'overview') %>">
-        <button type="submit" class="govuk-button">
-          Continue
-        </button>
-      </form>
+      <%= form_tag("#{request.fullpath}", method: "post") do %>
+        <%= submit_tag("Continue", class: "govuk-button") %>
+      <% end %>
     </div>
   </div>
