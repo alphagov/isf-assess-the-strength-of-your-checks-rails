@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'assessments/:assessment_id/no-risk', to: 'assessment_questions#no_risk'
 
   match 'assessments/:assessment_id/evidence/:evidence_id/choose-evidence', to: 'evidence_questions#choose_evidence', via: %i[get post]
+  match 'assessments/:assessment_id/evidence/:evidence_id/custom-strength', to: 'evidence_questions#custom_strength', via: %i[get post]
   match 'assessments/:assessment_id/evidence/:evidence_id/validity-physical-0', to: 'evidence_questions#validity_physical_0', via: %i[get post]
   match 'assessments/:assessment_id/evidence/:evidence_id/validity-physical-1a', to: 'evidence_questions#validity_physical_1a', via: %i[get post]
   match 'assessments/:assessment_id/evidence/:evidence_id/validity-physical-1b', to: 'evidence_questions#validity_physical_1b', via: %i[get post]

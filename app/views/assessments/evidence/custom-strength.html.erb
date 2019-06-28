@@ -1,0 +1,29 @@
+<% @title="Add evidence" %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_tag("#{request.fullpath}", method: "post") do %>
+      <div class="govuk-form-group">
+        <div class="govuk-caption-l">Add evidence</div>
+        <h1 class="govuk-heading-l">Calculate the strength of the <%= evidence_short_name(@form, @evidence) %></h1>
+        <p>
+          Use the guidance to calculate the strength score for <%= evidence_short_name(@form, @evidence) %>.
+        </p>
+        <p>
+          <a href="https://www.gov.uk/government/publications/identity-proofing-and-verification-of-an-individual" target="_blank">Guidance for scoring evidence strength (opens in a new window or tab)</a>
+        </p>
+        <fieldset class="govuk-fieldset" id='authoritative_source_check'>
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            What’s the strength of this evidence?
+          </legend>
+
+          <div class="govuk-radios">
+            <% @form.lists['custom_strength'].items.each do |value, item| %>
+              <%= render 'shared/radio_item', name: :custom_strength, item: item %>
+            <% end %>
+          </div>
+        </fieldset>
+      </div>
+      <%= submit_tag("Continue", class: "govuk-button") %>
+    <% end %>
+  </div>
+</div>
