@@ -28,7 +28,17 @@ class EvidenceQuestionsController < AssessmentsController
     evidence.attributes = params.permit(:evidence_type, :evidence_type_other)
     save(evidence)
 
-    redirect_to action: :validity_physical_0, evidence_id: evidence.id
+    if evidence.evidence_type.nil?
+      redirect_to action: :custom_strength, evidence_id: evidence.id
+    else
+      redirect_to action: :validity_physical_0, evidence_id: evidence.id
+    end
+  end
+
+  def custom_strength
+    handle_evidence "assessments/evidence/custom-strength", [:custom_strength] do
+      redirect_to action: 'validity_physical_0'
+    end
   end
 
   def validity_physical_0

@@ -1,3 +1,4 @@
+<% @title="Add evidence" %>
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <%= form_tag("#{request.fullpath}", method: "post") do %>
@@ -5,6 +6,7 @@
 
         <fieldset class="govuk-fieldset" aria-describedby="confidence-hint" id="confidence_level_required">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <div class="govuk-caption-l">Add evidence</div>
             <h1 class="govuk-fieldset__heading">What’s the piece of evidence you collect?</h1>
           </legend>
           <div>
