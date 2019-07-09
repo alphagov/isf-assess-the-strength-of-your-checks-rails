@@ -15,7 +15,7 @@ module EvidenceStepsHelper
     end
   end
 
-  def and_i_answer_yes_to_every_question
+  def and_i_answer_all_questions_positively
     ['physical features', 'original', 'errors', 'document capture app', 'recognised guidance', 'taught how to tell'].each do |question_snippet|
       expect(page).to have_content question_snippet
       choose 'Yes'

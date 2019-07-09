@@ -51,7 +51,7 @@ RSpec.feature 'Add evidence flow', type: :system do
     when_i_start_a_new_assessment
     and_i_choose_a_regular_confidence_level
     and_i_add_a_new_piece_of_evidence('Passport or travel document', 'UK passport')
-    and_i_answer_yes_to_every_question
+    and_i_answer_all_questions_positively
     then_i_get_a_score('4', 'out of 4')
     and_i_can_see_that_evidence_in_the_overview('UK passport')
   end
