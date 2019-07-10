@@ -3,6 +3,8 @@ require_relative "steps_helper"
 require_relative "evidence_steps_helper"
 
 RSpec.feature 'Add evidence flow', type: :system do
+  include EvidenceStepsHelper
+
   scenario 'Add new evidence to an assessment (short version)' do
     when_i_start_a_new_assessment
     and_i_choose_a_regular_confidence_level
@@ -49,7 +51,7 @@ RSpec.feature 'Add evidence flow', type: :system do
     when_i_start_a_new_assessment
     and_i_choose_a_regular_confidence_level
     and_i_add_a_new_piece_of_evidence('Passport or travel document', 'UK passport')
-    and_i_answer_yes_to_every_question
+    and_i_answer_all_questions_positively
     then_i_get_a_score('4', 'out of 4')
     and_i_can_see_that_evidence_in_the_overview('UK passport')
   end
@@ -78,14 +80,16 @@ RSpec.feature 'Add evidence flow', type: :system do
     click_button 'Continue'
   end
 
-  def then_i_get_a_score_for_that_evidence(strength, strength_additional_text)
+  def then_i_get_a_score(strength, strength_additional_text)
+    expect(@evidence_text).not_to be_nil
     expect(page).to have_content "strength score of #{strength} #{strength_additional_text}"
     click_button 'Continue'
-    find('th', text: @evidence_text).find(:xpath, "../../../tbody/tr[1]/td[2]").to have_content strength.to_s
+    expect(find('th', text: @evidence_text).find(:xpath, "../../../tbody/tr[1]/td[2]")).to have_content strength.to_s
     # expect(find('???')).to have_content 'Change' # TODO
   end
 
   def and_i_switch_between_evidence_type_to_other(evidence_group, evidence_type, evidence_other_name)
+    @evidence_text = evidence_other_name
     click_link 'Add evidence'
     choose evidence_group
     choose evidence_type
@@ -95,6 +99,7 @@ RSpec.feature 'Add evidence flow', type: :system do
   end
 
   def and_i_switch_between_evidence_type_to_regular(evidence_other_name, evidence_group, evidence_type)
+    @evidence_text = evidence_type
     click_link 'Add evidence'
     choose 'Other'
     fill_in 'evidence_type_other', with: evidence_other_name

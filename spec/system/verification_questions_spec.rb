@@ -36,15 +36,15 @@ RSpec.feature 'Verification questions', type: :system do
     and_i_respond '8 or more', to_prompt: 'Do you ask multiple or single choice KBV questions?', and_continue: true
     then_i_get_a_score 'XXX', 'out of 4' # TODO scoring!
   end
-end
 
-def and_i_choose_the_verification_link
-  click_link 'verification-edit'
-end
+  def and_i_choose_the_verification_link
+    click_link 'verification-edit'
+  end
 
-def then_i_get_a_score(score, additional_text)
-  expect(page).to have_content "#{score} #{additional_text}"
-  click_button 'Continue'
-  # expect(find('#verification-score')).to have_text score # TODO
-  # expect(find('#verification-edit')).to have_content 'Change' # TODO
+  def then_i_get_a_score(score, additional_text)
+    expect(page).to have_content "#{score} #{additional_text}"
+    click_button 'Continue'
+    # expect(find('#verification-score')).to have_text score # TODO
+    # expect(find('#verification-edit')).to have_content 'Change' # TODO
+  end
 end
