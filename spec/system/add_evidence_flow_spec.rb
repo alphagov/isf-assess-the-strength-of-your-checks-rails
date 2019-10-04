@@ -10,11 +10,11 @@ RSpec.feature 'Add evidence flow', type: :system do
     and_i_choose_a_regular_confidence_level
     and_i_add_a_new_piece_of_evidence('Passport or travel document', 'UK passport')
     and_i_answer_no_to_every_question
-    then_i_get_a_score('4', 'out of 4')
+    then_i_get_a_score('4', 'out of 4', '0', 'out of 4')
     and_i_can_see_that_evidence_in_the_overview('UK passport')
     and_i_add_a_new_piece_of_evidence('Certificate', 'Marriage or civil partnership certificate')
     and_i_answer_no_to_every_question
-    then_i_get_a_score('2', 'out of 4')
+    then_i_get_a_score('2', 'out of 4', '0', 'out of 4')
     and_i_can_see_that_evidence_in_the_overview('Marriage or civil partnership certificate')
   end
 
@@ -24,7 +24,7 @@ RSpec.feature 'Add evidence flow', type: :system do
     and_i_add_a_new_piece_of_other_evidence('Something else')
     and_i_say_the_evidence_strength_is('3')
     and_i_answer_no_to_every_question
-    then_i_get_a_score('3', 'out of 4')
+    then_i_get_a_score('3', 'out of 4', '0', 'out of 4')
     and_i_can_see_that_evidence_in_the_overview('Something else')
   end
 
@@ -34,7 +34,7 @@ RSpec.feature 'Add evidence flow', type: :system do
     and_i_switch_between_evidence_type_to_other('Passport or travel document', 'UK passport', 'Something else')
     and_i_say_the_evidence_strength_is('3')
     and_i_answer_no_to_every_question
-    then_i_get_a_score('3', 'out of 4')
+    then_i_get_a_score('3', 'out of 4', '0', 'out of 4')
     and_i_can_see_that_evidence_in_the_overview('Something else')
   end
 
@@ -43,7 +43,7 @@ RSpec.feature 'Add evidence flow', type: :system do
     and_i_choose_a_regular_confidence_level
     and_i_switch_between_evidence_type_to_regular('Something else', 'Passport or travel document', 'UK passport')
     and_i_answer_no_to_every_question
-    then_i_get_a_score('4', 'out of 4')
+    then_i_get_a_score('4', 'out of 4', '0', 'out of 4')
     and_i_can_see_that_evidence_in_the_overview('UK passport')
   end
 
@@ -52,7 +52,7 @@ RSpec.feature 'Add evidence flow', type: :system do
     and_i_choose_a_regular_confidence_level
     and_i_add_a_new_piece_of_evidence('Passport or travel document', 'UK passport')
     and_i_answer_all_questions_positively
-    then_i_get_a_score('4', 'out of 4')
+    then_i_get_a_score('4', 'out of 4', '4', 'out of 4')
     and_i_can_see_that_evidence_in_the_overview('UK passport')
   end
 
@@ -80,11 +80,13 @@ RSpec.feature 'Add evidence flow', type: :system do
     click_button 'Continue'
   end
 
-  def then_i_get_a_score(strength, strength_additional_text)
+  def then_i_get_a_score(strength, strength_additional_text, validity, validity_additional_text)
     expect(@evidence_text).not_to be_nil
     expect(page).to have_content "strength score of #{strength} #{strength_additional_text}"
+    expect(page).to have_content "validity score of #{validity} #{validity_additional_text}"
     click_button 'Continue'
     expect(find('th', text: @evidence_text).find(:xpath, "../../../tbody/tr[1]/td[2]")).to have_content strength.to_s
+    expect(find('th', text: @evidence_text).find(:xpath, "../../../tbody/tr[2]/td[2]")).to have_content validity.to_s
     # expect(find('???')).to have_content 'Change' # TODO
   end
 

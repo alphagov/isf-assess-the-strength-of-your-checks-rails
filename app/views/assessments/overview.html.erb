@@ -62,14 +62,14 @@
             <tbody class="govuk-table__body">
               <tr class="govuk-table__row">
                 <td class="govuk-table__cell" scope="row">Strength</td>
-                <td class="govuk-table__cell" scope="row" class="evidence-strength">
+                <td class="govuk-table__cell" scope="row">
                   <%= evidence_strength(@evidence_form, evidence) %>
                 </td>
               </tr>
               <tr class="govuk-table__row">
                 <td class="govuk-table__cell" scope="row">Validity</td>
                 <td class="govuk-table__cell" scope="row">
-                  ??
+                  <%= evidence.validity_score %>
                 </td>
               </tr>
             </tbody>
