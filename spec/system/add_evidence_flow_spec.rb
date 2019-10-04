@@ -56,6 +56,27 @@ RSpec.feature 'Add evidence flow', type: :system do
     and_i_can_see_that_evidence_in_the_overview('UK passport')
   end
 
+  scenario 'Add new evidence (score 3 – no crypto)' do
+    when_i_start_a_new_assessment
+    and_i_choose_a_regular_confidence_level
+    and_i_add_a_new_piece_of_evidence('Passport or travel document', 'UK passport')
+    and_i_answer_all_questions_except_cryptographic_positively
+    then_i_get_a_score('4', 'out of 4', '3', 'out of 4')
+    and_i_can_see_that_evidence_in_the_overview('UK passport')
+  end
+
+  scenario 'Add new evidence (score 3 – only crypto)' do
+    when_i_start_a_new_assessment
+    and_i_choose_a_regular_confidence_level
+    and_i_add_a_new_piece_of_evidence('Passport or travel document', 'UK passport')
+    and_i_answer 'physical features', 'No'
+    and_i_answer_cryptographic_check_questions_positively
+    and_i_answer 'authoritative source', 'Yes' # doesn't matter (?!)
+    and_i_answer 'cancelled', 'Yes' # doesn't matter (?!)
+    then_i_get_a_score('4', 'out of 4', '3', 'out of 4')
+    and_i_can_see_that_evidence_in_the_overview('UK passport')
+  end
+
   scenario 'Add new evidence but without completing it' do
     when_i_start_a_new_assessment
     and_i_choose_a_regular_confidence_level

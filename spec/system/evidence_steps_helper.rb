@@ -7,19 +7,21 @@ module EvidenceStepsHelper
     click_button 'Continue'
   end
 
+  def and_i_answer(question_snippet, answer)
+    expect(page).to have_content question_snippet
+    choose answer
+    click_button 'Continue'
+  end
+
   def and_i_answer_no_to_every_question
     ['physical features', 'cryptographic security', 'authoritative source', 'cancelled'].each do |question_snippet|
-      expect(page).to have_content question_snippet
-      choose 'No'
-      click_button 'Continue'
+      and_i_answer question_snippet, 'No'
     end
   end
 
-  def and_i_answer_all_questions_positively
+  def and_i_answer_physical_check_questions_positively
     ['physical features', 'original', 'errors', 'document capture app', 'recognised guidance', 'taught how to tell'].each do |question_snippet|
-      expect(page).to have_content question_snippet
-      choose 'Yes'
-      click_button 'Continue'
+      and_i_answer question_snippet, 'Yes'
     end
 
     expect(page).to have_content 'refresh their training'
@@ -35,9 +37,7 @@ module EvidenceStepsHelper
     click_button 'Continue'
 
     ['expired', 'intercepted', 'visible security features', 'protects them from being tampered with'].each do |question_snippet|
-      expect(page).to have_content question_snippet
-      choose 'Yes'
-      click_button 'Continue'
+      and_i_answer question_snippet, 'Yes'
     end
 
     expect(page).to have_content 'security features'
@@ -48,9 +48,7 @@ module EvidenceStepsHelper
     check "Secondary background ('ghost') images"
     click_button 'Continue'
 
-    expect(page).to have_content 'consistent throughout'
-    choose 'Yes'
-    click_button 'Continue'
+    and_i_answer 'consistent throughout', 'Yes'
 
     expect(page).to have_content 'equipment'
     check 'magnification tool'
@@ -60,9 +58,7 @@ module EvidenceStepsHelper
     click_button 'Continue'
 
     ['controlled', 'supervised', 'ultraviolet (UV) or infrared (IR)'].each do |question_snippet|
-      expect(page).to have_content question_snippet
-      choose 'Yes'
-      click_button 'Continue'
+      and_i_answer question_snippet, 'Yes'
     end
 
     expect(page).to have_content 'UV or IR security features'
@@ -70,10 +66,10 @@ module EvidenceStepsHelper
     check 'The layout and design of the document'
     check 'Any fluorescent features'
     click_button 'Continue'
+  end
 
-    expect(page).to have_content 'cryptographic security'
-    choose 'Yes'
-    click_button 'Continue'
+  def and_i_answer_cryptographic_check_questions_positively
+    and_i_answer 'cryptographic security', 'Yes'
 
     expect(page).to have_content 'cryptographic security features'
     check 'Check the evidence has not expired'
@@ -82,12 +78,20 @@ module EvidenceStepsHelper
     check 'Check the signing key is correct for that type of evidence'
     check 'Check the signing key has not been revoked'
     click_button 'Continue'
+  end
 
-    ['authoritative source', 'cancelled'].each do |question_snippet|
-      expect(page).to have_content question_snippet
-      choose 'Yes'
-      click_button 'Continue'
-    end
+  def and_i_answer_all_questions_positively
+    and_i_answer_physical_check_questions_positively
+    and_i_answer_cryptographic_check_questions_positively
+    and_i_answer 'authoritative source', 'Yes'
+    and_i_answer 'cancelled', 'Yes'
+  end
+
+  def and_i_answer_all_questions_except_cryptographic_positively
+    and_i_answer_physical_check_questions_positively
+    and_i_answer 'cryptographic security', 'No'
+    and_i_answer 'authoritative source', 'Yes'
+    and_i_answer 'cancelled', 'Yes'
   end
 
   def and_i_can_see_that_evidence_in_the_overview(evidence_type)
